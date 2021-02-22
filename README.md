@@ -17,3 +17,5 @@ KAYNAK GÖSTERMEK KOŞULUYLA HER TÜRLÜ ALINTI YAPILABİLİR
 #resttemplate
 #postgresql
 #rxjava
+#crudrepository
+
