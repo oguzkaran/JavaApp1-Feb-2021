@@ -23,17 +23,22 @@ public class StringUtil {
 
     public static String changeCase(String s)
     {
-        char [] chars = s.toCharArray();
+        var sb = new StringBuilder(s.length());
 
-        for (int i = 0; i < chars.length; ++i)
-            chars[i] = Character.isUpperCase(chars[i]) ? Character.toLowerCase(chars[i]) : Character.toUpperCase(chars[i]);
+        var length = s.length();
 
-        return String.valueOf(chars);
+        for (var i = 0; i < length; ++i) {
+            char ch = s.charAt(i);
+
+            sb.append(Character.isUpperCase(ch) ? Character.toLowerCase(ch) : Character.toUpperCase(ch));
+        }
+
+        return sb.toString();
     }
 
     public static int countString(String s1, String s2)
     {
-        int count = 0;
+        var count = 0;
 
         for (int index = -1; (index = s1.indexOf(s2, index + 1)) != -1; ++count)
             ;
@@ -43,15 +48,15 @@ public class StringUtil {
 
     public static String getLongestPalindrome(String s)
     {
-        String result = "";
+        var result = "";
 
-        int endIndex = s.length();
+        var endIndex = s.length();
 
         while (endIndex != 0) {
-            int beginIndex = 0;
+            var beginIndex = 0;
 
             while (beginIndex != endIndex) {
-                String str = s.substring(beginIndex++, endIndex);
+                var str = s.substring(beginIndex++, endIndex);
 
                 if (str.length() > 1 && isPalindrome(str) && str.length() > result.length())
                     result = str;
@@ -65,10 +70,10 @@ public class StringUtil {
 
     public static String getRandomText(Random r, int n, String sourceText)
     {
-        int length = sourceText.length();
-        char [] chars = new char[n];
+        var length = sourceText.length();
+        var chars = new char[n];
 
-        for (int i = 0; i < n; ++i)
+        for (var i = 0; i < n; ++i)
             chars[i] = sourceText.charAt(r.nextInt(length));
 
         return String.valueOf(chars);
@@ -94,11 +99,21 @@ public class StringUtil {
         return getRandomTextEN(new Random(), n);
     }
 
+    public static String getRandomTextsTR(Random r, int n, int minLength, int maxLength)
+    {
+        StringBuilder sb = new StringBuilder();
+
+        while (n-- > 0)
+            sb.append(getRandomTextTR(r, r.nextInt(maxLength - minLength) + minLength));
+
+        return sb.toString();
+    }
+
     public static boolean isAllLetter(String s)
     {
-        int length = s.length();
+        var length = s.length();
 
-        for (int i = 0; i < length; ++i)
+        for (var i = 0; i < length; ++i)
             if (!isLetter(s.charAt(i)))
                 return false;
 
@@ -163,10 +178,10 @@ public class StringUtil {
 
     public static String join(String [] str, String delimiter)
     {
-        String result = "";
+        var result = new StringBuilder();
 
-        for (String s : str)
-            result += s + delimiter;
+        for (var s : str)
+            result.append(s).append(delimiter);
 
         return result.substring(0, result.length() - delimiter.length());
     }
@@ -214,28 +229,39 @@ public class StringUtil {
 
     public static String reverse(String s)
     {
-        char [] chars = s.toCharArray();
+        return new StringBuilder(s).reverse().toString();
+    }
 
-        ArrayUtil.reverse(chars);
+    public static String squeeze(String s1, String s2)
+    {
+        int length = s1.length();
+        StringBuilder sb = new StringBuilder();
 
-        return String.valueOf(chars);
+        for (int i = 0; i < length; ++i) {
+            char ch = s1.charAt(i);
+
+            if (s2.indexOf(ch) == -1)
+                sb.append(ch);
+        }
+
+        return sb.toString();
     }
 
     public static String [] split(String str, String delimiters, StringSplitOptions stringSplitOptions)
     {
-        String pattern = "[";
+        StringBuilder pattern = new StringBuilder("[");
 
         int length = delimiters.length();
 
         for (int i = 0; i < length; ++i) {
             char delim = delimiters.charAt(i);
 
-            pattern += delim == '[' || delim == ']' ? "\\" + delim : delim;
+            pattern.append(delim == '[' || delim == ']' ? "\\" + delim : delim);
         }
 
-        pattern += stringSplitOptions == StringSplitOptions.REMOVE_EMPTY_ENTRIES ? "]+" : "]";
+        pattern.append(stringSplitOptions == StringSplitOptions.REMOVE_EMPTY_ENTRIES ? "]+" : "]");
 
-        return str.split(pattern);
+        return str.split(pattern.toString());
     }
 
     public static String trimLeading(String s)

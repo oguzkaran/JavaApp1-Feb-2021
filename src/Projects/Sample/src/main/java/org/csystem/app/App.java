@@ -1,32 +1,18 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    Yukarıdaki örnek aşağıdaki gibi char türden dizi ile yapılabilir
+    var değişkenler for döngü deyiminde de kullanılabilir
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
 
-import org.csystem.util.ArrayUtil;
 import org.csystem.util.Console;
 
-public class App {
+class App {
     public static void main(String[] args)
     {
-        for (;;) {
-            String s = Console.read("Bir yazı giriniz:");
+        var a = Console.readInt("Bir sayı giriniz:");
+        var b = a > 0 ? 10 : "ankara";
 
-            if ("quit".equals(s))
-                break;
 
-            Console.writeLine(Util.reverse(s));
-        }
     }
 }
 
-class Util {
-    public static String reverse(String str)
-    {
-        char [] c = str.toCharArray();
 
-        ArrayUtil.reverse(c);
-
-        return String.valueOf(c);
-    }
-}
