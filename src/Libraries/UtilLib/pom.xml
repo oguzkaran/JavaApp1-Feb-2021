@@ -10,9 +10,9 @@
 	</parent>
 
 	<groupId>org.csystem</groupId>
-	<artifactId>GenericLib</artifactId>
+	<artifactId>org-csystem-util</artifactId>
 	<version>1.0.0</version>
-	<description>Generic Library Provider</description>
+	<description>Generic Utility Library</description>
 
 	<properties>
 		<java.version>11</java.version>
