@@ -2,10 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="16698ff9-77fa-4dc3-9930-a2895ddac1e9" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../../doc/Examples.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../doc/Examples.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Libraries/UtilLib/src/main/java/org/csystem/util/StringUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Libraries/UtilLib/src/main/java/org/csystem/util/StringUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Projects/Sample/libs/org-csystem-util-1.0.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Projects/Sample/src/main/java/org/csystem/app/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Projects/Sample/src/main/java/org/csystem/app/App.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -99,6 +95,7 @@
       <workItem from="1614205258262" duration="265000" />
       <workItem from="1614271095312" duration="36000" />
       <workItem from="1614523666211" duration="2230000" />
+      <workItem from="1614536024577" duration="620000" />
     </task>
     <servers />
   </component>
