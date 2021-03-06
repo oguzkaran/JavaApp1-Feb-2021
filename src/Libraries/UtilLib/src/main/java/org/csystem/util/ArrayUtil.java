@@ -90,7 +90,7 @@ public class ArrayUtil {
         return result;
     }
 
-    public static void display(int [] a)
+    public static void display(int... a)
     {
         display(1, a);
     }
@@ -100,7 +100,7 @@ public class ArrayUtil {
         display(1, a);
     }
 
-    public static void display(int n, int [] a)
+    public static void display(int n, int... a)
     {
         display(' ', '\n', n, a);
     }
@@ -111,12 +111,12 @@ public class ArrayUtil {
             display(n, array);
     }
 
-    public static void display(char sep, char end, int [] a)
+    public static void display(char sep, char end, int... a)
     {
         display(sep, end, 1, a);
     }
 
-    public static void display(char sep, char end, int n, int [] a)
+    public static void display(char sep, char end, int n, int... a)
     {
         String fmt = String.format("%%0%dd%%c", n);
 
