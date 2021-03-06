@@ -95,7 +95,7 @@ public class ArrayUtil {
         display(1, a);
     }
 
-    public static void display(int [][] a)
+    public static void display(int []... a)
     {
         display(1, a);
     }
@@ -127,7 +127,7 @@ public class ArrayUtil {
     }
 
 
-    public static void display(String [] str)
+    public static void display(String... str)
     {
         for (String s : str)
             System.out.println(s);
@@ -223,7 +223,7 @@ public class ArrayUtil {
         return isMatrix(a) && a[0].length == a.length;
     }
 
-    public static int max(int [] a)
+    public static int max(int... a)
     {
         int result = a[0];
 
@@ -233,7 +233,7 @@ public class ArrayUtil {
         return result;
     }
 
-    public static int min(int [] a)
+    public static int min(int... a)
     {
         int result = a[0];
 
@@ -308,7 +308,7 @@ public class ArrayUtil {
         }
     }
 
-    public static int sum(int [] a)
+    public static int sum(int... a)
     {
         int total = 0;
 
@@ -318,7 +318,7 @@ public class ArrayUtil {
         return total;
     }
 
-    public static int sum(int [][] a)
+    public static int sum(int []... a)
     {
         int total = 0;
 
@@ -328,7 +328,7 @@ public class ArrayUtil {
         return total;
     }
 
-    public static int sumDiagonal(int [][] a)
+    public static int sumDiagonal(int []... a)
     {
         int total = 0;
 
