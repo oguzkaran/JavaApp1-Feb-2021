@@ -1,23 +1,27 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    Birden fazla elipsis parametreli metot yazılamacağı için böyle bir durumda elipsis parametresi bir tane olup
-    geri kalanlar [] ile bildirilebilir.
+
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
+
+import org.csystem.util.Console;
 
 class App {
     public static void main(String[] args)
     {
-        Sample.foo();
+        Sample.foo(3);
     }
 }
 
 class Sample {
-    public static void foo(int b, double a)
+    public static void foo(int n)
     {
-        int x = 10;
-        int y = 20;
+        Console.writeLine("Giriş:%d", n);
 
-        System.out.println(y);
+        if (n == 0)
+            return;
+
+        foo(n - 1);
+        Console.writeLine("Çıkış:%d", n); //**
     }
 }
 
