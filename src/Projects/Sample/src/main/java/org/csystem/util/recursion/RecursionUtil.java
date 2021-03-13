@@ -1,6 +1,6 @@
 package org.csystem.util.recursion;
 
-public class RecursionUtil {
+public final class RecursionUtil {
     private static int getFibonacciNumberRecur(int n)
     {
         if (n <= 2)
@@ -38,6 +38,10 @@ public class RecursionUtil {
 
         writeReverse(s, i + 1);
         System.out.write(s.charAt(i));
+    }
+
+    private RecursionUtil()
+    {
     }
 
     public static long factorial(int n)

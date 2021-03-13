@@ -1,5 +1,6 @@
 /*----------------------------------------------------------------------------------------------------------------------
-
+    Anımsanacağı gibi "Bitsel ve" ve "bitsel veya" operatörleri boolean türü ile kulanıldıklarında kısa devre davranışı
+    olmayan "mantıksal ve" ve "mantıksal veya" operatörleri gibi çalışırlar
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
 
@@ -8,20 +9,33 @@ import org.csystem.util.Console;
 class App {
     public static void main(String[] args)
     {
-        Sample.foo(3);
+        boolean result = Sample.foo() | Sample.bar() & Sample.tar();
+
+        Console.writeLine(result);
     }
 }
 
 class Sample {
-    public static void foo(int n)
+    public static boolean foo()
     {
-        Console.writeLine("Giriş:%d", n);
+        System.out.println("foo");
 
-        if (n == 0)
-            return;
+        return true;
+    }
 
-        foo(n - 1);
-        Console.writeLine("Çıkış:%d", n); //**
+    public static boolean bar()
+    {
+        System.out.println("bar");
+
+        return false;
+    }
+
+    public static boolean tar()
+    {
+        System.out.println("tar");
+
+        return true;
     }
 }
+
 

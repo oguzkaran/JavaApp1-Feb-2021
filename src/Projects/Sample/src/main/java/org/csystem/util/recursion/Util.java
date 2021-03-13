@@ -1,6 +1,10 @@
 package org.csystem.util.recursion;
 
-public class Util {
+public final class Util {
+    private Util()
+    {
+    }
+
     public static long factorial(int n)
     {
         long result = 1;
