@@ -1,41 +1,21 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    Anımsanacağı gibi "Bitsel ve" ve "bitsel veya" operatörleri boolean türü ile kulanıldıklarında kısa devre davranışı
-    olmayan "mantıksal ve" ve "mantıksal veya" operatörleri gibi çalışırlar
+    BitwiseUtil sınıfının isSet metodu
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
 
 import org.csystem.util.Console;
+import org.csystem.util.bitwise.BitwiseUtil;
 
 class App {
     public static void main(String[] args)
     {
-        boolean result = Sample.foo() | Sample.bar() & Sample.tar();
+        for (;;) {
+            var a = Console.readLong("Bir sayı giriniz:");
+            if (a == 0)
+                break;
 
-        Console.writeLine(result);
+            BitwiseUtil.writeBits(a);
+            Console.writeLine("%d sayısı ikinin %s", a, (a & (a - 1)) == 0 ? "kuvvetidir" : "kuvveti değildir");
+        }
     }
 }
-
-class Sample {
-    public static boolean foo()
-    {
-        System.out.println("foo");
-
-        return true;
-    }
-
-    public static boolean bar()
-    {
-        System.out.println("bar");
-
-        return false;
-    }
-
-    public static boolean tar()
-    {
-        System.out.println("tar");
-
-        return true;
-    }
-}
-
-

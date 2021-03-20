@@ -133,6 +133,13 @@ public class ArrayUtil {
             System.out.println(s);
     }
 
+
+    public static void display(char [] c)
+    {
+        for (char ch : c)
+            System.out.println(ch);
+    }
+
     public static void drawHistogram(int [] data, int n, char ch)
     {
         int maxVal = max(data);
@@ -340,20 +347,16 @@ public class ArrayUtil {
 
     public static void swap(char [] a, int i, int k)
     {
-        char temp;
-
-        temp = a[i];
-        a[i] = a[k];
-        a[k] = temp;
+        a[i] ^= a[k];
+        a[k] ^= a[i];
+        a[i] ^= a[k];
     }
 
     public static void swap(int [] a, int i, int k)
     {
-        int temp;
-
-        temp = a[i];
-        a[i] = a[k];
-        a[k] = temp;
+        a[i] ^= a[k];
+        a[k] ^= a[i];
+        a[i] ^= a[k];
     }
 
     public static int [][] transpose(int [][] a)
