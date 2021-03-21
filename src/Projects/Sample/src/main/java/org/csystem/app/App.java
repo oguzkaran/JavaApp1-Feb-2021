@@ -1,21 +1,25 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    BitwiseUtil sınıfının isSet metodu
+   Yukarıdaki örneğin Calendar ve GregorianCalendar kullanarak yapılmış biçimi
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
 
 import org.csystem.util.Console;
-import org.csystem.util.bitwise.BitwiseUtil;
+
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 class App {
     public static void main(String[] args)
     {
-        for (;;) {
-            var a = Console.readLong("Bir sayı giriniz:");
-            if (a == 0)
-                break;
+        var month = Console.readInt("Son kullanma tarihi ay bilgisini giriniz:");
+        var year = Console.readInt("Son kullanma tarihi yıl bilgisini giriniz:");
+        var expiryDate = new GregorianCalendar(year, month - 1, 1);
 
-            BitwiseUtil.writeBits(a);
-            Console.writeLine("%d sayısı ikinin %s", a, (a & (a - 1)) == 0 ? "kuvvetidir" : "kuvveti değildir");
-        }
+        expiryDate.set(Calendar.DAY_OF_MONTH, expiryDate.getActualMaximum(Calendar.DAY_OF_MONTH));
+
+        if (new GregorianCalendar().after(expiryDate))
+            Console.writeLine("Kartın son kullanma tarihi geçmiştir");
+        else
+            Console.writeLine("Kartın son kullanma tarihi henüz geçmemiştir");
     }
 }
