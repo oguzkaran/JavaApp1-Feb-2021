@@ -52,6 +52,11 @@ public final class Util {
 
     public static void writeNumber(int val)
     {
+        writeNumber(val, 10);
+    }
+
+    public static void writeNumber(int val, int radix)
+    {
         if (val == 0) {
             System.out.write('0');
             return;
@@ -67,8 +72,8 @@ public final class Util {
         }
 
         for (i = 0; val != 0; ++i) {
-            s[i] = (char)(val % 10 + '0');
-            val /= 10;
+            s[i] = (char)((char)((val % radix >= 10 ? -10 + 'A' : '0') + val % radix));
+            val /= radix;
         }
 
         if (isNegative)
@@ -78,11 +83,6 @@ public final class Util {
             System.out.write(s[i]);
 
         System.out.flush();
-    }
-
-    public static void writeNumber(int val, int radix)
-    {
-        //TODO:
     }
 
     public static void writeReverse(String s)

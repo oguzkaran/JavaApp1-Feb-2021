@@ -1,9 +1,27 @@
 package org.csystem.util.datetime;
 
 import java.time.*;
+import java.util.Random;
 
 public final class DateTimeUtil {
     private DateTimeUtil() {}
+
+    /*
+    public static LocalDate randomLocalDate(Random r, int minYear, int maxYear)
+    {
+
+    }
+
+    public static LocalTime randomLocalTime(Random r)
+    {
+
+    }
+
+    public static LocalDateTime randomLocalDateTime(Random r, int minYear, int maxYear)
+    {
+        return randomLocalDate(r, minYear, maxYear).atTime(randomLocalTime(r));
+    }
+    */
 
     public static long toMilliseconds(LocalDateTime localDateTime)
     {
