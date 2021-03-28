@@ -10,9 +10,9 @@
 	</parent>
 
 	<groupId>org.csystem</groupId>
-	<artifactId>Sample</artifactId>
+	<artifactId>SimpleProductConsoleApplication</artifactId>
 	<version>1.0.0</version>
-	<description>Sample Application</description>
+	<description>SimpleProduct Console Application </description>
 
 	<properties>
 		<java.version>11</java.version>
@@ -26,8 +26,6 @@
 			<scope>system</scope>
 			<systemPath>${basedir}/libs/org-csystem-util-1.0.0.jar</systemPath>
 		</dependency>
-
-
 		<dependency>
 			<groupId>org.csystem</groupId>
 			<artifactId>org-csystem-util-datetime</artifactId>
@@ -35,15 +33,6 @@
 			<scope>system</scope>
 			<systemPath>${basedir}/libs/org-csystem-util-datetime-1.0.0.jar</systemPath>
 		</dependency>
-
-		<dependency>
-			<groupId>org.csystem</groupId>
-			<artifactId>org-csystem-util-datetime-legacy</artifactId>
-			<version>1.0.0</version>
-			<scope>system</scope>
-			<systemPath>${basedir}/libs/org-csystem-util-datetime-legacy-1.0.0.jar</systemPath>
-		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
