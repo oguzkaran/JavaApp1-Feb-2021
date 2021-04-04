@@ -3,11 +3,18 @@
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.util;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
+
 import static java.lang.Math.*;
 
 public class NumberUtil {
     private static final String [] ONES;
     private static final String [] TENS;
+    private static final BigInteger THREE = BigInteger.valueOf(3);
+    private static final BigInteger FIVE = BigInteger.valueOf(5);
+    private static final BigInteger SEVEN = BigInteger.valueOf(7);
+    private static final BigInteger ELEVEN = BigInteger.valueOf(11);
 
     static {
         ONES = new String[]{"", "bir", "iki", "üç", "dört", "beş", "altı", "yedi", "sekiz", "dokuz"};
@@ -69,6 +76,16 @@ public class NumberUtil {
     public static int countDigits(int val)
     {
         return val == 0 ? 1 : (int) log10(abs(val)) + 1;
+    }
+
+    public static BigInteger factorialBig(int n)
+    {
+        var result = BigInteger.ONE;
+
+        for (var i = 2; i <= n; ++i)
+            result = result.multiply(BigInteger.valueOf(i));
+
+        return result;
     }
 
     public static long factorial(int n)
@@ -204,11 +221,6 @@ public class NumberUtil {
         return val >= 0 && getPowSum(val) == val;
     }
 
-    public static boolean isEven(int val)
-    {
-        return val % 2 == 0;
-    }
-
 
     public static boolean isHarshad(int val)
     {
@@ -218,7 +230,33 @@ public class NumberUtil {
         return val % getDigitsSum(val) == 0;
     }
 
-    public static boolean isPrime(int val)
+    public static boolean isPrime(BigInteger val)
+    {
+        if (val.compareTo(BigInteger.ONE) <= 0)
+            return false;
+
+        if (val.remainder(BigInteger.TWO).equals(BigInteger.ZERO))
+            return val.equals(BigInteger.TWO);
+
+        if (val.remainder(THREE).equals(BigInteger.ZERO))
+            return val.equals(THREE);
+
+        if (val.remainder(FIVE).equals(BigInteger.ZERO))
+            return val.equals(FIVE);
+
+        if (val.remainder(SEVEN).equals(BigInteger.ZERO))
+            return val.equals(SEVEN);
+
+        var sqrtVal = val.sqrt();
+
+        for (var i = ELEVEN; i.compareTo(sqrtVal) <= 0; i = i.add(BigInteger.TWO))
+            if (val.remainder(i).equals(BigInteger.ZERO))
+                return false;
+
+        return true;
+    }
+
+    public static boolean isPrime(long val)
     {
         if (val <= 1)
             return false;
@@ -235,18 +273,18 @@ public class NumberUtil {
         if (val % 7 == 0)
             return val == 7;
 
-        int sqrtIntValue = (int) sqrt(val);
+        long sqrtIntValue = (long)sqrt(val);
 
-        for (int i = 11; i <= sqrtIntValue; i += 2)
+        for (var i = 11L; i <= sqrtIntValue; i += 2)
             if (val % i == 0)
                 return false;
 
         return true;
     }
 
-    public static boolean isOdd(int val)
+    public static boolean isPrime(int val)
     {
-        return !isEven(val);
+        return isPrime((long)val);
     }
 
     public static int max(int a, int b, int c)

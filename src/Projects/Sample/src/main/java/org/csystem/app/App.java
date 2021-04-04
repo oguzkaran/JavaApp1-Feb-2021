@@ -1,58 +1,27 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    Sınıf Çalışması: Klavyeden sıfır girilene kadar alınan BigDecimal sayıların en büyüğünü, en küçüğünü ve toplamlarını
-    hesaplayan programı yazınız
+    Sınıf Çalışması: NumberUtil sınıfı içerisindeki isPrime metodunun BigInteger parametreleri overload'unu yazınız
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
 
 import org.csystem.util.Console;
 
-import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.Random;
 
 class App {
     public static void main(String[] args)
     {
-        FindMaxMinTotalApp.run();
-    }
-}
+        Random r = new Random();
 
-class FindMaxMinTotalApp {
-    private FindMaxMinTotalApp()
-    {
-    }
+        for (int i = 0; i < 10; ++i) {
+            var n = new BigInteger(128, r); //[0, pow(2, 128) - 1]
 
-    private static void calculate(BigDecimal initial)
-    {
-        var min = initial;
-        var max = initial;
-        var sum = initial;
+            if (r.nextBoolean())
+                n = n.negate();
 
-        for (;;) {
-            var val = Console.readBigDecimal("Bir sayı giriniz:");
-            if (val.equals(BigDecimal.ZERO))
-                break;
-
-            if (val.compareTo(min) < 0)
-                min = val;
-
-            if (max.compareTo(val) < 0)
-                max = val;
-
-            sum = sum.add(val);
+            Console.writeLine(n);
         }
-
-        Console.writeLine("En küçük sayı:%s", min);
-        Console.writeLine("En büyük sayı:%s", max);
-        Console.writeLine("Toplam:%s", sum);
-    }
-    public static void run()
-    {
-        var val = Console.readBigDecimal("Bir sayı giriniz:");
-
-        if (!val.equals(BigDecimal.ZERO))
-            calculate(val);
-        else
-            Console.writeLine("Hiç sayı girilmedi");
-
-
     }
 }
+
+
