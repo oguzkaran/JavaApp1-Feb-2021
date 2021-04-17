@@ -3,6 +3,7 @@
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.util;
 
+import java.util.Arrays;
 import java.util.Random;
 
 public class ArrayUtil {
@@ -152,6 +153,44 @@ public class ArrayUtil {
 
             System.out.println();
         }
+    }
+
+
+
+    public static boolean equals(int [][] a, int [][] b)
+    {
+        if (a.length != b.length)
+            return false;
+
+        for (var i = 0; i < a.length; ++i)
+            if (!Arrays.equals(a[i], b[i]))
+                return false;
+
+        return true;
+    }
+
+    public static boolean equals(double [][] a, double [][] b)
+    {
+        if (a.length != b.length)
+            return false;
+
+        for (var i = 0; i < a.length; ++i)
+            if (!Arrays.equals(a[i], b[i]))
+                return false;
+
+        return true;
+    }
+
+    public static boolean equals(boolean [][] a, boolean [][] b)
+    {
+        if (a.length != b.length)
+            return false;
+
+        for (var i = 0; i < a.length; ++i)
+            if (!Arrays.equals(a[i], b[i]))
+                return false;
+
+        return true;
     }
 
     public static int [] getHistogramData(int [] a, int n) //[0, n]
