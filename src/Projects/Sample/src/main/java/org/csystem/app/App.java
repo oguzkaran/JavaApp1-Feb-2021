@@ -1,56 +1,52 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    Sınıf Çalışması: int türden iki dizi dizisinin eşit olup olmadığını test eden equals isimli metodu yazınız
+    Aşağıdaki örnekte Android programlamada kullanılan R sınıfı ve içerisinde bulunan static sınıflar simüle
+    edilmiştir
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
-
-import org.csystem.util.ArrayUtil;
-import org.csystem.util.Console;
-
-import java.util.Arrays;
-import java.util.Random;
 
 class App {
     public static void main(String[] args)
     {
-        EqualsTest.run();
+        Context context = new Context();
+
+        Toast.makeText(context, R.string.warning, Toast.LENGTH_LONG).show();
     }
 }
 
-class EqualsTest {
-    private EqualsTest()
+class Context {
+    //...
+}
+
+class Toast {
+    public static final int LENGTH_LONG = 1;
+    public static final int LENGTH_SHORT = -2;
+
+    public static Toast makeText(Context context, int resId, int duration)
     {
+        ///...
+        return new Toast();
     }
 
-    public static void run()
+    public void show()
     {
-        for (;;) {
-            var seed1 = Console.readLong("Birinci tohum değerini giriniz:");
-            if (seed1 == 0)
-                break;
-            var seed2 = Console.readLong("İkinci tohum değerini giriniz:");
-            var r1 = new Random(seed1);
-
-            var m1 = ArrayUtil.getRandomMatrix(r1, 3, 4, 1, 100);
-            var m2 = ArrayUtil.getRandomMatrix(r1, 3, 4, 1, 100);
-
-            ArrayUtil.display(2, m1);
-            Console.writeLine("------------------");
-            ArrayUtil.display(2, m2);
-            Console.writeLine("------------------");
-            Console.writeLine(Util.equals(m1, m2) ? "Eşit" : "Eşit değil");
-        }
+        //...
     }
 }
-class Util {
-    public static boolean equals(int [][] a, int [][] b)
-    {
-        if (a.length != b.length)
-            return false;
 
-        for (var i = 0; i < a.length; ++i)
-            if (!Arrays.equals(a[i], b[i]))
-                return false;
-
-        return true;
+class R {
+    public static class id {
+        public static int mainActivityButtonOK = 0x1234;
+        public static int mainActivityTextViewName = 0x12345;
     }
+
+    public static class drawable {
+        public static final int myShip = 0x1FC0;
+        //...
+    }
+
+    public static class string {
+        public static final int warning = 0x1FC1;
+    }
+
+    //...
 }
