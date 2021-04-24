@@ -1,52 +1,98 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    Aşağıdaki örnekte Android programlamada kullanılan R sınıfı ve içerisinde bulunan static sınıflar simüle
-    edilmiştir
+    Yukarıdaki problem aşağıdaki gibi daha yalın olarak çözülebilir
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
+
+import org.csystem.util.Console;
 
 class App {
     public static void main(String[] args)
     {
-        Context context = new Context();
+        Fighter f = new Fighter();
 
-        Toast.makeText(context, R.string.warning, Toast.LENGTH_LONG).show();
+        f.setName("Baldrog");
+        f.setAgility(70);
+        f.setHealth(65);
+        f.setIntelligence(56);
+        f.setPower(89);
+
+        Console.writeLine("Sum of abilities:%d", f.sumOfAbilities());
+        Console.writeLine("Average of abilities:%f", f.averageOfAbilities());
     }
 }
 
-class Context {
-    //...
-}
+class Fighter {
+    private String m_name;
+    private final int [] m_abilities;
+    private enum Ability {HEALTH, AGILITY, POWER, INTELLIGENCE, COUNT}
 
-class Toast {
-    public static final int LENGTH_LONG = 1;
-    public static final int LENGTH_SHORT = -2;
-
-    public static Toast makeText(Context context, int resId, int duration)
+    public Fighter()
     {
-        ///...
-        return new Toast();
+        m_abilities = new int[Ability.COUNT.ordinal()];
     }
 
-    public void show()
+    public String getName()
     {
-        //...
-    }
-}
-
-class R {
-    public static class id {
-        public static int mainActivityButtonOK = 0x1234;
-        public static int mainActivityTextViewName = 0x12345;
+        return m_name;
     }
 
-    public static class drawable {
-        public static final int myShip = 0x1FC0;
-        //...
+    public void setName(String name)
+    {
+        m_name = name;
     }
 
-    public static class string {
-        public static final int warning = 0x1FC1;
+    public int getHealth()
+    {
+        return m_abilities[Ability.HEALTH.ordinal()];
     }
 
-    //...
+    public void setHealth(int health)
+    {
+        m_abilities[Ability.HEALTH.ordinal()] = health;
+    }
+
+    public int getAgility()
+    {
+        return m_abilities[Ability.AGILITY.ordinal()];
+    }
+
+    public void setAgility(int agility)
+    {
+        m_abilities[Ability.AGILITY.ordinal()] = agility;
+    }
+
+    public int getPower()
+    {
+        return m_abilities[Ability.POWER.ordinal()];
+    }
+
+    public void setPower(int power)
+    {
+        m_abilities[Ability.POWER.ordinal()] = power;
+    }
+
+    public int getIntelligence()
+    {
+        return m_abilities[Ability.INTELLIGENCE.ordinal()];
+    }
+
+    public void setIntelligence(int intelligence)
+    {
+        m_abilities[Ability.INTELLIGENCE.ordinal()] = intelligence;
+    }
+
+    public int sumOfAbilities()
+    {
+        int sum = 0;
+
+        for (var val : m_abilities)
+            sum += val;
+
+        return sum;
+    }
+
+    public double averageOfAbilities()
+    {
+        return (double)sumOfAbilities() / m_abilities.length;
+    }
 }
