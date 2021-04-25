@@ -1,98 +1,39 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    Yukarıdaki problem aşağıdaki gibi daha yalın olarak çözülebilir
+    Yukarıdaki kod anonim sınıf kullanılmadan aşağıdaki gibi de yapılabilir. Anonim sınıfta yakalanan yerel değişkenin
+    aşağıdaki örnekte nesne yaratılırken verildiğine dikkat ediniz
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
 
 import org.csystem.util.Console;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Timer;
+import java.util.TimerTask;
+
 class App {
     public static void main(String[] args)
     {
-        Fighter f = new Fighter();
+        var timer = new Timer();
+        var message = Console.read("Bir yazı giriniz:");
 
-        f.setName("Baldrog");
-        f.setAgility(70);
-        f.setHealth(65);
-        f.setIntelligence(56);
-        f.setPower(89);
-
-        Console.writeLine("Sum of abilities:%d", f.sumOfAbilities());
-        Console.writeLine("Average of abilities:%f", f.averageOfAbilities());
+        timer.schedule(new MyTimerTask(message), 0, 1000);
     }
 }
 
-class Fighter {
-    private String m_name;
-    private final int [] m_abilities;
-    private enum Ability {HEALTH, AGILITY, POWER, INTELLIGENCE, COUNT}
+class MyTimerTask extends TimerTask {
+    private final String m_message;
 
-    public Fighter()
+    public MyTimerTask(String message)
     {
-        m_abilities = new int[Ability.COUNT.ordinal()];
+        m_message = message;
     }
 
-    public String getName()
+    public void run()
     {
-        return m_name;
-    }
+        var now = LocalDateTime.now();
 
-    public void setName(String name)
-    {
-        m_name = name;
-    }
-
-    public int getHealth()
-    {
-        return m_abilities[Ability.HEALTH.ordinal()];
-    }
-
-    public void setHealth(int health)
-    {
-        m_abilities[Ability.HEALTH.ordinal()] = health;
-    }
-
-    public int getAgility()
-    {
-        return m_abilities[Ability.AGILITY.ordinal()];
-    }
-
-    public void setAgility(int agility)
-    {
-        m_abilities[Ability.AGILITY.ordinal()] = agility;
-    }
-
-    public int getPower()
-    {
-        return m_abilities[Ability.POWER.ordinal()];
-    }
-
-    public void setPower(int power)
-    {
-        m_abilities[Ability.POWER.ordinal()] = power;
-    }
-
-    public int getIntelligence()
-    {
-        return m_abilities[Ability.INTELLIGENCE.ordinal()];
-    }
-
-    public void setIntelligence(int intelligence)
-    {
-        m_abilities[Ability.INTELLIGENCE.ordinal()] = intelligence;
-    }
-
-    public int sumOfAbilities()
-    {
-        int sum = 0;
-
-        for (var val : m_abilities)
-            sum += val;
-
-        return sum;
-    }
-
-    public double averageOfAbilities()
-    {
-        return (double)sumOfAbilities() / m_abilities.length;
+        Console.write("%s:%s\r", m_message, DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm:ss").format(now));
     }
 }
+
