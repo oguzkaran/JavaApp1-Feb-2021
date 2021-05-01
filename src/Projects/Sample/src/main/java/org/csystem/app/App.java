@@ -1,39 +1,49 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    Yukarıdaki kod anonim sınıf kullanılmadan aşağıdaki gibi de yapılabilir. Anonim sınıfta yakalanan yerel değişkenin
-    aşağıdaki örnekte nesne yaratılırken verildiğine dikkat ediniz
+    Sınıf Çalışması: CountDownScheduler sınıfını genişletecek şekilde başlangıçta da bir işin yapılabilmesini
+    sağlayan onStart abstract metodunun eklendiği CountDownSchedulerEx isimli sınıfı yazınız ve test ediniz
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
 
 import org.csystem.util.Console;
+import org.csystem.util.scheduler.CountDownSchedulerEx;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.concurrent.TimeUnit;
 
 class App {
     public static void main(String[] args)
     {
-        var timer = new Timer();
-        var message = Console.read("Bir yazı giriniz:");
-
-        timer.schedule(new MyTimerTask(message), 0, 1000);
+        CountDownSchedulerTest.run();
     }
 }
 
-class MyTimerTask extends TimerTask {
-    private final String m_message;
-
-    public MyTimerTask(String message)
+final class CountDownSchedulerTest {
+    private CountDownSchedulerTest()
     {
-        m_message = message;
     }
-
-    public void run()
+    public static void run()
     {
-        var now = LocalDateTime.now();
+        var scheduler = new CountDownSchedulerEx(10, 1, TimeUnit.SECONDS) {
+            private int m_count;
 
-        Console.write("%s:%s\r", m_message, DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm:ss").format(now));
+            public void onStart()
+            {
+                Console.writeLine("Geri sayım başladı:");
+            }
+
+            public void onTick(long millisUntilFinished)
+            {
+                ++m_count;
+                Console.write("%02d\r", millisUntilFinished / 1000);
+            }
+
+            public void onFinish()
+            {
+                Console.writeLine("00");
+                Console.writeLine("Count:%d", m_count);
+                Console.writeLine("Geri sayım tamamlandı");
+            }
+        };
+
+        scheduler.startScheduler();
     }
 }
-
