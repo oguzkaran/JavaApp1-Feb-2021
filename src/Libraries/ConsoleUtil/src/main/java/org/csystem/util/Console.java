@@ -602,6 +602,42 @@ public final class Console {
         return readFloat(msg + "\n", errMsg + "\n");
     }
 
+    ////////////////////readChar////////////////////////////////////////////////////
+
+    public static char readChar()
+    {
+        return readChar("");
+    }
+
+    public static char readChar(String msg)
+    {
+        return readChar(msg, "");
+    }
+
+    public static char readChar(String msg, String errMsg)
+    {
+        for (;;) {
+            write(msg);
+            var str = ms_kb.nextLine();
+
+            if (str.length() == 1)
+                return str.charAt(0);
+            write(errMsg);
+        }
+    }
+
+    public static char readCharLine(String msg)
+    {
+        return readChar(msg + "\n", "");
+    }
+
+    public static char readCharLine(String msg, String errMsg)
+    {
+        return readChar(msg + "\n", errMsg + "\n");
+    }
+
+
+
     //String
     public static String read(String msg)
     {

@@ -35,6 +35,7 @@ public class BirthDateRemainderConsoleApp {
                 break;
 
             var birthDateStatus = birthDateInfo.getBirthDateStatus();
+
             Console.writeLine(messages[birthDateStatus.ordinal()]);
             Console.writeLine("Yaşınız:%f%n", birthDateInfo.getAge());
         }
