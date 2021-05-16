@@ -1,7 +1,11 @@
+/*----------------------------------------------------------------------------------------------------------------------
+    CountDownSchedulerEx class
+----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.util.scheduler;
 
 import java.util.concurrent.TimeUnit;
-import static java.util.concurrent.TimeUnit.*;
+
+import static java.util.concurrent.TimeUnit.MILLISECONDS;
 
 public abstract class CountDownSchedulerEx extends CountDownScheduler {
     public CountDownSchedulerEx(long millisInFuture, long interval)

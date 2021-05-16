@@ -17,7 +17,9 @@ public final class Alarm {
 
         LocalTime now = LocalTime.now();
 
-        if (m_time.compareTo(now) <= 0)
+        now = now.withNano(0);
+
+        if (m_time.equals(now))
             m_scheduler.cancel();
     }
 

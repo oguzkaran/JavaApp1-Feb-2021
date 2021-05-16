@@ -1,10 +1,13 @@
+/*----------------------------------------------------------------------------------------------------------------------
+    CountDownScheduler class
+----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.util.scheduler;
 
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
-import static java.util.concurrent.TimeUnit.*;
+import static java.util.concurrent.TimeUnit.MILLISECONDS;
 
 public abstract class CountDownScheduler {
     private final Timer m_timer;
@@ -19,7 +22,7 @@ public abstract class CountDownScheduler {
 
             public void run()
             {
-                var millisUntilFinished = m_millisInFuture - m_value;
+                long millisUntilFinished = m_millisInFuture - m_value;
 
                 onTick(millisUntilFinished);
                 m_value += m_interval;
