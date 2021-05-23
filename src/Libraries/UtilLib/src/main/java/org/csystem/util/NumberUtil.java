@@ -5,6 +5,9 @@ package org.csystem.util;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.OptionalDouble;
+import java.util.OptionalInt;
+import java.util.OptionalLong;
 
 import static java.lang.Math.*;
 
@@ -317,6 +320,58 @@ public class NumberUtil {
 
         for (int d : digitsInThrees)
             result += numberToText3DigitsTR(d) + ".....";
+
+        return result;
+    }
+
+    public static OptionalInt toInt(String str)
+    {
+        return toInt(str, 10);
+    }
+
+    public static OptionalInt toInt(String str, int radix)
+    {
+        OptionalInt result;
+
+        try {
+            result = OptionalInt.of(Integer.parseInt(str, radix));
+        }
+        catch (NumberFormatException ignore) {
+            result = OptionalInt.empty();
+        }
+
+        return result;
+    }
+
+    public static OptionalLong toLong(String str)
+    {
+        return toLong(str, 10);
+    }
+
+    public static OptionalLong toLong(String str, int radix)
+    {
+        OptionalLong result;
+
+        try {
+            result = OptionalLong.of(Long.parseLong(str, radix));
+        }
+        catch (NumberFormatException ignore) {
+            result = OptionalLong.empty();
+        }
+
+        return result;
+    }
+
+    public static OptionalDouble toDouble(String str)
+    {
+        OptionalDouble result;
+
+        try {
+            result = OptionalDouble.of(Double.parseDouble(str));
+        }
+        catch (NumberFormatException ignore) {
+            result = OptionalDouble.empty();
+        }
 
         return result;
     }

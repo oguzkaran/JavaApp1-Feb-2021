@@ -1,61 +1,80 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    Aşağıdaki örnekte callback olarak verilen Lambda ifadelerinin parametrelerine tür yazılmazsa "ambiguity" oluşur.
-    Yani hangi metodun çağırlacağına yönelik "en uygun metot (the most applicable method)" bulunamaz
+    Bir sınıfın veri elemanının Optional olması durumu
 ---------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
 
 import org.csystem.util.Console;
-import org.csystem.util.StringUtil;
 
-import java.util.Random;
+import java.util.Optional;
 
 class App {
     public static void main(String[] args)
     {
-        Random r = new Random();
-        RandomGeneratorUtil.display(r, Integer::sum, 10);
-        Console.writeLine("#####################################");
-        RandomGeneratorUtil.display(r, (String s1, String s2) -> s1 + s2, 10);
+        var p1 = new Person("Oğuz", "Karan");
+        var p2 = new Person("Ali", "Vefa", "Serçe");
+
+        Console.writeLine(p1.getFullname());
+        Console.writeLine(p2.getFullname());
+        Console.writeLine(p1);
+        Console.writeLine(p2);
     }
 }
 
-class RandomGeneratorUtil {
-    public static void display(Random r, IBinaryOperator<String> bos, int n)
+
+class Person {
+    private String m_firstName;
+    private Optional<String> m_middleName;
+    private String m_lastName;
+
+    public Person(String firstName, String lastName)
     {
-        for (int i = 0; i < n; ++i) {
-            var s1 = StringUtil.getRandomTextTR(r, 10);
-            var s2 = StringUtil.getRandomTextTR(r, 10);
-            Console.writeLine("s1 = %s, s2 = %s", s1, s2);
-            Console.writeLine(bos.apply(s1, s2));
-            Console.writeLine("-------------------");
-        }
+        this(firstName, "", lastName);
     }
 
-    public static void display(Random r, IIntBinaryOperator boi, int n)
+    public Person(String firstName, String middleName, String lastName)
     {
-        for (int i = 0; i < n; ++i) {
-            var a = r.nextInt(100);
-            var b = r.nextInt(100);
-
-            Console.writeLine("a = %d, b = %d", a, b);
-            Console.writeLine(boi.applyAsInt(a, b));
-            Console.writeLine("-------------------");
-        }
+        setFirstName(firstName);
+        setMiddleName(middleName);
+        setLastName(lastName);
     }
-}
 
-interface IIntBinaryOperator {
-    int applyAsInt(int a, int b);
-}
+    public String getFirstName()
+    {
+        return m_firstName;
+    }
 
-interface IDoubleBinaryOperator {
-    double applyAsDouble(double a, double b);
-}
+    public void setFirstName(String firstName)
+    {
+        m_firstName = firstName;
+    }
 
-interface ILongBinaryOperator {
-    long applyAsLong(long a, long b);
-}
+    public Optional<String> getMiddleName()
+    {
+        return m_middleName;
+    }
 
-interface IBinaryOperator<T> {
-    T apply(T a, T b);
+    public void setMiddleName(String middleName)
+    {
+        m_middleName = middleName == null || middleName.isBlank() ? Optional.empty() : Optional.of(middleName);
+    }
+
+    public String getLastName()
+    {
+        return m_lastName;
+    }
+
+    public void setLastName(String lastName)
+    {
+        m_lastName = lastName;
+    }
+
+    public String getFullname()
+    {
+        return String.format("%s%s %s", m_firstName, m_middleName.map(n -> " " + n).orElse(""), m_lastName.toUpperCase());
+    }
+
+    public String toString()
+    {
+        return getFullname();
+    }
 }
