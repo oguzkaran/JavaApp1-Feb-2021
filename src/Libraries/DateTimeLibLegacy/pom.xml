@@ -15,7 +15,7 @@
 	<description>Legacy DateTime Library</description>
 
 	<properties>
-		<java.version>7</java.version>
+		<java.version>8</java.version>
 	</properties>
 
 	<dependencies>
