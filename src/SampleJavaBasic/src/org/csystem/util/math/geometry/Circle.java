@@ -3,6 +3,8 @@
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.util.math.geometry;
 
+import static java.lang.Math.PI;
+
 public class Circle {
     private double m_r;
 
@@ -12,12 +14,7 @@ public class Circle {
 
     public Circle(double r)
     {
-        setRadius(r);
-    }
-
-    public Circle(double r, double pi)
-    {
-        setRadius(r, pi);
+        this.setRadius(r);
     }
 
     public double getRadius()
@@ -27,21 +24,16 @@ public class Circle {
 
     public void setRadius(double r)
     {
-        setRadius(r, Math.PI);
-    }
-
-    public void setRadius(double r, double pi)
-    {
         m_r = Math.abs(r);
     }
 
     public double getArea()
     {
-        return Math.PI * m_r * m_r;
+        return PI * m_r * m_r;
     }
 
     public double getCircumference()
     {
-        return 2 * Math.PI * m_r;
+        return 2 * PI * m_r;
     }
 }

@@ -30,12 +30,14 @@ public class Fraction {
     private static void check(int a, int b)
     {
         if (b == 0) {
-            System.out.println(a == 0 ? "Indefinite" : "Undefined");
-            System.exit(0); //Exception konusuna kadar sabredin
+            if (a == 0)
+               throw new FractionException("Indefinite", FractionExceptionStatus.INDEFINITE, a, b);
+
+            throw new FractionException("Undefined", FractionExceptionStatus.UNDEFINED, a, b);
         }
     }
 
-    public void simplify()
+    private void simplify()
     {
         int min = Math.min(Math.abs(m_a), m_b);
 
@@ -47,7 +49,7 @@ public class Fraction {
             }
     }
 
-    private void configureSign()
+    private void setSign()
     {
         if (m_b < 0) {
             m_a = -m_a;
@@ -62,10 +64,9 @@ public class Fraction {
             m_b = 1;
             return;
         }
-
         m_a = a;
         m_b = b;
-        configureSign();
+        setSign();
         simplify();
     }
 
@@ -83,7 +84,7 @@ public class Fraction {
     public Fraction(int a, int b)
     {
         check(a, b);
-        set(a, b);
+        this.set(a, b);
     }
 
     public int getNumerator()
@@ -91,12 +92,12 @@ public class Fraction {
         return m_a;
     }
 
-    public void setNumerator(int a)
+    public void setNumerator(int val)
     {
-        if (a == m_a)
+        if (val == m_a)
             return;
 
-        set(a, m_b);
+        this.set(val, m_b);
     }
 
     public int getDenominator()
@@ -104,13 +105,13 @@ public class Fraction {
         return m_b;
     }
 
-    public void setDenominator(int b)
+    public void setDenominator(int val)
     {
-        if (b == m_b)
+        if (val == m_b)
             return;
 
-        check(m_a, b);
-        set(m_a, b);
+        check(m_a, val);
+        this.set(m_a, val);
     }
 
     public double getRealValue()
@@ -119,14 +120,9 @@ public class Fraction {
     }
 
     //add methods
-    public static Fraction add(int val, Fraction fraction)
+    public static Fraction add(int val, Fraction f)
     {
-        return add(val, 1, fraction.m_a, fraction.m_b);
-    }
-
-    public Fraction add(int val)
-    {
-        return add(m_a, m_b, val, 1);
+        return add(val, 1, f.m_a, f.m_b);
     }
 
     public Fraction add(Fraction other)
@@ -134,15 +130,15 @@ public class Fraction {
         return add(m_a, m_b, other.m_a, other.m_b);
     }
 
-    //subtract methods
-    public static Fraction subtract(int val, Fraction fraction)
+    public Fraction add(int val)
     {
-        return subtract(val, 1, fraction.m_a, fraction.m_b);
+        return add(m_a, m_b, val, 1);
     }
 
-    public Fraction subtract(int val)
+    //subtract methods
+    public static Fraction subtract(int val, Fraction f)
     {
-        return subtract(m_a, m_b, val, 1);
+        return subtract(val, 1, f.m_a, f.m_b);
     }
 
     public Fraction subtract(Fraction other)
@@ -150,15 +146,15 @@ public class Fraction {
         return subtract(m_a, m_b, other.m_a, other.m_b);
     }
 
-    //multiply methods
-    public static Fraction multiply(int val, Fraction fraction)
+    public Fraction subtract(int val)
     {
-        return multiply(val, 1, fraction.m_a, fraction.m_b);
+        return subtract(m_a, m_b, val, 1);
     }
 
-    public Fraction multiply(int val)
+    //multiply methods
+    public static Fraction multiply(int val, Fraction f)
     {
-        return multiply(m_a, m_b, val, 1);
+        return multiply(val, 1, f.m_a, f.m_b);
     }
 
     public Fraction multiply(Fraction other)
@@ -166,15 +162,15 @@ public class Fraction {
         return multiply(m_a, m_b, other.m_a, other.m_b);
     }
 
-    //divide methods
-    public static Fraction divide(int val, Fraction fraction)
+    public Fraction multiply(int val)
     {
-        return divide(val, 1, fraction.m_a, fraction.m_b);
+        return multiply(m_a, m_b, val, 1);
     }
 
-    public Fraction divide(int val)
+    //divide methods
+    public static Fraction divide(int val, Fraction f)
     {
-        return divide(m_a, m_b, val, 1);
+        return divide(val, 1, f.m_a, f.m_b);
     }
 
     public Fraction divide(Fraction other)
@@ -182,49 +178,35 @@ public class Fraction {
         return divide(m_a, m_b, other.m_a, other.m_b);
     }
 
-    //increment methods
-    public void increment()
+    public Fraction divide(int val)
     {
-        increment(1);
+        return divide(m_a, m_b, val, 1);
     }
 
+    //increment
     public void increment(int val)
     {
-        m_a += val * m_b;
+        m_a += m_b * val;
     }
 
-    //decrement methods
-    public void decrement()
+    public void increment()
     {
-        decrement(1);
+        this.increment(1);
     }
 
+    //decrement
     public void decrement(int val)
     {
-        increment(-val);
+        this.increment(-val);
     }
 
-    //negate method
-    public Fraction negate()
+    public void decrement()
     {
-        return new Fraction(-m_a, m_b);
-    }
-
-    //inverse method
-    public Fraction inverse()
-    {
-        return new Fraction(m_b, m_a);
-    }
-
-    //pow method
-    public Fraction pow(int n)
-    {
-        //TODO:
-        return new Fraction();
+        this.decrement(1);
     }
 
     public String toString()
     {
-        return String.format("%d%s", m_a, m_b == 1 ? "" : " / " + m_b + " = " + getRealValue());
+        return String.format("%d%s", m_a, m_b == 1 ? "" : String.format(" / %s = %f", m_b, getRealValue()));
     }
 }

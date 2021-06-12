@@ -1,25 +1,29 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    CompanyApp örneği
+    RandomAccessFile sınıfı ile basit bir örnek. Örnekte hem dosyaya yazma hem de dosyadan okuma yapılmıştır
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
 
-import org.csystem.app.samples.simulation.randomobjectgenerator.RandomObjectArrayGenerator;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 class App {
-    public static void main(String [] args)
+    public static void main(String[] args) throws IOException
     {
-        RandomObjectArrayGenerator rog = new RandomObjectArrayGenerator(10);
+        BufferedReader kb = new BufferedReader(new InputStreamReader(System.in));
 
-        rog.run();
+        for (;;) {
+            System.out.print("Bir yazı giriniz:");
+            String str = kb.readLine();
 
-        for (Object obj : rog.getObjects()) {
-            Class<?> cls = obj.getClass();
+            if ("elma".equals(str))
+                break;
+            byte [] data = str.getBytes();
 
-            System.out.println("-------------------");
-            System.out.printf("Fullname:%s%n", cls.getName());
-            System.out.printf("Name:%s%n", cls.getSimpleName());
-            System.out.println("-------------------");
+            System.out.printf("Length:%d%n", data.length);
         }
+
+        System.out.println("Tekrar yapıyor musunuz?");
     }
 }
 

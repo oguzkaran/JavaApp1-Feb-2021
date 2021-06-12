@@ -1,36 +1,30 @@
-/*----------------------------------------------------------------------------------------------------------------------	
+/*----------------------------------------------------------------------------------------------------------------------
 	NumberUtil sınıfı
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.util;
 
-import static java.lang.Math.*;
+import static java.lang.Math.log10;
+import static java.lang.Math.abs;
+import static java.lang.Math.pow;
 
-public class NumberUtil {
+public final class NumberUtil {
     private static final String [] ONES;
     private static final String [] TENS;
 
     static {
-        ONES = new String[]{"", "bir", "iki", "üç", "dört", "beş", "altı", "yedi", "sekiz", "dokuz"};
-        TENS = new String[]{"", "on", "yürmi", "otuz", "kırk", "elli", "altmış", "yetmiş", "seksen", "doksan"};
+        ONES = new String[] {"", "bir", "iki", "üç", "dört", "beş", "altı", "yedi", "sekiz", "dokuz"};
+        TENS = new String[] {"", "on", "yirmi", "otuz", "kırk", "elli", "altmış", "yetmiş", "seksen", "doksan"};
     }
 
-    private static String getTextByDigits(int a, int b, int c)
+    private static int [] getDigits(long val, int n)
     {
-        String result = "";
+        int [] digits = new int[val == 0 ? 1 : (int)(log10(abs(val)) / n) + 1];
+        int powOfTen = (int)Math.pow(10, n);
 
-        if (a != 0) {
-            if (a != 1)
-                result += ONES[a];
-            result += "yüz";
-        }
+        for (int i = digits.length - 1; i >= 0; digits[i--] = (int)(val % powOfTen), val /= powOfTen)
+            ;
 
-        if (b != 0)
-            result += TENS[b];
-
-        if (c != 0)
-            result += ONES[c];
-
-        return result;
+        return digits;
     }
 
     private static String numberToText3DigitsTR(int val)
@@ -38,42 +32,61 @@ public class NumberUtil {
         if (val == 0)
             return "sıfır";
 
-        String result = "";
-
+        String str = val < 0 ? "eksi" : "";
         val = Math.abs(val);
 
-        int a = val / 100;
-        int b = val / 10 % 10;
-        int c = val % 10;
+        int a, b, c;
 
-        return result + getTextByDigits(a, b, c);
-    }
+        a = val / 100;
+        b = val / 10 % 10;
+        c = val % 10;
 
-    public static int [] getDigits(long val, int n)
-    {
-        val = Math.abs(val);
-        int [] digits = new int[val == 0 ? 1 : (int)(Math.log10(val) / n) + 1];
-        int len = digits.length;
-        int powerOfTen = (int)Math.pow(10, n);
+        if (a != 0) {
+            if (a != 1)
+                str += ONES[a];
+            str += "yüz";
+        }
+        if (b != 0)
+            str += TENS[b];
 
-        for (int i = 0; i < len; digits[len - 1 - i] = (int)(val % powerOfTen),  val /= powerOfTen, ++i)
-            ;
+        if (c != 0)
+            str += ONES[c];
 
-        return digits;
+        return str;
     }
 
     private NumberUtil()
     {
     }
 
-    public static int countDigits(int val)
+    public static int countDigits(long val)
     {
-        return val == 0 ? 1 : (int) log10(abs(val)) + 1;
+        return val == 0 ? 1 : (int)log10(abs(val)) + 1;
+    }
+
+    public static void displayCollatz(int n)
+    {
+        if (n <= 0) {
+            System.out.println("Geçersiz değer");
+            return;
+        }
+
+        for (;;) {
+            System.out.println(n);
+
+            if (n == 1)
+                break;
+
+            if (n % 2 == 0)
+                n /= 2;
+            else
+                n = 3 * n + 1;
+        }
     }
 
     public static long factorial(int n)
     {
-        long result = 1;
+        long result = 1L;
 
         for (int i = 2; i <= n; ++i)
             result *= i;
@@ -81,19 +94,19 @@ public class NumberUtil {
         return result;
     }
 
+    public static int getDigitalRoot(int val)
+    {
+        int root = abs(val);
+
+        while (root > 9)
+            root = sumDigits(root);
+
+        return root;
+    }
+
     public static int [] getDigits(long val)
     {
         return getDigits(val, 1);
-    }
-
-    public static int [] getDigits(int val)
-    {
-        return getDigits((long)val);
-    }
-
-    public static int [] getDigitsInTwos(long val)
-    {
-        return getDigits(val, 2);
     }
 
     public static int [] getDigitsInThrees(long val)
@@ -101,12 +114,30 @@ public class NumberUtil {
         return getDigits(val, 3);
     }
 
-    public static int getDigitsSum(int val)
+    public static int [] getDigitsInTwos(long val)
+    {
+        return getDigits(val, 2);
+    }
+
+    public static int getDigitsFactorialSum(int val)
     {
         int sum = 0;
 
         while (val != 0) {
-            sum += val % 10;
+            sum += factorial(val % 10);
+            val /= 10;
+        }
+
+        return sum;
+    }
+
+    public static int getDigitsPowSum(int val)
+    {
+        int n = countDigits(val);
+        int sum = 0;
+
+        while (val != 0) {
+            sum += pow(val % 10, n);
             val /= 10;
         }
 
@@ -132,6 +163,22 @@ public class NumberUtil {
         return val;
     }
 
+    public static int getIndexOfPrimeNumber(int n)
+    {
+        int index = 1;
+        int val = 2;
+
+        for (;;) {
+            if (val == n)
+                return index;
+
+            if (isPrime(val))
+                ++index;
+
+            ++val;
+        }
+    }
+
     public static int getNextFibonacciNumber(int val)
     {
         if (val < 0)
@@ -141,17 +188,13 @@ public class NumberUtil {
 
         for (;;) {
             result = prev1 + prev2;
+
             if (result > val)
                 return result;
 
             prev2 = prev1;
             prev1 = result;
         }
-    }
-
-    public static boolean isPalindrome(int val)
-    {
-        return getReverse(val) == val;
     }
 
     public static int getPrime(int n)
@@ -173,35 +216,17 @@ public class NumberUtil {
         }
     }
 
-    public static int getPowSum(int val)
-    {
-        int n = countDigits(val);
-        int sum = 0;
-
-        while (val != 0) {
-            sum += pow(val % 10, n);
-            val /= 10;
-        }
-
-        return sum;
-    }
-
-    public static int getReverse(int val)
-    {
-        int reverse = 0;
-
-        while (val != 0) {
-            reverse = reverse * 10 + val % 10;
-            val /= 10;
-        }
-
-        return reverse;
-    }
-
-
     public static boolean isArmstrong(int val)
     {
-        return val >= 0 && getPowSum(val) == val;
+        return val >= 0 && getDigitsPowSum(val) == val;
+    }
+
+    public static boolean isDecimalHarshad(int val)
+    {
+        if (val < 0)
+            return false;
+
+        return val % sumDigits(val) == 0;
     }
 
     public static boolean isEven(int val)
@@ -209,13 +234,42 @@ public class NumberUtil {
         return val % 2 == 0;
     }
 
-
-    public static boolean isHarshad(int val)
+    public static boolean isFactorian(int val)
     {
         if (val <= 0)
             return false;
 
-        return val % getDigitsSum(val) == 0;
+        return getDigitsFactorialSum(val) == val;
+    }
+
+    public static boolean isHardyRamanujan(int val)
+    {
+        if (val <= 0)
+            return false;
+
+        int count = 0;
+
+        for (int x = 1; x * x * x < val;) {
+            for (int y = x + 1; x * x * x + y * y * y <= val; ++y)  {
+                if (x * x * x + y * y * y == val) {
+                    ++count;
+                    ++x;
+                }
+            }
+            ++x;
+        }
+
+        return count >= 2;
+    }
+
+    public static boolean isOdd(int val)
+    {
+        return !isEven(val);
+    }
+
+    public static boolean isPalindrome(int val)
+    {
+        return reversed(val) == val;
     }
 
     public static boolean isPrime(int val)
@@ -235,23 +289,34 @@ public class NumberUtil {
         if (val % 7 == 0)
             return val == 7;
 
-        int sqrtIntValue = (int) sqrt(val);
+        int sqrtVal = (int)Math.sqrt(val);
 
-        for (int i = 11; i <= sqrtIntValue; i += 2)
+        for (int i = 11; i <= sqrtVal; i += 2)
             if (val % i == 0)
                 return false;
 
         return true;
     }
 
-    public static boolean isOdd(int val)
+    public static boolean isPrimeX(int val)
     {
-        return !isEven(val);
+        do {
+            if (!isPrime(val))
+                return false;
+            val = sumDigits(val);
+        } while (val > 9);
+
+        return isPrime(val);
+    }
+
+    public static boolean isSuperPrime(int val)
+    {
+        return isPrime(val) && isPrime(getIndexOfPrimeNumber(val));
     }
 
     public static int max(int a, int b, int c)
     {
-        return Math.max(Math.max(a, b), c);
+        return Math.max(Math.max(a, b),  c);
     }
 
     public static int mid(int a, int b, int c)
@@ -267,19 +332,43 @@ public class NumberUtil {
 
     public static int min(int a, int b, int c)
     {
-        return Math.min(Math.min(a, b), c);
+        return Math.min(Math.min(a, b),  c);
     }
 
-    public static String numToStr(long val)
+    public static String numberToText(long val)
     {
-        int [] digitsInThrees = getDigitsInThrees(val);
-        String result =  val < 0 ? "eksi" : "";
+        int [] digits = getDigitsInThrees(val);
 
-        val = Math.abs(val);
+        String result = "";
 
-        for (int d : digitsInThrees)
-            result += numberToText3DigitsTR(d) + ".....";
+        //TODO:
+        for (int digit : digits)
+            result += numberToText3DigitsTR(digit) + " ";
 
         return result;
+    }
+
+    public static int reversed(int val)
+    {
+        int reverse = 0;
+
+        while (val != 0) {
+            reverse = reverse * 10 + val % 10;
+            val /= 10;
+        }
+
+        return reverse;
+    }
+
+    public static int sumDigits(int val)
+    {
+        int sum = 0;
+
+        while (val != 0) {
+            sum += val % 10;
+            val /= 10;
+        }
+
+        return Math.abs(sum);
     }
 }

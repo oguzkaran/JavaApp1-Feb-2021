@@ -1,15 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="SCOPE_TYPE" value="3" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="16698ff9-77fa-4dc3-9930-a2895ddac1e9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/checkstyle-idea.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../doc/Examples.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../doc/Examples.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Projects/Sample/src/main/java/org/csystem/app/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Projects/Sample/src/main/java/org/csystem/app/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sample.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Sample.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Sample/org/csystem/app/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Sample/org/csystem/app/App.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/csystem/app/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/csystem/app/App.java" afterDir="false" />
-    </list>
+    <list default="true" id="b0681fe4-a3bb-427e-825f-d2d1a7132335" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -18,6 +13,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Kotlin Class" />
+        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
@@ -33,8 +30,10 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
-  <component name="ProjectId" id="1nu5IMg301cxPkaGAIh0oUMzKIQ" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectId" id="1oT7KiQwwl96G0oE2aSDWMFB9Lt" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -42,17 +41,68 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/org/csystem/app/io/file/devicepersistance" />
+    <property name="project.structure.last.edited" value="SDKs" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Karans\Dropbox\CSD\Kurslar\Java-Sep-2020\src\Sample\src" />
+      <recent name="C:\Users\Karans\Dropbox\CSD\Kurslar\Java-Nov-2020\src\Sample\src\org\csystem\app\io\file\devicepersistance" />
+      <recent name="C:\Users\Karans\Dropbox\CSD\Kurslar\Java-Nov-2020\src\Sample\src\org\csystem\app\io\file\deviceindependentbitmap" />
+      <recent name="C:\Users\Karans\Dropbox\CSD\Kurslar\Java-Nov-2020\src\Sample\src\org\csystem\app\io\file\randomaccess" />
+      <recent name="C:\Users\Karans\Dropbox\CSD\Kurslar\Java-Nov-2020\src\Sample\src\org\csystem\app\io\file\concatfiles" />
+      <recent name="C:\Users\Karans\Dropbox\CSD\Kurslar\Java-Nov-2020\src\Sample\src\org\csystem\app\io\file\copyfile" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.csystem.app.io.file.copyfilewithblock" />
+      <recent name="org.csystem.app.io.file" />
+      <recent name="org.csystem.app.io.file.copyandbackup" />
+      <recent name="org.csystem.app.io.file.listdirectorycontents" />
+      <recent name="org.csystem.app.fileio" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.App (3)">
+    <configuration name="App (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.csystem.app.io.file.copyandbackup.App" />
+      <module name="Sample" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.csystem.app.io.file.copyandbackup.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="App (2)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.csystem.app.io.file.randomaccess.App" />
+      <module name="Sample" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.csystem.app.io.file.randomaccess.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="App (3)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.csystem.app.io.file.devicespersistence.App" />
+      <module name="Sample" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.csystem.app.io.file.devicespersistence.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.csystem.app.App" />
       <module name="Sample" />
@@ -68,46 +118,34 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.App (3)" />
+        <item itemvalue="Application.App (2)" />
         <item itemvalue="Application.App" />
+        <item itemvalue="Application.App (1)" />
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="16698ff9-77fa-4dc3-9930-a2895ddac1e9" name="Default Changelist" comment="" />
-      <created>1612227057588</created>
+      <changelist id="b0681fe4-a3bb-427e-825f-d2d1a7132335" name="Default Changelist" comment="" />
+      <created>1613298667267</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1612227057588</updated>
-      <workItem from="1612227058818" duration="116000" />
-      <workItem from="1612553371080" duration="53000" />
-      <workItem from="1612619691652" duration="12705000" />
-      <workItem from="1612696520240" duration="66000" />
-      <workItem from="1612705745383" duration="13896000" />
-      <workItem from="1612977081816" duration="14000" />
-      <workItem from="1613117882730" duration="693000" />
-      <workItem from="1613133249750" duration="19000" />
-      <workItem from="1613223703063" duration="12810000" />
-      <workItem from="1613298592197" duration="7000" />
-      <workItem from="1613300434088" duration="79000" />
-      <workItem from="1613310318768" duration="340000" />
-      <workItem from="1613815522608" duration="286000" />
-      <workItem from="1613828550185" duration="14097000" />
-      <workItem from="1613846067053" duration="39000" />
-      <workItem from="1613855412318" duration="613000" />
-      <workItem from="1613916242039" duration="13348000" />
-      <workItem from="1614021904206" duration="19000" />
-      <workItem from="1614172978278" duration="608000" />
-      <workItem from="1614205258262" duration="265000" />
-      <workItem from="1614271095312" duration="36000" />
-      <workItem from="1614523666211" duration="2230000" />
-      <workItem from="1614536024577" duration="620000" />
-      <workItem from="1622394450435" duration="1235000" />
+      <updated>1613298667267</updated>
     </task>
     <servers />
   </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>

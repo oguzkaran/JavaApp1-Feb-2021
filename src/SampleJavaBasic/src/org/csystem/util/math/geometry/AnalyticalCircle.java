@@ -31,17 +31,19 @@ public class AnalyticalCircle extends Circle {
         this(0, x, y);
     }
 
-    public AnalyticalCircle(double r, int x, int y)
+    public AnalyticalCircle(double r, int x, int y) //primary ctor
     {
         super(r);
         m_center = new Point(x, y);
     }
 
     public int getX() {return m_center.x;}
-
     public int getY() {return m_center.y;}
 
-    public Point getCenter() {return new Point(m_center);}
+    public Point getCenter()
+    {
+        return new Point(m_center.x, m_center.y);
+    }
 
     public void setX(int x)
     {
@@ -53,29 +55,29 @@ public class AnalyticalCircle extends Circle {
         m_center.y = y;
     }
 
-    public void setCenter(Point point)
+    public void set(int x, int y)
     {
-        setCenter(point.x, point.y);
+        this.setX(x);
+        this.setY(y);
     }
 
-    public void setCenter(int x, int y)
+    public void set(Point center)
     {
-        setX(x);
-        setY(y);
+        this.set(center.x, center.y);
     }
 
     public void offset(int dxy)
     {
-        offset(dxy, dxy);
+        this.offset(dxy, dxy);
     }
 
-    public void offset(int dx, int dy) //delegate, pass-through, forwarding method
+    public void offset(int dx, int dy)
     {
         m_center.offset(dx, dy);
     }
 
-    public double radiusDistance(AnalyticalCircle other)
+    public double centerDistance(AnalyticalCircle analyticalCircle)
     {
-        return m_center.distance(other.m_center);
+        return m_center.distance(analyticalCircle.m_center);
     }
 }
