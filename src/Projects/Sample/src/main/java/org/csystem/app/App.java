@@ -1,27 +1,52 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    Lambda ifadesine ilişkin derleyici tarafında yazılan türlerin class referanslarına da getClass metodu ile
-    erişilebilir. Aşağıdaki örneği çalıştırırak ekran çıktısını gözlemleyiniz
+    enum türünden nesne reflection kullanılarak da yaratılamaz
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
 
-import org.csystem.util.Console;
+import java.lang.reflect.InvocationTargetException;
 
 class App {
     public static void main(String[] args)
     {
-        IX ix1 = () -> Console.writeLine("This is a test");
-        IX ix2 = () -> Console.writeLine("This is another test");
+        try {
+            Class<?> cls = Singleton.class;
 
-        Class<?> cls1 = ix1.getClass();
-        Class<?> cls2 = ix2.getClass();
+            for (int i = 0; i < 10; ++i) {
+                var ctor = cls.getDeclaredConstructor();
 
-        System.out.println(cls1.getName());
-        System.out.println(cls2.getName());
+                ctor.setAccessible(true);
+                var obj = ctor.newInstance();
+                ctor.setAccessible(false);
+
+                //...
+            }
+        }
+        catch (NoSuchMethodException | InvocationTargetException | InstantiationException
+                | IllegalAccessException e) {
+            var cause = e.getCause();
+
+            System.out.println(cause == null ? e.getMessage() : cause.getMessage());
+            e.printStackTrace();
+        }
     }
 }
 
+enum Singleton {
+    INSTANCE;
+    private int m_x;
 
-interface IX {
-    void foo();
+    Singleton()
+    {}
+
+    public int getX()
+    {
+        return m_x;
+    }
+
+    public void setX(int x)
+    {
+        //...
+        m_x = x;
+    }
+
 }
-
