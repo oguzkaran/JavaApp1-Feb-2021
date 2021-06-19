@@ -10,7 +10,7 @@ public final class Alarm {
     private final Scheduler m_scheduler;
     private final LocalTime m_time;
 
-    private void schedulerTask(Runnable periodTask)
+    private void schedulerTask(IRunnable periodTask) throws Exception
     {
         if (periodTask != null)
             periodTask.run();
@@ -39,12 +39,12 @@ public final class Alarm {
         this(LocalTime.of(hour, minute, second));
     }
 
-    public void start(Runnable alarmTask)
+    public void start(IRunnable alarmTask)
     {
         start(alarmTask, null);
     }
 
-    public void start(Runnable alarmTask, Runnable periodTask)
+    public void start(IRunnable alarmTask, IRunnable periodTask)
     {
         m_scheduler.schedule(() -> schedulerTask(periodTask), alarmTask);
     }

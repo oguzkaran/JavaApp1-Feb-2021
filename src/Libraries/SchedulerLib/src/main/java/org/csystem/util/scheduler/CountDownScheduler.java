@@ -13,9 +13,9 @@ public abstract class CountDownScheduler {
     private final Timer m_timer;
     private final long m_millisInFuture;
     private final long m_interval;
-    private final TimerTask m_timerTask;
+    private TimerTask m_timerTask;
 
-    private TimerTask createTimerTask()
+    private TimerTask createTimerTask() throws Exception
     {
         return new TimerTask() {
             private long m_value;
@@ -24,13 +24,18 @@ public abstract class CountDownScheduler {
             {
                 long millisUntilFinished = m_millisInFuture - m_value;
 
-                onTick(millisUntilFinished);
-                m_value += m_interval;
-                if (m_value < m_millisInFuture)
-                    return;
+                try {
+                    onTick(millisUntilFinished);
+                    m_value += m_interval;
+                    if (m_value < m_millisInFuture)
+                        return;
 
-                onFinish();
-                m_timer.cancel();
+                    onFinish();
+                    m_timer.cancel();
+                }
+                catch (Throwable ignore) {
+
+                }
             }
         };
     }
@@ -45,11 +50,16 @@ public abstract class CountDownScheduler {
         m_millisInFuture = timeUnit != MILLISECONDS ? MILLISECONDS.convert(future, timeUnit) : future;
         m_interval = timeUnit != MILLISECONDS ? MILLISECONDS.convert(interval, timeUnit) : interval;
         m_timer = new Timer();
-        m_timerTask = this.createTimerTask();
+        try {
+            m_timerTask = this.createTimerTask();
+        }
+        catch (Throwable ignore) {
+
+        }
     }
 
-    public abstract void onTick(long millisUntilFinished);
-    public abstract void onFinish();
+    public abstract void onTick(long millisUntilFinished) throws Exception;
+    public abstract void onFinish() throws Exception;
 
     public final void start()
     {

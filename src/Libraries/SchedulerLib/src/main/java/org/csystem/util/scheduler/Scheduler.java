@@ -6,13 +6,14 @@ package org.csystem.util.scheduler;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
-import static java.util.concurrent.TimeUnit.*;
+
+import static java.util.concurrent.TimeUnit.MILLISECONDS;
 
 public final class Scheduler {
     private final Timer m_timer;
     private final long m_delay;
     private final long m_period;
-    private Runnable m_cancelTask;
+    private IRunnable m_cancelTask;
 
     public Scheduler(long period)
     {
@@ -36,29 +37,39 @@ public final class Scheduler {
         m_period = timeUnit != MILLISECONDS ? MILLISECONDS.convert(period, timeUnit) : period;
     }
 
-    public void schedule(Runnable task)
+    public void schedule(IRunnable task)
     {
         schedule(task, null);
     }
 
-    public void schedule(Runnable task, Runnable cancelTask)
+    public void schedule(IRunnable task, IRunnable cancelTask)
     {
         m_cancelTask = cancelTask;
 
         m_timer.schedule(new TimerTask() {
             public void run()
             {
-                task.run();
+                try {
+                    task.run();
+                }
+                catch (Throwable ignore) {
+
+                }
             }
         }, m_delay, m_period);
     }
 
     public void cancel()
     {
-        if (m_cancelTask != null)
-            m_cancelTask.run();
+        try {
+            if (m_cancelTask != null)
+                m_cancelTask.run();
 
-        m_timer.cancel();
+            m_timer.cancel();
+        }
+        catch (Throwable ignore) {
+
+        }
     }
 }
 

@@ -18,11 +18,16 @@ public abstract class CountDownSchedulerEx extends CountDownScheduler {
         super(future, interval, timeUnit);
     }
 
-    public abstract void onStart();
+    public abstract void onStart() throws Exception;
 
     public final void startScheduler()
     {
-        onStart();
+        try {
+            onStart();
+        }
+        catch (Throwable ignore) {
+            //...
+        }
         start();
     }
 }
