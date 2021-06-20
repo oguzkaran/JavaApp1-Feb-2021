@@ -3,7 +3,7 @@
     AUTHOR      : Oguz Karan
     LAST UPDATE : 30.09.2020
 
-    StreamException unchecked exception class for io applications
+    Unchecked exception class for io applications
 
     Copyleft (c) 1993 by C and System Programmers Association (CSD)
     All Rights Free

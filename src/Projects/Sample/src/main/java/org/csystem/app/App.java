@@ -1,52 +1,71 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    enum türünden nesne reflection kullanılarak da yaratılamaz
+    Özyinelemeli olarak dizinin dolaşılmasını da içeren DirectoryInfo sınıfı
+    Sınıfın daha detaylı bir versiyonu için IOLib kütüphanesine bakınız
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
 
-import java.lang.reflect.InvocationTargetException;
+import org.csystem.util.Console;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.function.Consumer;
 
 class App {
     public static void main(String[] args)
     {
-        try {
-            Class<?> cls = Singleton.class;
-
-            for (int i = 0; i < 10; ++i) {
-                var ctor = cls.getDeclaredConstructor();
-
-                ctor.setAccessible(true);
-                var obj = ctor.newInstance();
-                ctor.setAccessible(false);
-
-                //...
-            }
+        if (args.length != 1) {
+            Console.Error.writeLine("Wrong number of arguments");
+            System.exit(1);
         }
-        catch (NoSuchMethodException | InvocationTargetException | InstantiationException
-                | IllegalAccessException e) {
-            var cause = e.getCause();
 
-            System.out.println(cause == null ? e.getMessage() : cause.getMessage());
-            e.printStackTrace();
+        try {
+            DirectoryInfo directoryInfo = new DirectoryInfo(args[0]);
+
+            directoryInfo.walkDir(f -> Console.writeLine("%s %s", f.getName(), f.isDirectory() ? "<DIR>" : f.length() + ""));
+        }
+        catch (IOException ex) {
+            Console.Error.writeLine("Message:%s", ex.getMessage());
         }
     }
 }
 
-enum Singleton {
-    INSTANCE;
-    private int m_x;
 
-    Singleton()
-    {}
+final class DirectoryInfo {
+    private final File m_dir;
+    private long m_length;
 
-    public int getX()
+    private void walkDir(File dir)
     {
-        return m_x;
+        walkDir(dir, f -> m_length += f.length());
     }
 
-    public void setX(int x)
+    public void walkDir(File dir, Consumer<File> consumer)
     {
-        //...
-        m_x = x;
+        for (File file : dir.listFiles()) {
+            if (file.isDirectory())
+                walkDir(file, consumer);
+
+            consumer.accept(file);
+        }
     }
 
+    public DirectoryInfo(String path) throws IOException
+    {
+        m_dir = new File(path);
+
+        if (!m_dir.isDirectory())
+            throw new IOException(String.format("%s is not a directory", path));
+    }
+
+    public long length()
+    {
+        walkDir(m_dir);
+
+        return m_length;
+    }
+
+    public void walkDir(Consumer<File> consumer)
+    {
+        walkDir(m_dir, consumer);
+    }
 }
