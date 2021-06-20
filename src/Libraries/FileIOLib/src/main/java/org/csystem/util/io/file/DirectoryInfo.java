@@ -1,7 +1,7 @@
 /*----------------------------------------------------------------------
 	FILE        : FileUtil.java
 	AUTHOR      : Oğuz Karan
-	LAST UPDATE : 05.11.2020
+	LAST UPDATE : 20.06.2021
 
 	DirectoryInfo class
 

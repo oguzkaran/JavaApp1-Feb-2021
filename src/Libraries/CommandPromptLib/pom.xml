@@ -10,9 +10,8 @@
 	</parent>
 
 	<groupId>org.csystem</groupId>
-	<artifactId>org-csystem-util.commandprompt</artifactId>
+	<artifactId>org-csystem-util-commandprompt</artifactId>
 	<version>4.0.0</version>
-
 
 	<properties>
 		<java.version>11</java.version>
