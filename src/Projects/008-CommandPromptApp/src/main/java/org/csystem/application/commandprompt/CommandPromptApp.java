@@ -11,7 +11,8 @@ public final class CommandPromptApp {
     {
         var cp = new CommandPrompt();
 
-        cp.register(new Commands(cp));
-        cp.setPrompt("csd").setPromptSuffix("$").run();
+        cp.register(new Commands(cp))
+                .setPrompt("csd")
+                .setPromptSuffix("$").run();
     }
 }
