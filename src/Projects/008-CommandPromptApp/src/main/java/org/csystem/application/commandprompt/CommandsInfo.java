@@ -9,10 +9,10 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-public class Commands {
+public class CommandsInfo {
     private final CommandPrompt m_commandPrompt;
 
-    public Commands(CommandPrompt commandPrompt)
+    public CommandsInfo(CommandPrompt commandPrompt)
     {
         m_commandPrompt = commandPrompt;
     }
