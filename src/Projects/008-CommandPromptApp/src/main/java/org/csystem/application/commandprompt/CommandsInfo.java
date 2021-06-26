@@ -25,7 +25,7 @@ public class CommandsInfo {
             Files.copy(Path.of(srcPath), Path.of(destPath));
         }
         catch (IOException ex) {
-            System.out.println("Problem occurred");
+            Console.writeLine("Problem occurred");
         }
     }
 
@@ -60,7 +60,7 @@ public class CommandsInfo {
     @Command
     private void quit()
     {
-        System.out.println("C and System Programmers Association");
+        Console.writeLine("C and System Programmers Association");
         System.exit(0);
     }
 }
