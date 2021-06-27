@@ -5,25 +5,52 @@ package org.csystem.util.range;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+import java.util.function.IntUnaryOperator;
 
 public class IntRange implements Iterable<Integer> {
     private final int m_min;
     private final int m_max;
-    private final int m_step;
+    private final IntUnaryOperator m_intUnaryOperator;
 
-    public IntRange(int min, int max)
+    private IntRange(int min, int max, IntUnaryOperator intUnaryOperator)
     {
-        this(min, max, 1);
-    }
-
-    public IntRange(int min, int max, int step)
-    {
-        if (min > max || step < 1)
+        if (min > max)
             throw new IllegalArgumentException("Invalid Arguments");
 
         m_min = min;
         m_max = max;
-        m_step = step;
+        m_intUnaryOperator = intUnaryOperator;
+    }
+
+    public static IntRange of(int min, int max)
+    {
+        return of(min, max, 1);
+    }
+
+
+    public static IntRange of(int min, int max, int step)
+    {
+        return ofClosed(min, max - 1, step);
+    }
+
+    public static IntRange of(int min, int max, IntUnaryOperator intUnaryOperator)
+    {
+        return ofClosed(min, max - 1, intUnaryOperator);
+    }
+
+    public static IntRange ofClosed(int min, int max)
+    {
+        return ofClosed(min, max, 1);
+    }
+
+    public static IntRange ofClosed(int min, int max, int step)
+    {
+        return ofClosed(min, max, (step <= 1) ? (val -> val + 1) : (val -> val + step));
+    }
+
+    public static IntRange ofClosed(int min, int max, IntUnaryOperator intUnaryOperator)
+    {
+        return new IntRange(min, max, intUnaryOperator);
     }
 
     public int getMin()
@@ -40,12 +67,12 @@ public class IntRange implements Iterable<Integer> {
     public Iterator<Integer> iterator()
     {
         return new Iterator<>() {
-            int m_val = m_min - m_step;
+            int m_val = m_min;
 
             @Override
             public boolean hasNext()
             {
-                return m_val + m_step <= m_max;
+                return m_val <= m_max;
             }
 
             @Override
@@ -54,7 +81,11 @@ public class IntRange implements Iterable<Integer> {
                 if (!hasNext())
                     throw new NoSuchElementException("No such value");
 
-                return m_val += m_step;
+                int val = m_val;
+
+                m_val = m_intUnaryOperator.applyAsInt(m_val);
+
+                return val;
             }
         };
     }

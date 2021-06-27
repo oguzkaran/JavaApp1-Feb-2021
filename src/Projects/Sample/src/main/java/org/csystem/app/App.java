@@ -1,32 +1,28 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    IntRange sınıfı ve test kodu
+    CSDArrayList sınıfı ve test kodu
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
 
 import org.csystem.util.Console;
-import org.csystem.util.range.IntRange;
-
-import java.util.function.Consumer;
+import org.csystem.util.collection.CSDArrayList;
 
 class App {
     public static void main(String[] args)
     {
-        IntRange intRange = new IntRange(10, 50, 3);
+        Object obj;
 
-        Util.doWork(intRange, val -> Console.write("%d ", val));
+        var names = new CSDArrayList<String>();
 
-        Console.writeLine();
+        names.add("Onur Gürsoy");
+        names.add("Bora Şahin");
+        names.add("Taner Genç");
+        names.add("Beyza Yazıcı");
+        names.add("Turgut Karaağaç");
+        names.add("Beyza Yazıcı");
 
-        for (var val : intRange)
-            Console.write("%d ", val);
-    }
-}
+        int index = names.indexOf("Beyza Yazıcı");
 
-class Util {
-    public static <T> void doWork(Iterable<T> iterable, Consumer<T> consumer)
-    {
-        for (var val : iterable)
-            consumer.accept(val);
+        Console.writeLine(index);
     }
 }
 
