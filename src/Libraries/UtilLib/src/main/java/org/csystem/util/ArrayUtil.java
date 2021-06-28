@@ -142,8 +142,6 @@ public class ArrayUtil {
         }
     }
 
-
-
     public static boolean equals(int [][] a, int [][] b)
     {
         if (a.length != b.length)
