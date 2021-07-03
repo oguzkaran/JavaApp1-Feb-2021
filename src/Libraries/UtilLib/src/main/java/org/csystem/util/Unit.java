@@ -22,6 +22,17 @@ public final class Unit<T> {
     }
 
     //...
+
+    @Override
+    public boolean equals(Object obj)
+    {
+        if (!(obj instanceof Unit))
+            return false;
+
+        return m_t.equals(((Unit<T>)obj).m_t);
+    }
+
+    @Override
     public String toString()
     {
         return String.format("{value: %s}", m_t);

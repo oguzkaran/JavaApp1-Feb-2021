@@ -205,6 +205,18 @@ public class Fraction {
         this.decrement(1);
     }
 
+    @Override
+    public boolean equals(Object obj)
+    {
+        if (!(obj instanceof Fraction))
+            return false;
+
+        Fraction other = (Fraction)obj;
+
+        return m_a == other.m_a && m_b == other.m_b;
+    }
+
+    @Override
     public String toString()
     {
         return String.format("%d%s", m_a, m_b == 1 ? "" : String.format(" / %s = %f", m_b, getRealValue()));

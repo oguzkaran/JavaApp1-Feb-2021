@@ -51,14 +51,14 @@ public class Point {
 	}
 
 	@Override
-	public boolean equals(Object other)
+	public boolean equals(Object obj)
 	{
-		if (!(other instanceof Point))
+		if (!(obj instanceof Point))
 			return false;
 
-		Point p = (Point)other;
+		Point other = (Point)obj;
 
-		return p.x == x && p.y == y;
+		return other.x == x && other.y == y;
 	}
 
 	@Override

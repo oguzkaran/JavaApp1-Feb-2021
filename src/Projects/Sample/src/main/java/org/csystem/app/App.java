@@ -1,28 +1,30 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    CSDArrayList sınıfı ve test kodu
+    Stack sınıfının pop metodu stack boş ise EmptyStackException nesnesi fırlatır
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
 
 import org.csystem.util.Console;
-import org.csystem.util.collection.CSDArrayList;
+
+import java.util.EmptyStackException;
+import java.util.Stack;
+import java.util.Vector;
 
 class App {
     public static void main(String[] args)
     {
-        Object obj;
+        Vector<Integer> stack = new Vector<>();
 
-        var names = new CSDArrayList<String>();
+        for (int i = 0; i < 10; ++i)
+            stack.add(i * 10);
 
-        names.add("Onur Gürsoy");
-        names.add("Bora Şahin");
-        names.add("Taner Genç");
-        names.add("Beyza Yazıcı");
-        names.add("Turgut Karaağaç");
-        names.add("Beyza Yazıcı");
+        Console.writeLine("Peek:%d", stack.get(stack.size() - 1));
 
-        int index = names.indexOf("Beyza Yazıcı");
+        for (int i = stack.size() - 1; i >= 0; --i)
+            Console.write("%d ", stack.get(i));
 
-        Console.writeLine(index);
+        Console.writeLine();
     }
 }
+
+
 

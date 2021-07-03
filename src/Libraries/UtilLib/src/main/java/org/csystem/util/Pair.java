@@ -28,6 +28,18 @@ public final class Pair<F, S> {
         return m_second;
     }
 
+    @Override
+    public boolean equals(Object obj)
+    {
+        if (!(obj instanceof Pair))
+            return false;
+
+        var other = (Pair<F, S>)obj;
+
+        return m_first.equals(other.m_first) && m_second.equals(other.m_second);
+    }
+
+    @Override
     public String toString()
     {
         return String.format("{first: %s, second: %s}", m_first, m_second);

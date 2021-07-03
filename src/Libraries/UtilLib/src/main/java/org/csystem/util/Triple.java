@@ -35,6 +35,18 @@ public final class Triple<F, S, T> {
         return m_third;
     }
 
+    @Override
+    public boolean equals(Object obj)
+    {
+        if (!(obj instanceof Triple))
+            return false;
+
+        var other = (Triple<F, S, T>)obj;
+
+        return m_first.equals(other.m_first) && m_second.equals(other.m_second) && m_third.equals(other.m_third);
+    }
+
+    @Override
     public String toString()
     {
         return String.format("{first: %s, second: %s, third: %s}", m_first, m_second, m_third);

@@ -73,7 +73,19 @@ public class Complex {
 	{
 		return subtract(val, 0, z.re, z.im);
 	}
-	
+
+	@Override
+	public boolean equals(Object obj)
+	{
+		if (!(obj instanceof Complex))
+			return false;
+
+		Complex other = (Complex)obj;
+
+		return re == other.re && im == other.im;
+	}
+
+	@Override
 	public String toString()
 	{
 		return String.format("|%.2f + %.2f * i| = %f", re, im, getNorm());
