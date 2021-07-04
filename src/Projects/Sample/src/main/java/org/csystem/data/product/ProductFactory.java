@@ -9,6 +9,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Optional;
+import java.util.Random;
 
 public final class ProductFactory {
     public final ArrayList<ProductInfo> PRODUCTS = new ArrayList<>();
@@ -55,5 +56,10 @@ public final class ProductFactory {
         }
 
         return result;
+    }
+
+    public ProductInfo getRandomProduct(Random r)
+    {
+        return PRODUCTS.get(r.nextInt(PRODUCTS.size()));
     }
 }
