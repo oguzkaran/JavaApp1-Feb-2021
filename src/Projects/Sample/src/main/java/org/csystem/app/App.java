@@ -1,34 +1,33 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    Collection arayüzünün toCharArray metodu
+    Yukarıdaki kod Java 8 ile Comparator<T> arayüzüne eklenen reverseOrder metodu ile yazılabilir. reverseOrders
+    çağrılabilmesi için açılıma ilişkin türün Comparable<T> arayüzünü desteklemesi gerekir
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
 
-import org.csystem.data.product.ProductFactory;
-import org.csystem.data.product.ProductInfo;
 import org.csystem.util.Console;
+import org.csystem.util.math.Complex;
 
 import java.util.Random;
+import java.util.TreeSet;
 
 class App {
     public static void main(String[] args)
     {
-        try {
-            var random = new Random();
-            var factoryOpt = ProductFactory.loadFromTextFile("products-org.csv");
-            if (factoryOpt.isEmpty())
-                return;
+        TreeSet<Complex> treeSet = new TreeSet<>((z1, z2) -> Double.compare(z1.getNorm(), z2.getNorm()));
+        Random r = new Random();
 
-            var factory = factoryOpt.get();
+        int min = -10, max = 10;
 
-            factory.PRODUCTS.forEach(Console::writeLine);
+        for (int i = 0; i < 10; ++i) {
+            int a = r.nextInt(max - min + 1) + 1;
+            int b = r.nextInt(max - min + 1) + 1;
+            var z = new Complex(a, b);
 
-            Console.writeLine("---------------------------------------------------------");
-
-            for (var pi : factory.PRODUCTS)
-                Console.writeLine(pi);
+            treeSet.add(z);
         }
-        catch (Throwable ex) {
-            Console.Error.writeLine(ex.getMessage());
-        }
+
+        Console.writeLine();
+        Console.writeLine(treeSet);
+        Console.writeLine("Size:%d", treeSet.size());
     }
 }

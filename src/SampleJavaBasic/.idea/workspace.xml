@@ -5,19 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b0681fe4-a3bb-427e-825f-d2d1a7132335" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../Libraries/MathUtilLib/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Libraries/MathUtilLib/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Libraries/UtilLib/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Libraries/UtilLib/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Libraries/UtilLib/src/main/java/org/csystem/util/ArrayUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Libraries/UtilLib/src/main/java/org/csystem/util/ArrayUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Libraries/UtilLib/src/main/java/org/csystem/util/math/Complex.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Libraries/UtilLib/src/main/java/org/csystem/util/math/Fraction.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Libraries/UtilLib/src/main/java/org/csystem/util/math/FractionException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Libraries/UtilLib/src/main/java/org/csystem/util/math/FractionExceptionStatus.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Libraries/UtilLib/src/main/java/org/csystem/util/math/MutableIntValue.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Libraries/UtilLib/src/main/java/org/csystem/util/math/geometry/AnalyticalCircle.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Libraries/UtilLib/src/main/java/org/csystem/util/math/geometry/Circle.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Libraries/UtilLib/src/main/java/org/csystem/util/math/geometry/Point.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../doc/Examples.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../doc/Examples.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../doc/notes/AlgoritmaAnalizi.docx" beforeDir="false" afterPath="$PROJECT_DIR$/../../doc/notes/AlgoritmaAnalizi.docx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Libraries/MathUtilLib/src/main/java/org/csystem/util/math/Fraction.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Libraries/MathUtilLib/src/main/java/org/csystem/util/math/Fraction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Projects/Sample/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Projects/Sample/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Projects/Sample/src/main/java/org/csystem/app/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Projects/Sample/src/main/java/org/csystem/app/App.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sample.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Sample.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -151,6 +144,8 @@
       <updated>1613298667267</updated>
       <workItem from="1624805162017" duration="1068000" />
       <workItem from="1624888706885" duration="696000" />
+      <workItem from="1625929921607" duration="841000" />
+      <workItem from="1625935793421" duration="597000" />
     </task>
     <servers />
   </component>
