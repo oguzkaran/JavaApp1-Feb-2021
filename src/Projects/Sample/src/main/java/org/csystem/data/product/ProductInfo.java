@@ -75,6 +75,12 @@ public class ProductInfo {
     }
 
     @Override
+    public int hashCode()
+    {
+        return m_id;
+    }
+
+    @Override
     public boolean equals(Object obj)
     {
         if (!(obj instanceof ProductInfo))
@@ -82,8 +88,9 @@ public class ProductInfo {
 
         var other = (ProductInfo)obj;
 
-        return other.m_id == m_id && other.m_name.equals(m_name);
+        return other.m_id == m_id;
     }
+
 
     @Override
     public String toString()

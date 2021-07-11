@@ -6,10 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="b0681fe4-a3bb-427e-825f-d2d1a7132335" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../../doc/Examples.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../doc/Examples.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../doc/notes/AlgoritmaAnalizi.docx" beforeDir="false" afterPath="$PROJECT_DIR$/../../doc/notes/AlgoritmaAnalizi.docx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Libraries/MathUtilLib/src/main/java/org/csystem/util/math/Fraction.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Libraries/MathUtilLib/src/main/java/org/csystem/util/math/Fraction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Projects/Sample/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Projects/Sample/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Projects/Sample/src/main/java/org/csystem/app/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Projects/Sample/src/main/java/org/csystem/app/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Projects/Sample/src/main/java/org/csystem/data/product/ProductFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Projects/Sample/src/main/java/org/csystem/data/factory/ProductFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Projects/Sample/src/main/java/org/csystem/data/product/ProductInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Projects/Sample/src/main/java/org/csystem/data/product/ProductInfo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -146,6 +145,7 @@
       <workItem from="1624888706885" duration="696000" />
       <workItem from="1625929921607" duration="841000" />
       <workItem from="1625935793421" duration="597000" />
+      <workItem from="1626014064438" duration="1100000" />
     </task>
     <servers />
   </component>

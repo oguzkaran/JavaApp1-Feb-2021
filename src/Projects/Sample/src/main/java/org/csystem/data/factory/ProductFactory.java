@@ -1,6 +1,6 @@
-package org.csystem.data.product;
+package org.csystem.data.factory;
 
-import org.csystem.util.Console;
+import org.csystem.data.product.ProductInfo;
 
 import java.io.IOException;
 import java.math.BigDecimal;
