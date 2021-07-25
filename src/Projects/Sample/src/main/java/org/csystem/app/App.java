@@ -1,51 +1,38 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    Sınıf Çalışması: Bir collection içerisindeki tüm elemanların tekil (unique) olup olmadığını test eden
-    generic bir metot yazınız
+    Soru: Stack kullanarak bir yazıyı ekrana tersten yazdıran printReverse isimli metodu Util sınıfı içerisinde yazınız
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
 
-import org.csystem.data.factory.ProductFactory;
-import org.csystem.data.product.ProductInfo;
 import org.csystem.util.Console;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Random;
+import java.util.Stack;
 
 class App {
     public static void main(String[] args)
     {
-        try {
-            var productFactory = ProductFactory.loadFromTextFile("products-org.csv").get();
-            var products = new ArrayList<ProductInfo>();
-            var random = new Random();
+        for (;;) {
+            var str = Console.read("Bir yazı giriniz:");
 
-            for (int i = 0; i < 300; ++i) {
-                var product = productFactory.getRandomProduct(random);
+            Util.printReverse(str);
 
-                products.add(product);
-            }
-
-            for (var p : products)
-                Console.writeLine(p);
-
-            Console.writeLine(CollectionUtil.areAllDistinct(products));
-        }
-        catch (Throwable ex) {
-            ex.printStackTrace();
+            if ("elma".equals(str))
+                break;
         }
     }
 }
 
-final class CollectionUtil {
-    private CollectionUtil()
+class Util {
+    public static void printReverse(String str)
     {
-    }
+        var charStack = new Stack<Character>();
+        var length = str.length();
 
-    public static <T> boolean areAllDistinct(Collection<? extends T> collection)
-    {
-        return collection.size() == new HashSet<>(collection).size();
+        for (var i = 0; i < length; ++i)
+            charStack.push(str.charAt(i));
+
+        while (!charStack.isEmpty())
+            Console.write(charStack.pop());
+
+        Console.writeLine();
     }
 }
-

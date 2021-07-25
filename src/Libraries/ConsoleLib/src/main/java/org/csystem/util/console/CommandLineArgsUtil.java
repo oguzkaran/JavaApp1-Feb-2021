@@ -24,7 +24,6 @@ public final class CommandLineArgsUtil {
         return result.substring(0, result.length() - delimiter.length());
     }
 
-
     public static void checkForLengthEqual(String [] args, int count, String errMessage, int exitCode)
     {
         if (args.length != count) {

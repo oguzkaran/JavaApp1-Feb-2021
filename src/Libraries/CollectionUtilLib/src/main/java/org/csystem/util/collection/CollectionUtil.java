@@ -22,4 +22,5 @@ public final class CollectionUtil {
     {
         return collection.size() == new HashSet<T>(collection).size();
     }
+    //...
 }
