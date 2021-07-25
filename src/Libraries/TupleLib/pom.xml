@@ -12,9 +12,8 @@
     </parent>
 
     <groupId>org.csystem.java</groupId>
-    <artifactId>org-csystem-util</artifactId>
+    <artifactId>org-csystem-util-tuple</artifactId>
     <version>1.0.0</version>
-
 
     <properties>
         <java.version>8</java.version>
