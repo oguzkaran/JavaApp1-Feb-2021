@@ -95,6 +95,6 @@ public class ProductInfo {
     @Override
     public String toString()
     {
-        return String.format("[%d]%s-%s * %s = %s", m_id, m_name, m_cost, m_price, this.getTotal());
+        return String.format("[%d]%s(%d)-%s * %s = %s", m_id, m_name, m_stock, m_cost, m_price, this.getTotal());
     }
 }

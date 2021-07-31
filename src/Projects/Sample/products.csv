@@ -31,17 +31,17 @@ Kod,Ad,Miktar,Maliyet,Satış
 30,"Crush - Grape, 355 Ml",889,399.18,2161.29
 31,Water - Evian 355 Ml,922,534.88,2090.37
 32,Mushroom - White Button,664,84.77,2800.64
-33,Yoghurt Tubes,713,729.86,3061.78
+33,Yoghurt Tubes,0,729.86,3061.78
 34,Veal - Bones,269,160.85,3124.73
 35,Muffin Mix - Lemon Cranberry,439,672.46,3105.44
 36,Oysters - Smoked,425,317.38,2770.18
 37,Chinese Foods - Thick Noodles,768,645.91,3780.3
 38,Amarula Cream,679,751.53,1426.89
 39,Cheese - Camembert,102,787.66,3571.85
-40,"Doilies - 12, Paper",324,207.86,3662.35
+40,"Doilies - 12, Paper",0,207.86,3662.35
 41,Jagermeister,332,483.25,3571.29
 42,"Chicken - Breast, 5 - 7 Oz",651,633.61,1558.93
-43,Madeira,126,863.53,1706.96
+43,Madeira,-12,863.53,1706.96
 44,"Potatoes - Instant, Mashed",984,707.35,3603.72
 45,Tea Leaves - Oolong,503,219.37,1421.16
 46,Wine - Guy Sage Touraine,740,732.37,3431.05
@@ -56,7 +56,7 @@ Kod,Ad,Miktar,Maliyet,Satış
 55,Baking Powder,603,240.35,2783.27
 56,Bread - Hot Dog Buns,52,555.71,3856.65
 57,Teriyaki Sauce,319,821.64,2233.42
-58,Alize Sunset,680,467.23,3701.24
+58,Alize Sunset,0,467.23,3701.24
 59,Tofu - Firm,105,778.14,2091.32
 60,Cookie - Oreo 100x2,321,333.12,1505.16
 61,Cheese - Mozzarella,860,530.2,1227.49

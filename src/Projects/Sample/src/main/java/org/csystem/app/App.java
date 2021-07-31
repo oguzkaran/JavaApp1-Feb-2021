@@ -1,38 +1,31 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    Soru: Stack kullanarak bir yazıyı ekrana tersten yazdıran printReverse isimli metodu Util sınıfı içerisinde yazınız
+    Stream arayüzlerinin map metotları
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
 
+import org.csystem.data.factory.ProductFactory;
+import org.csystem.data.product.ProductInfo;
 import org.csystem.util.Console;
 
-import java.util.Stack;
+import java.math.BigDecimal;
 
 class App {
     public static void main(String[] args)
     {
-        for (;;) {
-            var str = Console.read("Bir yazı giriniz:");
+        try {
+            var productFactory = ProductFactory.loadFromTextFile("products.csv");
+            if (productFactory.isEmpty())
+                return;
 
-            Util.printReverse(str);
+            var products = productFactory.get().PRODUCTS;
 
-            if ("elma".equals(str))
-                break;
+            products.stream()
+                    .filter(p -> p.getTotal().compareTo(new BigDecimal("300000")) < 0 && p.getName().contains("-"))
+                    .map(ProductInfo::getCost)
+                    .forEach(Console::writeLine);
         }
-    }
-}
-
-class Util {
-    public static void printReverse(String str)
-    {
-        var charStack = new Stack<Character>();
-        var length = str.length();
-
-        for (var i = 0; i < length; ++i)
-            charStack.push(str.charAt(i));
-
-        while (!charStack.isEmpty())
-            Console.write(charStack.pop());
-
-        Console.writeLine();
+        catch (Throwable ex) {
+            ex.printStackTrace();
+        }
     }
 }
