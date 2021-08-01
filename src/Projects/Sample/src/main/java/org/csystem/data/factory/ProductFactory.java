@@ -8,11 +8,12 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
 public final class ProductFactory {
-    public final ArrayList<ProductInfo> PRODUCTS = new ArrayList<>();
+    public final List<ProductInfo> PRODUCTS = new ArrayList<>();
 
     private static String join(String [] strings, int startIndex, int endIndex, String delimiter) //İleride tek hamlede yapacağız
     {
