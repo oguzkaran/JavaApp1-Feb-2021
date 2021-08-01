@@ -10,7 +10,7 @@ public class ProductConverter {
 
     //...
 
-    public ProductNameStockDTO toProductStockModel()
+    public ProductNameStockDTO toProductStockDTO()
     {
         return new ProductNameStockDTO(m_productInfo.getName(), m_productInfo.getStock());
     }

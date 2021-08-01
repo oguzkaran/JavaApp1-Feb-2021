@@ -59,6 +59,11 @@ public final class ProductFactory {
         return result;
     }
 
+    public Iterable<ProductInfo> getProductsAsIterable()
+    {
+        return PRODUCTS;
+    }
+
     public ProductInfo getRandomProduct(Random r)
     {
         return PRODUCTS.get(r.nextInt(PRODUCTS.size()));
