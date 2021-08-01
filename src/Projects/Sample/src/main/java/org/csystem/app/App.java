@@ -1,31 +1,22 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    Stream arayüzlerinin map metotları
+    Aşağıdaki örnekte yazılan isPrime metodunu inceleyiniz
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
 
-import org.csystem.data.factory.ProductFactory;
-import org.csystem.data.product.ProductInfo;
 import org.csystem.util.Console;
 
-import java.math.BigDecimal;
+import java.util.stream.IntStream;
 
 class App {
     public static void main(String[] args)
     {
-        try {
-            var productFactory = ProductFactory.loadFromTextFile("products.csv");
-            if (productFactory.isEmpty())
-                return;
+        IntStream.rangeClosed(-10, 100).filter(Util::isPrime).forEach(p -> Console.write("%d ", p));
+    }
+}
 
-            var products = productFactory.get().PRODUCTS;
-
-            products.stream()
-                    .filter(p -> p.getTotal().compareTo(new BigDecimal("300000")) < 0 && p.getName().contains("-"))
-                    .map(ProductInfo::getCost)
-                    .forEach(Console::writeLine);
-        }
-        catch (Throwable ex) {
-            ex.printStackTrace();
-        }
+class Util {
+    public static boolean isPrime(int val)
+    {
+        return val > 1 && IntStream.rangeClosed(2, val / 2).allMatch(i -> val % i != 0);
     }
 }
