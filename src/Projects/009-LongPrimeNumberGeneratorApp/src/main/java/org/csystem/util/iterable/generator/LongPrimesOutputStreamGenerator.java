@@ -5,7 +5,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.Random;
 import java.util.stream.LongStream;
 
-public class GeneratePrimes {
+public class LongPrimesOutputStreamGenerator {
     private long m_count;
     private OutputStream m_outputStream;
     private OutputStatus m_outputStatus;
@@ -53,12 +53,12 @@ public class GeneratePrimes {
                 .forEach(val -> generateForBinaryForEachCallback(dos, val));
     }
 
-    public GeneratePrimes(long count, Random random, OutputStream outputStream)
+    public LongPrimesOutputStreamGenerator(long count, Random random, OutputStream outputStream)
     {
         this(count, random, outputStream, OutputStatus.TEXT);
     }
 
-    public GeneratePrimes(long count, Random random, OutputStream outputStream, OutputStatus outputStatus)
+    public LongPrimesOutputStreamGenerator(long count, Random random, OutputStream outputStream, OutputStatus outputStatus)
     {
         m_count = count;
         m_random = random;
