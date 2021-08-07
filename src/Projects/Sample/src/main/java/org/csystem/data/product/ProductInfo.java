@@ -2,7 +2,7 @@ package org.csystem.data.product;
 
 import java.math.BigDecimal;
 
-public class ProductInfo {
+public class ProductInfo implements Comparable<ProductInfo>, Cloneable {
     private int m_id;
     private String m_name = "";
     private int m_stock;
@@ -74,6 +74,8 @@ public class ProductInfo {
         return m_price.multiply(m_cost);
     }
 
+
+
     @Override
     public int hashCode()
     {
@@ -91,10 +93,26 @@ public class ProductInfo {
         return other.m_id == m_id;
     }
 
-
     @Override
     public String toString()
     {
         return String.format("[%d]%s(%d)-%s * %s = %s", m_id, m_name, m_stock, m_cost, m_price, this.getTotal());
+    }
+
+    @Override
+    public int compareTo(ProductInfo other)
+    {
+        return m_price.compareTo(other.m_price);
+    }
+
+    @Override
+    public Object clone()
+    {
+        return new ProductInfo()
+                .setId(m_id)
+                .setName(m_name)
+                .setStock(m_stock)
+                .setCost(m_cost)
+                .setPrice(m_price);
     }
 }

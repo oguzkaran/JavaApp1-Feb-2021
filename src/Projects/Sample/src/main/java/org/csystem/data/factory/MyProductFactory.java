@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
-public final class ProductFactory {
+public final class MyProductFactory {
     public final List<ProductInfo> PRODUCTS = new ArrayList<>();
 
     private static String join(String [] strings, int startIndex, int endIndex, String delimiter) //İleride tek hamlede yapacağız
@@ -36,24 +36,21 @@ public final class ProductFactory {
         return new ProductInfo().setId(id).setName(name).setPrice(price).setCost(cost).setStock(stock);
     }
 
-    private ProductFactory()
+    private MyProductFactory()
     {}
 
-    public static Optional<ProductFactory> loadFromTextFile(String path) throws IOException
+    public static MyProductFactory loadFromTextFile(String path) throws IOException
     {
-        Optional<ProductFactory> result = Optional.empty();
+        var result = new MyProductFactory();
 
         try (var br = Files.newBufferedReader(Path.of(path), StandardCharsets.UTF_8)) {
             if (br.readLine() == null)
                 return result;
 
-            var productFactory = new ProductFactory();
             String line;
 
             while ((line = br.readLine()) != null)
-                productFactory.PRODUCTS.add(getProduct(line));
-
-            result = Optional.of(productFactory);
+                result.PRODUCTS.add(getProduct(line));
         }
 
         return result;
@@ -66,6 +63,19 @@ public final class ProductFactory {
 
     public Optional<ProductInfo> getRandomProduct(Random r)
     {
-        return PRODUCTS.isEmpty() ? Optional.empty() : Optional.of(PRODUCTS.get(r.nextInt(PRODUCTS.size())));
+        return PRODUCTS.isEmpty() ? Optional.empty() : Optional.of((ProductInfo)PRODUCTS.get(r.nextInt(PRODUCTS.size())).clone());
+    }
+
+    public Optional<ProductInfo> getRandomDiffNameProduct(Random r)
+    {
+        if (PRODUCTS.isEmpty())
+            return Optional.empty();
+
+        var productInfo = (ProductInfo)PRODUCTS.get(r.nextInt(PRODUCTS.size())).clone();
+
+        if (r.nextBoolean())
+            productInfo.setName(productInfo.getName().toUpperCase());
+
+        return Optional.of(productInfo);
     }
 }
