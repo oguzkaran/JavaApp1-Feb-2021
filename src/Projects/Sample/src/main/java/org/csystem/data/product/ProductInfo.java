@@ -2,7 +2,7 @@ package org.csystem.data.product;
 
 import java.math.BigDecimal;
 
-public class ProductInfo implements Comparable<ProductInfo>, Cloneable {
+public class ProductInfo implements  Comparable<ProductInfo>, Cloneable {
     private int m_id;
     private String m_name = "";
     private int m_stock;

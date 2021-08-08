@@ -1,21 +1,29 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    Aşağıdaki örnekte [-2 * PI, 2 * PI] aralığında sinus fonksiyonun değerleri elde edilmiştir
+    Colloctors sınıfının joining metodu ile yazı birleştirmesi ayraç, prefix ve suffix kullanılarak yapılabilir
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
 
+import org.csystem.data.factory.MyProductFactory;
+import org.csystem.data.product.ProductInfo;
 import org.csystem.util.Console;
 
-import java.util.stream.DoubleStream;
+import java.util.stream.Collectors;
 
 class App {
     public static void main(String[] args)
     {
-        var min = -2 * Math.PI;
-        var max = 2 * Math.PI;
-        var step = 0.03;
+        try {
+            var factory = MyProductFactory.loadFromTextFile("products-temp.csv");
+            var products = factory.PRODUCTS;
 
-        DoubleStream.iterate(min, i -> Double.compare(i, max) <= 0, i -> i + step)
-                .map(Math::sin)
-                .forEach(Console::writeLine);
+            var str = products.stream().map(ProductInfo::getName)
+                    .map(s -> "[[" + s + "]]")
+                    .collect(Collectors.joining(" :: ", "{", "}"));
+
+            Console.writeLine(str);
+        }
+        catch (Throwable ex) {
+            ex.printStackTrace();
+        }
     }
 }
