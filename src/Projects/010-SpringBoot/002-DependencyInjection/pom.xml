@@ -10,10 +10,10 @@
 	</parent>
 
 	<groupId>org.csystem</groupId>
-	<artifactId>CreateObjectAutoWithComponent</artifactId>
+	<artifactId>DependencyInjection</artifactId>
 	<version>1.0.0</version>
-	<name>CreateObjectAutoWithComponent</name>
-
+	<name>DependencyInjection</name>
+	<description>Sample application dependency injection</description>
 
 	<properties>
 		<java.version>11</java.version>

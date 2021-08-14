@@ -5,8 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b0681fe4-a3bb-427e-825f-d2d1a7132335" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../Projects/010-SpringBoot/001-CreateObjectAutoWithComponent/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Projects/010-SpringBoot/001-CreateObjectAutoWithComponent/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Projects/010-SpringBoot/GenericAppIntelliJ/src/test/java/org/csystem/application/GenericAppApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Projects/010-SpringBoot/GenericAppIntelliJ/src/test/java/org/csystem/application/AppTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/csystem/app/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/csystem/app/App.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,7 +47,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../Android-Sep-2020/src/Java-Kotlin/Sample" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -145,6 +146,7 @@
       <workItem from="1626014064438" duration="1100000" />
       <workItem from="1626025165441" duration="201000" />
       <workItem from="1626103588064" duration="729000" />
+      <workItem from="1628957408277" duration="951000" />
     </task>
     <servers />
   </component>
