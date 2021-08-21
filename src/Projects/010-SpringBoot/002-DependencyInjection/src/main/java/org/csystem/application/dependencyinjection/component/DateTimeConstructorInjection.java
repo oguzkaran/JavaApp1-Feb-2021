@@ -1,6 +1,7 @@
 package org.csystem.application.dependencyinjection.component;
 
 import org.csystem.util.Console;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -9,7 +10,7 @@ import javax.annotation.PostConstruct;
 public class DateTimeConstructorInjection {
     private final DateTime m_dateTime;
 
-    public DateTimeConstructorInjection(DateTime dateTime)
+    public DateTimeConstructorInjection(@Qualifier("myDateTime") DateTime dateTime)
     {
         m_dateTime = dateTime;
     }
