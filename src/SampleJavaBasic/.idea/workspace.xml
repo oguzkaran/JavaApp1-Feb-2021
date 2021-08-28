@@ -5,38 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b0681fe4-a3bb-427e-825f-d2d1a7132335" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../Projects/010-SpringBoot/005-RandomPasswordGenratorDO-NOT/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Projects/010-SpringBoot/005-RandomPasswordGenratorDO-NOT/.mvn/wrapper/MavenWrapperDownloader.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Projects/010-SpringBoot/005-RandomPasswordGenratorDO-NOT/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Projects/010-SpringBoot/005-RandomPasswordGenratorDO-NOT/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Projects/010-SpringBoot/005-RandomPasswordGenratorDO-NOT/mvnw" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Projects/010-SpringBoot/005-RandomPasswordGenratorDO-NOT/mvnw.cmd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Projects/010-SpringBoot/005-RandomPasswordGenratorDO-NOT/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Projects/010-SpringBoot/005-RandomPasswordGenratorDO-NOT/src/main/java/org/csystem/application/randomgenerator/App.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Projects/010-SpringBoot/005-RandomPasswordGenratorDO-NOT/src/main/java/org/csystem/application/randomgenerator/configuration/BufferedWriterConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Projects/010-SpringBoot/005-RandomPasswordGenratorDO-NOT/src/main/java/org/csystem/application/randomgenerator/configuration/FileOutputStreamConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Projects/010-SpringBoot/005-RandomPasswordGenratorDO-NOT/src/main/java/org/csystem/application/randomgenerator/runner/RandomPasswordGeneratorFirst.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Projects/010-SpringBoot/005-RandomPasswordGenratorDO-NOT/src/main/java/org/csystem/application/randomgenerator/runner/RandomPasswordGeneratorSecond.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Projects/010-SpringBoot/005-RandomPasswordGenratorDO-NOT/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Projects/010-SpringBoot/005-RandomPasswordGenratorDO-NOT/src/test/java/org/csystem/application/randomgenerator/AppTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Projects/010-SpringBoot/006-RandomPasswordGenrator/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Projects/010-SpringBoot/006-RandomPasswordGenrator/.mvn/wrapper/MavenWrapperDownloader.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Projects/010-SpringBoot/006-RandomPasswordGenrator/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Projects/010-SpringBoot/006-RandomPasswordGenrator/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Projects/010-SpringBoot/006-RandomPasswordGenrator/mvnw" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Projects/010-SpringBoot/006-RandomPasswordGenrator/mvnw.cmd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Projects/010-SpringBoot/006-RandomPasswordGenrator/passwords1.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Projects/010-SpringBoot/006-RandomPasswordGenrator/passwords2.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Projects/010-SpringBoot/006-RandomPasswordGenrator/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Projects/010-SpringBoot/006-RandomPasswordGenrator/src/main/java/org/csystem/application/randomgenerator/App.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Projects/010-SpringBoot/006-RandomPasswordGenrator/src/main/java/org/csystem/application/randomgenerator/configuration/BufferedWriterConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Projects/010-SpringBoot/006-RandomPasswordGenrator/src/main/java/org/csystem/application/randomgenerator/configuration/FileOutputStreamConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Projects/010-SpringBoot/006-RandomPasswordGenrator/src/main/java/org/csystem/application/randomgenerator/configuration/RandomGeneratorConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Projects/010-SpringBoot/006-RandomPasswordGenrator/src/main/java/org/csystem/application/randomgenerator/configuration/TimerConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Projects/010-SpringBoot/006-RandomPasswordGenrator/src/main/java/org/csystem/application/randomgenerator/runner/RandomPasswordGeneratorFirst.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Projects/010-SpringBoot/006-RandomPasswordGenrator/src/main/java/org/csystem/application/randomgenerator/runner/RandomPasswordGeneratorSecond.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Projects/010-SpringBoot/006-RandomPasswordGenrator/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Projects/010-SpringBoot/006-RandomPasswordGenrator/src/test/java/org/csystem/application/randomgenerator/AppTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/csystem/app/samples/parser/CharArrayISource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/csystem/app/samples/parser/CharArraySource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/csystem/app/samples/parser/ParserApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/csystem/app/samples/parser/ParserApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/csystem/app/samples/parser/StringISource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/csystem/app/samples/parser/StringSource.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -176,7 +148,7 @@
       <workItem from="1626025165441" duration="201000" />
       <workItem from="1626103588064" duration="729000" />
       <workItem from="1628957408277" duration="951000" />
-      <workItem from="1630158743262" duration="297000" />
+      <workItem from="1630158743262" duration="3438000" />
     </task>
     <servers />
   </component>

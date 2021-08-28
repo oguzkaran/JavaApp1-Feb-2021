@@ -1,15 +1,15 @@
 package org.csystem.app.samples.parser;
 
-public class CharArrayISource implements ISource {
+public class CharArraySource implements ISource {
     private final char [] m_chars;
     private int m_index;
 
-    public CharArrayISource(String str)
+    public CharArraySource(String str)
     {
         this(str.toCharArray());
     }
 
-    public CharArrayISource(char [] chars)
+    public CharArraySource(char [] chars)
     {
         m_chars = chars;
     }

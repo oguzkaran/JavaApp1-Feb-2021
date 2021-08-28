@@ -6,6 +6,7 @@ public final class ParserApp {
     private ParserApp()
     {
     }
+
     public static void run()
     {
         Scanner kb = new Scanner(System.in);
@@ -18,8 +19,8 @@ public final class ParserApp {
             if ("elma".equals(s))
                 break;
 
-            StringISource ss = new StringISource(s);
-            CharArrayISource cs = new CharArrayISource(s.trim());
+            StringSource ss = new StringSource(s);
+            CharArraySource cs = new CharArraySource(s.trim());
 
             parser.setSource(ss);
 
