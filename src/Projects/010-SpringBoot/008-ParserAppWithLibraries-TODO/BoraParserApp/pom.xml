@@ -47,8 +47,6 @@
 			<groupId>org.csystem</groupId>
 			<artifactId>org-csystem-library-parser</artifactId>
 			<version>1.0.0</version>
-			<scope>system</scope>
-			<systemPath>${basedir}/libs/org-csystem-library-parser-1.0.0.jar</systemPath>
 		</dependency>
 
 		<dependency>
