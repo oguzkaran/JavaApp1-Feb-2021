@@ -4,7 +4,7 @@
 
 package org.csystem.app.sample;
 
-import org.csystem.util.ArrayUtil;
+import org.csystem.util.array.ArrayUtil;
 
 import java.util.Scanner;
 

@@ -1,6 +1,6 @@
 package org.csystem.data.factory;
 
-import org.csystem.util.StringUtil;
+import org.csystem.util.string.StringUtil;
 
 import java.util.Random;
 

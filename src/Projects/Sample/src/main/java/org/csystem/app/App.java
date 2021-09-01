@@ -21,6 +21,7 @@ class App {
                     .collect(Collectors.joining(" :: ", "{", "}"));
 
             Console.writeLine(str);
+
         }
         catch (Throwable ex) {
             ex.printStackTrace();
