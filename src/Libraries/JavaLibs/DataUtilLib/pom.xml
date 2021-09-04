@@ -11,7 +11,7 @@
 
 	<groupId>org.csystem</groupId>
 	<artifactId>org-csystem-util-data</artifactId>
-	<version>11.0.0</version>
+	<version>4.0.0</version>
 	<name>org-csystem-util-data</name>
 
 	<properties>
