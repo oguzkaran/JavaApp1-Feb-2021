@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 @Component
-//@Scope("prototype")
+@Scope("prototype")
 public class ClientInfo {
     private String m_localAddress;
     private String m_remoteAddress;
