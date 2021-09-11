@@ -4,73 +4,90 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public class Movie {
-    public long id;
-    public String name;
-    public LocalDate sceneTime;
-    public long rating;
-    public BigDecimal cost;
-    public float imdb;
+    private long m_id;
+    private String m_name;
+    private LocalDate m_sceneTime;
+    private long m_rating;
+    private BigDecimal m_cost;
+    private float m_imdb;
 
-    //...
+    public Movie()
+    {
+    }
 
+    public Movie(long id, String name, LocalDate sceneTime, long rating, BigDecimal cost, float imdb)
+    {
+        m_id = id;
+        m_name = name;
+        m_sceneTime = sceneTime;
+        m_rating = rating;
+        m_cost = cost;
+        m_imdb = imdb;
+    }
 
     public long getId()
     {
-        return id;
+        return m_id;
     }
 
     public void setId(long id)
     {
-        this.id = id;
+        m_id = id;
     }
 
     public String getName()
     {
-        return name;
+        return m_name;
     }
 
     public void setName(String name)
     {
-        this.name = name;
+        m_name = name;
     }
 
     public LocalDate getSceneTime()
     {
-        return sceneTime;
+        return m_sceneTime;
     }
 
     public void setSceneTime(LocalDate sceneTime)
     {
-        this.sceneTime = sceneTime;
+        m_sceneTime = sceneTime;
     }
 
     public long getRating()
     {
-        return rating;
+        return m_rating;
     }
 
     public void setRating(long rating)
     {
-        this.rating = rating;
+        m_rating = rating;
     }
 
     public BigDecimal getCost()
     {
-        return cost;
+        return m_cost;
     }
 
     public void setCost(BigDecimal cost)
     {
-        this.cost = cost;
+        m_cost = cost;
     }
 
     public float getImdb()
     {
-        return imdb;
+        return m_imdb;
     }
 
     public void setImdb(float imdb)
     {
-        this.imdb = imdb;
+        m_imdb = imdb;
+    }
+
+    @Override
+    public String toString()
+    {
+        return String.format("[%d]%s-%s-%d-%s-%f", m_id, m_name, m_sceneTime, m_rating, m_cost, m_imdb);
     }
 }
