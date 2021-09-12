@@ -1,6 +1,5 @@
 package org.csystem.application.service.rest.movie.controller;
 
-import org.csystem.application.service.rest.movie.data.entity.Movie;
 import org.csystem.application.service.rest.movie.dto.MovieDTO;
 import org.csystem.application.service.rest.movie.service.MovieApplicationService;
 import org.springframework.context.annotation.Scope;

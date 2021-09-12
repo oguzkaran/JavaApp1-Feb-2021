@@ -59,6 +59,7 @@ public class MovieRepository implements IMovieRepository {
     @Override
     public Iterable<Movie> findAll()
     {
+
         var movies = new ArrayList<Movie>();
 
         m_jdbcTemplate.query(FIND_ALL_SQL, (ResultSet rs) -> fillMovies(rs, movies));
