@@ -4,7 +4,6 @@ import org.csystem.util.data.repository.RepositoryException;
 import org.csystem.util.data.service.DataServiceException;
 
 import java.util.function.Consumer;
-import java.util.function.Function;
 
 public final class DatabaseUtil {
     private DatabaseUtil()

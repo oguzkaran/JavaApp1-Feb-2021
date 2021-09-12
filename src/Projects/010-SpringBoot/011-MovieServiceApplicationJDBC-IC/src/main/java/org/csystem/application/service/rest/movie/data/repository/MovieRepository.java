@@ -10,6 +10,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 @Repository
@@ -59,7 +61,6 @@ public class MovieRepository implements IMovieRepository {
     @Override
     public Iterable<Movie> findAll()
     {
-
         var movies = new ArrayList<Movie>();
 
         m_jdbcTemplate.query(FIND_ALL_SQL, (ResultSet rs) -> fillMovies(rs, movies));
@@ -70,15 +71,28 @@ public class MovieRepository implements IMovieRepository {
     @Override
     public Iterable<Movie> findMoviesByYear(int year)
     {
-        //TODO:
-        throw new UnsupportedOperationException();
+        Map<String, Object> parameterMap = new HashMap<>();
+
+        parameterMap.put("year", year);
+        var movies = new ArrayList<Movie>();
+
+        m_jdbcTemplate.query(FIND_BY_YEAR_SQL, parameterMap, (ResultSet rs) -> fillMovies(rs, movies));
+
+        return movies;
     }
 
     @Override
     public Iterable<Movie> findMoviesByMonthYear(int month, int year)
     {
-        //TODO:
-        throw new UnsupportedOperationException();
+        Map<String, Object> parameterMap = new HashMap<>();
+
+        parameterMap.put("month", month);
+        parameterMap.put("year", year);
+        var movies = new ArrayList<Movie>();
+
+        m_jdbcTemplate.query(FIND_BY_MONTH_YEAR_SQL, parameterMap, (ResultSet rs) -> fillMovies(rs, movies));
+
+        return movies;
     }
 
     @Override
@@ -95,10 +109,6 @@ public class MovieRepository implements IMovieRepository {
 
         return movie;
     }
-
-
-
-
 
     @Override
     public void delete(Movie entity)

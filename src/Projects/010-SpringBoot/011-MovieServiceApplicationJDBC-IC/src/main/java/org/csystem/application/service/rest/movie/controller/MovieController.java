@@ -1,34 +1,69 @@
 package org.csystem.application.service.rest.movie.controller;
 
 import org.csystem.application.service.rest.movie.dto.MovieDTO;
-import org.csystem.application.service.rest.movie.service.MovieApplicationService;
+import org.csystem.application.service.rest.movie.service.MovieService;
+import org.csystem.util.data.service.DataServiceException;
 import org.springframework.context.annotation.Scope;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 @RequestMapping("api/movie")
 @Scope("prototype")
 public class MovieController {
-    private final MovieApplicationService m_movieApplicationService;
+    private final MovieService m_movieService;
 
-    public MovieController(MovieApplicationService movieApplicationService)
+    public MovieController(MovieService movieService)
     {
-        m_movieApplicationService = movieApplicationService;
+        m_movieService = movieService;
     }
 
-    @GetMapping("/movies")
+    @GetMapping("/all")
     public List<MovieDTO> findAll()
     {
-        return m_movieApplicationService.findAllMovies();
+        try {
+            return m_movieService.findAllMovies();
+        }
+        catch (DataServiceException ex) {
+            return new ArrayList<>(); //Bu geçici olarak yapıldı
+        }
+    }
+
+    @GetMapping("/info")
+    public List<MovieDTO> findMovieByYear(@RequestParam("year") int year)
+    {
+        try {
+            return m_movieService.findMoviesByYear(year);
+        }
+        catch (DataServiceException ex) {
+            return new ArrayList<>(); //Bu geçici olarak yapıldı
+        }
+    }
+
+    @GetMapping("/infos")
+    public List<MovieDTO> findMovieByYear(@RequestParam("year") String yearStr)
+    {
+        try {
+            return m_movieService.findMoviesByYear(Integer.parseInt(yearStr));
+        }
+        catch (DataServiceException|NumberFormatException ex) {
+            return new ArrayList<>(); //Bu geçici olarak yapıldı
+        }
     }
 
     @GetMapping("/count")
     public long count()
     {
-        return m_movieApplicationService.countMovies();
+        try {
+            return m_movieService.countMovies();
+        }
+        catch (DataServiceException ex) {
+            return -1; //Geçici olarak yapıldı
+        }
     }
 }
