@@ -4,10 +4,9 @@ import org.csystem.application.service.rest.movie.data.entity.Director;
 import org.csystem.application.service.rest.movie.data.entity.Movie;
 import org.csystem.application.service.rest.movie.data.repository.IDirectorRepository;
 import org.csystem.application.service.rest.movie.data.repository.IMovieRepository;
-import org.csystem.util.data.repository.RepositoryException;
 import org.springframework.stereotype.Component;
 
-import static org.csystem.util.data.DatabaseUtil.*;
+import static org.csystem.util.data.DatabaseUtil.doWorkForRepository;
 
 @Component
 public class MovieServiceApplicationDAL {
@@ -22,31 +21,18 @@ public class MovieServiceApplicationDAL {
 
     public long countMovies()
     {
-        try {
-            return m_movieRepository.count();
-        }
-        catch (Throwable ex) {
-            throw new RepositoryException("MovieServiceApplicationDAL.countMovies", ex);
-        }
+        return doWorkForRepository(m_movieRepository::count, "MovieServiceApplicationDAL.countMovies");
     }
 
     public Iterable<Movie> findAllMovies()
     {
-        try {
-            return m_movieRepository.findAll();
-        }
-        catch (Throwable ex) {
-            throw new RepositoryException("MovieServiceApplicationDAL.findAllMovies", ex);
-        }
+        return doWorkForRepository(m_movieRepository::findAll, "MovieServiceApplicationDAL.findAllMovies");
     }
+
     public Iterable<Movie> findMoviesByMonthYear(int month, int year)
     {
-        try {
-            return m_movieRepository.findMoviesByMonthYear(month, year);
-        }
-        catch (Throwable ex) {
-            throw new RepositoryException("MovieServiceApplicationDAL.findMoviesByMonthYear", ex);
-        }
+        return doWorkForRepository(() -> m_movieRepository.findMoviesByMonthYear(month, year),
+                "MovieServiceApplicationDAL.findMoviesByMonthYear");
     }
 
     public Iterable<Movie> findMoviesByYear(int year)
@@ -56,42 +42,22 @@ public class MovieServiceApplicationDAL {
 
     public Movie saveMovie(Movie movie)
     {
-        try {
-            return m_movieRepository.save(movie);
-        }
-        catch (Throwable ex) {
-            throw new RepositoryException("MovieServiceApplicationDAL.saveMovie", ex);
-        }
+        return doWorkForRepository(() -> m_movieRepository.save(movie), "MovieServiceApplicationDAL.saveMovie");
     }
 
     public long countDirectors()
     {
-        try {
-            return m_directorRepository.count();
-        }
-        catch (Throwable ex) {
-            throw new RepositoryException("MovieServiceApplicationDAL.countDirectors", ex);
-        }
+        return doWorkForRepository(m_directorRepository::count, "MovieServiceApplicationDAL.countDirectors");
     }
 
     public Director saveDirector(Director director)
     {
-        try {
-            return m_directorRepository.save(director);
-        }
-        catch (Throwable ex) {
-            throw new RepositoryException("MovieServiceApplicationDAL.saveDirector", ex);
-        }
+        return doWorkForRepository(() -> m_directorRepository.save(director), "MovieServiceApplicationDAL.saveDirector");
     }
 
     public Iterable<Director> findAllDirectors()
     {
-        try {
-            return m_directorRepository.findAll();
-        }
-        catch (Throwable ex) {
-            throw new RepositoryException("MovieServiceApplicationDAL.findAllDirectors", ex);
-        }
+        return doWorkForRepository(m_directorRepository::findAll, "MovieServiceApplicationDAL.findAllDirectors");
     }
 
     //...

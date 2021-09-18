@@ -1,9 +1,11 @@
 package org.csystem.application.service.rest.movie.controller;
 
 import org.csystem.application.service.rest.movie.dto.MovieDTO;
+import org.csystem.application.service.rest.movie.dto.MovieDetailDTO;
 import org.csystem.application.service.rest.movie.service.MovieService;
 import org.csystem.util.data.service.DataServiceException;
 import org.springframework.context.annotation.Scope;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -56,6 +58,36 @@ public class MovieController {
         }
     }
 
+    @GetMapping("/infosre")
+    public ResponseEntity<List<MovieDTO>> findMovieByYearResponseEntity(@RequestParam("year") String yearStr)
+    {
+        ResponseEntity<List<MovieDTO>> responseEntity = ResponseEntity.badRequest().build();
+
+        try {
+            responseEntity = ResponseEntity.ok(m_movieService.findMoviesByYear(Integer.parseInt(yearStr)));
+        }
+        catch (DataServiceException|NumberFormatException ex) {
+            //...
+        }
+
+        return responseEntity;
+    }
+
+    @GetMapping("/info/detail")
+    public ResponseEntity<List<MovieDetailDTO>> findMoviesDetailsByYear(@RequestParam("year") String yearStr)
+    {
+        ResponseEntity<List<MovieDetailDTO>> responseEntity = ResponseEntity.badRequest().build();
+
+        try {
+            responseEntity = ResponseEntity.ok(m_movieService.findMoviesDetailsByYear(Integer.parseInt(yearStr)));
+        }
+        catch (DataServiceException|NumberFormatException ex) {
+            //...
+        }
+
+        return responseEntity;
+    }
+
     @GetMapping("/count")
     public long count()
     {
@@ -66,4 +98,6 @@ public class MovieController {
             return -1; //Geçici olarak yapıldı
         }
     }
+
+
 }

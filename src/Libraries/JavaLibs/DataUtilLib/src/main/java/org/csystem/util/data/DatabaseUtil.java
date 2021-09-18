@@ -56,6 +56,9 @@ public final class DatabaseUtil {
         try {
             return supplier.get();
         }
+        catch (RepositoryException ex) {
+            throw new DataServiceException(msg, ex.getCause());
+        }
         catch (Throwable ex) {
             throw new DataServiceException(msg, ex);
         }
@@ -66,8 +69,11 @@ public final class DatabaseUtil {
         try {
             return supplier.get();
         }
-        catch (Throwable ex) {
+        catch (RepositoryException ex) {
             consumer.accept(ex);
+            throw new DataServiceException(msg, ex.getCause());
+        }
+        catch (Throwable ex) {
             throw new DataServiceException(msg, ex);
         }
     }
@@ -76,6 +82,9 @@ public final class DatabaseUtil {
     {
         try {
             runnable.run();
+        }
+        catch (RepositoryException ex) {
+            throw new DataServiceException(msg, ex.getCause());
         }
         catch (Throwable ex) {
             throw new DataServiceException(msg, ex);
@@ -86,6 +95,10 @@ public final class DatabaseUtil {
     {
         try {
             runnable.run();
+        }
+        catch (RepositoryException ex) {
+            consumer.accept(ex);
+            throw new DataServiceException(msg, ex.getCause());
         }
         catch (Throwable ex) {
             consumer.accept(ex);
