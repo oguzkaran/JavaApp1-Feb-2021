@@ -1,6 +1,12 @@
+/*
+    Repository MovieDirectorDetail şeklindeki tasarım özellikle gösterilmiştir. Bu bir yaklaşımdır. Değişebilir
+*/
+
 package org.csystem.application.service.rest.movie.data.repository;
 
+import org.csystem.application.service.rest.movie.data.entity.Director;
 import org.csystem.application.service.rest.movie.data.entity.Movie;
+import org.csystem.application.service.rest.movie.data.entity.MovieDirectorDetail;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -21,6 +27,9 @@ public class MovieRepository implements IMovieRepository {
     private static final String FIND_BY_MONTH_YEAR_SQL = "select * from movies where date_part('month', scene_time) = :month and date_part('year', scene_time) = :year";
     private static final String FIND_BY_YEAR_SQL = "select * from movies where date_part('year', scene_time) = :year";
     private static final String SAVE_SQL = "insert into movies (name, rating, scene_time, cost, imdb) values (:name, :rating, :sceneTime, :cost, :imdb)";
+    private static final String FIND_BY_YEAR_DETAILED_SQL = "select m.name, m.scene_time, m.rating, m.cost, d.name "+
+            "from directors d inner join movies_to_director md on md.director_id = d.director_id inner join " +
+            "movies m on md.movie_id = m.movie_id where date_part('year', m.scene_time) = :year";
 
     private final NamedParameterJdbcTemplate m_jdbcTemplate;
 
@@ -40,6 +49,21 @@ public class MovieRepository implements IMovieRepository {
             var imdb = resultSet.getFloat(6);
 
             movies.add(new Movie(id, name, sceneTime, rating, cost, imdb));
+        } while (resultSet.next());
+    }
+
+    private static void fillMoviesDetails(ResultSet resultSet, ArrayList<MovieDirectorDetail> details) throws SQLException
+    {
+        do {
+            var movieName = resultSet.getString(1);
+            var sceneTime = resultSet.getDate(2).toLocalDate();
+            var rating = resultSet.getLong(3);
+            var cost = resultSet.getBigDecimal(4);
+            var directorName = resultSet.getString(5);
+
+            var movie = new Movie(movieName, sceneTime, rating, cost, 0);
+            var director = new Director(directorName);
+            details.add(new MovieDirectorDetail(movie, director));
         } while (resultSet.next());
     }
 
@@ -79,6 +103,19 @@ public class MovieRepository implements IMovieRepository {
         m_jdbcTemplate.query(FIND_BY_YEAR_SQL, parameterMap, (ResultSet rs) -> fillMovies(rs, movies));
 
         return movies;
+    }
+
+    @Override
+    public Iterable<MovieDirectorDetail> findMoviesDetailsByYear(int year)
+    {
+        Map<String, Object> parameterMap = new HashMap<>();
+
+        parameterMap.put("year", year);
+        var details = new ArrayList<MovieDirectorDetail>();
+
+        m_jdbcTemplate.query(FIND_BY_YEAR_DETAILED_SQL, parameterMap, (ResultSet rs) -> fillMoviesDetails(rs, details));
+
+        return details;
     }
 
     @Override
@@ -152,7 +189,6 @@ public class MovieRepository implements IMovieRepository {
     {
         throw new UnsupportedOperationException();
     }
-
 
 
     @Override

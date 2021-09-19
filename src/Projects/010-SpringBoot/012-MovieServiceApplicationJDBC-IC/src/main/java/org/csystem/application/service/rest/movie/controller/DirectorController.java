@@ -2,14 +2,13 @@ package org.csystem.application.service.rest.movie.controller;
 
 import org.csystem.application.service.rest.movie.dto.DirectorDTO;
 import org.csystem.application.service.rest.movie.service.DirectoryService;
-import org.csystem.util.data.service.DataServiceException;
 import org.springframework.context.annotation.Scope;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.csystem.util.exception.ExceptionUtil.subscribe;
 
 @RestController
 @Scope("prototype")
@@ -25,11 +24,12 @@ public class DirectorController {
     @GetMapping("/all")
     public List<DirectorDTO> findAllDirectors()
     {
-        try {
-            return m_directoryService.findAllDirectors();
-        }
-        catch (DataServiceException ex) {
-            return new ArrayList<>(); //Geçici olarak yazıldı
-        }
+        return subscribe(m_directoryService::findAllDirectors, ex -> new ArrayList<>());
+    }
+
+    @PostMapping("/save")
+    public DirectorDTO saveDirector(@RequestBody DirectorDTO directorDTO)
+    {
+        return m_directoryService.saveDirector(directorDTO);
     }
 }

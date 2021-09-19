@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.csystem.util.exception.ExceptionUtil.subscribe;
+
 @RestController
 @RequestMapping("api/movie")
 @Scope("prototype")
@@ -28,34 +30,19 @@ public class MovieController {
     @GetMapping("/all")
     public List<MovieDTO> findAll()
     {
-        try {
-            return m_movieService.findAllMovies();
-        }
-        catch (DataServiceException ex) {
-            return new ArrayList<>(); //Bu geçici olarak yapıldı
-        }
+        return subscribe(m_movieService::findAllMovies, ex -> new ArrayList<>());
     }
 
     @GetMapping("/info")
     public List<MovieDTO> findMovieByYear(@RequestParam("year") int year)
     {
-        try {
-            return m_movieService.findMoviesByYear(year);
-        }
-        catch (DataServiceException ex) {
-            return new ArrayList<>(); //Bu geçici olarak yapıldı
-        }
+        return subscribe(() -> m_movieService.findMoviesByYear(year), ex -> new ArrayList<>());
     }
 
     @GetMapping("/infos")
     public List<MovieDTO> findMovieByYear(@RequestParam("year") String yearStr)
     {
-        try {
-            return m_movieService.findMoviesByYear(Integer.parseInt(yearStr));
-        }
-        catch (DataServiceException|NumberFormatException ex) {
-            return new ArrayList<>(); //Bu geçici olarak yapıldı
-        }
+        return subscribe(() -> m_movieService.findMoviesByYear(Integer.parseInt(yearStr)), ex -> new ArrayList<>());
     }
 
     @GetMapping("/infosre")
@@ -91,13 +78,6 @@ public class MovieController {
     @GetMapping("/count")
     public long count()
     {
-        try {
-            return m_movieService.countMovies();
-        }
-        catch (DataServiceException ex) {
-            return -1; //Geçici olarak yapıldı
-        }
+        return subscribe(m_movieService::countMovies, ex -> -1L);
     }
-
-
 }

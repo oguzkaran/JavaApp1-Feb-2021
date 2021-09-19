@@ -10,6 +10,16 @@ public class Director {
     public Director()
     {}
 
+    public Director(String name)
+    {
+        this(0, name);
+    }
+
+    public Director(long id, String name)
+    {
+        this(id, name, null);
+    }
+
     public Director(long id, String name, LocalDate birthDate)
     {
         m_id = id;

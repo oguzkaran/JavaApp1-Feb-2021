@@ -1,7 +1,6 @@
 package org.csystem.application.service.rest.movie.converter;
 
-import org.csystem.application.service.rest.movie.data.entity.Director;
-import org.csystem.application.service.rest.movie.data.entity.Movie;
+import org.csystem.application.service.rest.movie.data.entity.MovieDirectorDetail;
 import org.csystem.application.service.rest.movie.dto.MovieDetailDTO;
 import org.springframework.stereotype.Component;
 
@@ -16,17 +15,12 @@ public class MovieDirectorConverter {
         m_directorConverter = directorConverter;
     }
 
-    public MovieDetailDTO toMovieDetailDTO(Movie movie, Director director)
+    public MovieDetailDTO toMovieDetailDTO(MovieDirectorDetail detail)
     {
         var movieDetailDTO = new MovieDetailDTO();
 
-        var movieDTO = m_movieConverter.toMovieDTO(movie);
-        var directorDTO = m_directorConverter.toDirectorDTO(director);
-        movieDetailDTO.setName(movie.getName());
-        movieDetailDTO.setSceneTime(movieDTO.getSceneTime());
-        movieDetailDTO.setRating(movieDTO.getRating());
-        movieDetailDTO.setCost(movieDTO.getCost());
-        movieDetailDTO.setDirectorName(directorDTO.getName());
+        movieDetailDTO.setMovie(m_movieConverter.toMovieDTO(detail.getMovie()));
+        movieDetailDTO.setDirectorName(m_directorConverter.toDirectorDTO(detail.getDirector()).getName());
 
         return movieDetailDTO;
     }

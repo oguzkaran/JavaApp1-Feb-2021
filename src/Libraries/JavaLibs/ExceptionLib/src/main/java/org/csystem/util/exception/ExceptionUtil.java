@@ -1,7 +1,7 @@
 /*----------------------------------------------------------------------
 FILE        : ExceptionUtil.java
 AUTHOR      : Oğuz Karan
-LAST UPDATE : 15.09.2021
+LAST UPDATE : 19.09.2021
 
 ExceptionUtil class for exception managing
 
@@ -21,7 +21,6 @@ public final class ExceptionUtil {
 
     private static <T extends RuntimeException> void throwException(String msg, Class<T> cls, Throwable ex)
     {
-
         try {
             throw cls.getConstructor(String.class, Throwable.class).newInstance(msg, ex);
         }
@@ -169,6 +168,26 @@ public final class ExceptionUtil {
         }
         finally {
             runnableCompleted.run();
+        }
+    }
+
+    public static <R> R subscribe(ISupplierCallback<R> supplier, Closeable closeable, Function<Throwable, R> function)
+    {
+        try (closeable) {
+            return supplier.get();
+        }
+        catch (Throwable ex) {
+            return function.apply(ex);
+        }
+    }
+
+    public static void subscribeRunnable(IActionCallback actionCallback, Closeable closeable, Consumer<Throwable> consumer)
+    {
+        try (closeable) {
+            actionCallback.run();
+        }
+        catch (Throwable ex) {
+            consumer.accept(ex);
         }
     }
 }

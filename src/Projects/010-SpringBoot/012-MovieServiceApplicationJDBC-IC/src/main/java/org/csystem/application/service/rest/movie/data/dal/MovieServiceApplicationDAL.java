@@ -2,6 +2,7 @@ package org.csystem.application.service.rest.movie.data.dal;
 
 import org.csystem.application.service.rest.movie.data.entity.Director;
 import org.csystem.application.service.rest.movie.data.entity.Movie;
+import org.csystem.application.service.rest.movie.data.entity.MovieDirectorDetail;
 import org.csystem.application.service.rest.movie.data.repository.IDirectorRepository;
 import org.csystem.application.service.rest.movie.data.repository.IMovieRepository;
 import org.springframework.stereotype.Component;
@@ -38,6 +39,12 @@ public class MovieServiceApplicationDAL {
     public Iterable<Movie> findMoviesByYear(int year)
     {
         return doWorkForRepository(() -> m_movieRepository.findMoviesByYear(year), "MovieServiceApplicationDAL.findByYear");
+    }
+
+    public Iterable<MovieDirectorDetail> findMoviesDetailsByYear(int year)
+    {
+        return doWorkForRepository(() -> m_movieRepository.findMoviesDetailsByYear(year),
+                "MovieServiceApplicationDAL.findMoviesDetailsByYear");
     }
 
     public Movie saveMovie(Movie movie)

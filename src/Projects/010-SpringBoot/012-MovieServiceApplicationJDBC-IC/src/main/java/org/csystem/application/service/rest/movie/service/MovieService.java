@@ -3,12 +3,10 @@ package org.csystem.application.service.rest.movie.service;
 import org.csystem.application.service.rest.movie.converter.MovieConverter;
 import org.csystem.application.service.rest.movie.converter.MovieDirectorConverter;
 import org.csystem.application.service.rest.movie.data.dal.MovieServiceApplicationDAL;
-import org.csystem.application.service.rest.movie.data.entity.Director;
 import org.csystem.application.service.rest.movie.dto.MovieDTO;
 import org.csystem.application.service.rest.movie.dto.MovieDetailDTO;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -52,8 +50,8 @@ public class MovieService {
 
     private List<MovieDetailDTO> findMoviesDetailsByYearCallback(int year)
     {
-        return StreamSupport.stream(m_movieServiceApplicationDAL.findMoviesByYear(year).spliterator(), false)
-                .map(m -> m_movieDirectorConverter.toMovieDetailDTO(m, new Director(0, "Kubilay Şeker", LocalDate.of(1996, 9, 17))))
+        return StreamSupport.stream(m_movieServiceApplicationDAL.findMoviesDetailsByYear(year).spliterator(), false)
+                .map(m_movieDirectorConverter::toMovieDetailDTO)
                 .collect(Collectors.toList());
     }
 
