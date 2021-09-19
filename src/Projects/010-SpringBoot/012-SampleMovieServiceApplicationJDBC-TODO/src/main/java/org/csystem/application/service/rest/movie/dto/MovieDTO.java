@@ -1,5 +1,7 @@
 package org.csystem.application.service.rest.movie.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import java.math.BigDecimal;
 
 public class MovieDTO {
@@ -38,10 +40,12 @@ public class MovieDTO {
         m_rating = rating;
     }
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     public BigDecimal getCost()
     {
         return m_cost;
     }
+
 
     public void setCost(BigDecimal cost)
     {

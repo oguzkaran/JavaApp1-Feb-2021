@@ -2,14 +2,13 @@ package org.csystem.application.service.rest.movie.controller;
 
 import org.csystem.application.service.rest.movie.dto.MovieDTO;
 import org.csystem.application.service.rest.movie.dto.MovieDetailDTO;
+import org.csystem.application.service.rest.movie.dto.exception.ErrorInfo;
 import org.csystem.application.service.rest.movie.service.MovieService;
 import org.csystem.util.data.service.DataServiceException;
 import org.springframework.context.annotation.Scope;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -75,9 +74,23 @@ public class MovieController {
         return responseEntity;
     }
 
+    @GetMapping("/info/detailstat")
+    public ResponseEntity<Object> findMoviesDetailsByYearStatus(@RequestParam("year") String yearStr)
+    {
+        return subscribe(() -> ResponseEntity.ok(m_movieService.findMoviesDetailsByYear(Integer.parseInt(yearStr))),
+                ex -> new ResponseEntity<>(new ErrorInfo(ex.getMessage(), yearStr), HttpStatus.BAD_REQUEST));
+    }
+
     @GetMapping("/count")
     public long count()
     {
         return subscribe(m_movieService::countMovies, ex -> -1L);
+    }
+
+    @PostMapping("/save")
+    public ResponseEntity<Object> saveMovie(@RequestBody MovieDTO movieDTO)
+    {
+        return subscribe(() -> ResponseEntity.ok(m_movieService.saveMovie(movieDTO)),
+                ex -> new ResponseEntity<>(new ErrorInfo(ex.getMessage(), null), HttpStatus.BAD_REQUEST));
     }
 }

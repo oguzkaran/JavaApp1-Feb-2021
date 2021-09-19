@@ -19,7 +19,7 @@ public class MovieDirectorConverter {
     {
         var movieDetailDTO = new MovieDetailDTO();
 
-        movieDetailDTO.setMovie(m_movieConverter.toMovieDTO(detail.getMovie()));
+        movieDetailDTO.setMovieDTO(m_movieConverter.toMovieDTO(detail.getMovie()));
         movieDetailDTO.setDirectorName(m_directorConverter.toDirectorDTO(detail.getDirector()).getName());
 
         return movieDetailDTO;

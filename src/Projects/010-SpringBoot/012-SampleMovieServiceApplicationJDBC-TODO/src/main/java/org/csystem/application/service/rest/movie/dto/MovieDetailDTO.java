@@ -1,17 +1,20 @@
 package org.csystem.application.service.rest.movie.dto;
 
+import com.fasterxml.jackson.annotation.JsonGetter;
+
 public class MovieDetailDTO {
     private MovieDTO m_movieDTO;
     private String m_directorName;
 
     //...
 
-    public MovieDTO getMovie()
+    @JsonGetter("movie")
+    public MovieDTO getMovieDTO()
     {
         return m_movieDTO;
     }
 
-    public void setMovie(MovieDTO movieDTO)
+    public void setMovieDTO(MovieDTO movieDTO)
     {
         m_movieDTO = movieDTO;
     }

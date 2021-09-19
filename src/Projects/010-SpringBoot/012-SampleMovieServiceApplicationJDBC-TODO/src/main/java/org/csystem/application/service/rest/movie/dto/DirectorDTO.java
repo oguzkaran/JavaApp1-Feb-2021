@@ -1,5 +1,8 @@
 package org.csystem.application.service.rest.movie.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonGetter;
+
 import java.time.LocalDate;
 
 public class DirectorDTO {
@@ -16,6 +19,7 @@ public class DirectorDTO {
         m_name = name;
     }
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     public LocalDate getBirthDate()
     {
         return m_birthDate;
