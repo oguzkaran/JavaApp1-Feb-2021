@@ -10,9 +10,9 @@
 	</parent>
 
 	<groupId>org.csystem</groupId>
-	<artifactId>MovieRestServiceApplication</artifactId>
+	<artifactId>TodoRestServiceApp</artifactId>
 	<version>1.0.0</version>
-	<name>MovieRestServiceApplication</name>
+	<name>TodoRestServiceApp</name>
 
 	<properties>
 		<java.version>11</java.version>
@@ -38,7 +38,7 @@
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-jdbc</artifactId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
 
 		<dependency>

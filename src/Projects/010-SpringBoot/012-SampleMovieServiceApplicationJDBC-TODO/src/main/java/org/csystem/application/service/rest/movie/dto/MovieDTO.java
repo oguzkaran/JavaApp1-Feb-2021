@@ -46,7 +46,6 @@ public class MovieDTO {
         return m_cost;
     }
 
-
     public void setCost(BigDecimal cost)
     {
         m_cost = cost;

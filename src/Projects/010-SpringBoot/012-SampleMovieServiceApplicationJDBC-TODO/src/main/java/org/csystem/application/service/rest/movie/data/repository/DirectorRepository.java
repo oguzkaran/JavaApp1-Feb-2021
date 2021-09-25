@@ -110,7 +110,6 @@ public class DirectorRepository implements IDirectorRepository {
     }
 
 
-
     @Override
     public <S extends Director> Iterable<S> save(Iterable<S> entities)
     {
