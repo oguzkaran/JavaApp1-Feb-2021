@@ -11,7 +11,6 @@ import java.util.stream.StreamSupport;
 
 import static org.csystem.util.data.DatabaseUtil.doWorkForService;
 
-
 @Service
 public class DirectoryService {
     private final MovieServiceApplicationDAL m_movieServiceApplicationDAL;
