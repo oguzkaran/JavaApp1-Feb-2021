@@ -1,7 +1,7 @@
 package org.csystem.application.service.rest.movie.controller;
 
 import org.csystem.application.service.rest.movie.dto.DirectorDTO;
-import org.csystem.application.service.rest.movie.service.DirectoryService;
+import org.csystem.application.service.rest.movie.service.DirectorService;
 import org.springframework.context.annotation.Scope;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,9 +14,9 @@ import static org.csystem.util.exception.ExceptionUtil.subscribe;
 @Scope("prototype")
 @RequestMapping("api/director")
 public class DirectorController {
-    private final DirectoryService m_directoryService;
+    private final DirectorService m_directoryService;
 
-    public DirectorController(DirectoryService directoryService)
+    public DirectorController(DirectorService directoryService)
     {
         m_directoryService = directoryService;
     }

@@ -12,7 +12,7 @@ import java.util.stream.StreamSupport;
 import static org.csystem.util.data.DatabaseUtil.doWorkForService;
 
 @Service
-public class DirectoryService {
+public class DirectorService {
     private final MovieServiceApplicationDAL m_movieServiceApplicationDAL;
     private final DirectorConverter m_directorConverter;
 
@@ -30,7 +30,7 @@ public class DirectoryService {
                 .collect(Collectors.toList());
     }
 
-    public DirectoryService(MovieServiceApplicationDAL movieServiceApplicationDAL, DirectorConverter directorConverter)
+    public DirectorService(MovieServiceApplicationDAL movieServiceApplicationDAL, DirectorConverter directorConverter)
     {
         m_movieServiceApplicationDAL = movieServiceApplicationDAL;
         m_directorConverter = directorConverter;
