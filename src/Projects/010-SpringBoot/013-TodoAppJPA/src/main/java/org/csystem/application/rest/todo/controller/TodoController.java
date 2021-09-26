@@ -29,6 +29,30 @@ public class TodoController {
         return m_todoService.findTodosByCompleted(completed);
     }
 
+    @GetMapping("todos/find/title")
+    public Iterable<TodoInfoDTO> findTodosByTitle(String title)
+    {
+        return m_todoService.findTodosByTitle(title);
+    }
+
+    @GetMapping("todos/find/title/contains")
+    public Iterable<TodoInfoDTO> findTodosByTitleContains(String text)
+    {
+        return m_todoService.findTodosByTitleContains(text);
+    }
+
+    @GetMapping("todos/find/title/completed")
+    public Iterable<TodoInfoDTO> findByCompletedAndTitle(@RequestParam(defaultValue = "true") boolean completed, String title)
+    {
+        return m_todoService.findByCompletedAndTitle(completed, title);
+    }
+
+    @GetMapping("todos/find/title/completed/contains")
+    public Iterable<TodoInfoDTO> findByCompletedAndTitleContains(@RequestParam(defaultValue = "true") boolean completed, String text)
+    {
+        return m_todoService.findByCompletedAndTitleContains(completed, text);
+    }
+
     @PostMapping("save")
     public TodoInfoDTO saveTodo(@RequestBody TodoSaveDTO todoSaveDTO)
     {

@@ -25,6 +25,27 @@ public class TodoAppDAL {
         return doWorkForRepository(() -> m_todoRepository.findByCompleted(completed), "TodoAppDAL.findTodosByCompleted");
     }
 
+    public Iterable<Todo> findTodosByTitle(String title)
+    {
+        return doWorkForRepository(() -> m_todoRepository.findByTitle(title), "TodoAppDAL.findTodosByTitle");
+    }
+
+    public Iterable<Todo> findTodosByTitleContains(String text)
+    {
+        return doWorkForRepository(() -> m_todoRepository.findByTitleContains(text), "TodoAppDAL.findTodosByTitleContains");
+    }
+
+    public Iterable<Todo> findByCompletedAndTitle(boolean completed, String title)
+    {
+        return doWorkForRepository(() -> m_todoRepository.findByCompletedAndTitle(completed, title), "TodoAppDAL.findByCompletedAndTitle");
+    }
+
+    public Iterable<Todo> findByCompletedAndTitleContains(boolean completed, String text)
+    {
+        return doWorkForRepository(() -> m_todoRepository.findByCompletedAndTitleContains(completed, text),
+                "TodoAppDAL.findByCompletedAndTitleContains");
+    }
+
     public Todo saveTodo(Todo todo)
     {
         return doWorkForRepository(() -> m_todoRepository.save(todo), "TodoAppDAL.saveTodo");

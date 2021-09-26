@@ -8,6 +8,7 @@ import org.csystem.application.rest.todo.dto.TodoSaveDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -24,16 +25,50 @@ public class TodoService {
         return m_todoInfoConverter.toTodoInfoDTO(m_todoAppDAL.saveTodo(m_todoSaveConverter.toTodo(todoSaveDTO)));
     }
 
+    private static <T, R> List<R> toList(Iterable<? extends T> iterable, boolean parallel, Function<? super T, ? extends R> function)
+    {
+        return StreamSupport.stream(iterable.spliterator(), parallel)
+                .map(function)
+                .collect(Collectors.toList());
+    }
+
     private List<TodoInfoDTO> findAllTodosCallback()
     {
-        return StreamSupport.stream(m_todoAppDAL.findAllTodos().spliterator(), true)
-                .map(m_todoInfoConverter::toTodoInfoDTO)
-                .collect(Collectors.toList());
+        return toList(m_todoAppDAL.findAllTodos(), true, m_todoInfoConverter::toTodoInfoDTO);
     }
 
     private List<TodoInfoDTO> findTodosByCompletedCallback(boolean completed)
     {
         return StreamSupport.stream(m_todoAppDAL.findTodosByCompleted(completed).spliterator(), true)
+                .map(m_todoInfoConverter::toTodoInfoDTO)
+                .collect(Collectors.toList());
+    }
+
+    private List<TodoInfoDTO> findTodosByTitleCallback(String title)
+    {
+        return StreamSupport.stream(m_todoAppDAL.findTodosByTitle(title).spliterator(), false)
+                .map(m_todoInfoConverter::toTodoInfoDTO)
+                .collect(Collectors.toList());
+    }
+
+    private List<TodoInfoDTO> findTodosByTitleContainsCallback(String text)
+    {
+        return StreamSupport.stream(m_todoAppDAL.findTodosByTitleContains(text).spliterator(), false)
+                .map(m_todoInfoConverter::toTodoInfoDTO)
+                .collect(Collectors.toList());
+    }
+
+
+    private Iterable<TodoInfoDTO> findByCompletedAndTitleCallback(boolean completed, String title)
+    {
+        return StreamSupport.stream(m_todoAppDAL.findByCompletedAndTitle(completed, title).spliterator(), false)
+                .map(m_todoInfoConverter::toTodoInfoDTO)
+                .collect(Collectors.toList());
+    }
+
+    private Iterable<TodoInfoDTO> findByCompletedAndTitleContainsCallback(boolean completed, String title)
+    {
+        return StreamSupport.stream(m_todoAppDAL.findByCompletedAndTitleContains(completed, title).spliterator(), false)
                 .map(m_todoInfoConverter::toTodoInfoDTO)
                 .collect(Collectors.toList());
     }
@@ -52,6 +87,27 @@ public class TodoService {
     public List<TodoInfoDTO> findTodosByCompleted(boolean completed)
     {
         return doWorkForService(() -> findTodosByCompletedCallback(completed), "TodoService.findTodosByCompleted");
+    }
+
+    public Iterable<TodoInfoDTO> findTodosByTitle(String title)
+    {
+        return doWorkForService(() -> findTodosByTitleCallback(title), "TodoService.findTodosByTitle");
+    }
+
+    public Iterable<TodoInfoDTO> findTodosByTitleContains(String text)
+    {
+        return doWorkForService(() -> findTodosByTitleContainsCallback(text), "TodoService.findTodosByTitleContains");
+    }
+
+    public Iterable<TodoInfoDTO> findByCompletedAndTitle(boolean completed, String title)
+    {
+        return doWorkForService(() -> findByCompletedAndTitleCallback(completed, title), "TodoService.findByCompletedAndTitle");
+    }
+
+
+    public Iterable<TodoInfoDTO> findByCompletedAndTitleContains(boolean completed, String text)
+    {
+        return doWorkForService(() -> findByCompletedAndTitleContainsCallback(completed, text), "TodoService.findByCompletedAndTitle");
     }
 
     public TodoInfoDTO saveTodo(TodoSaveDTO todoSaveDTO)

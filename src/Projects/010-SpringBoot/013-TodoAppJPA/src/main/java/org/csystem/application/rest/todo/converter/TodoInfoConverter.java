@@ -11,8 +11,8 @@ public class TodoInfoConverter {
     {
         var todo = new Todo();
 
-        todo.setTitle(todoInfoDTO.getTitle());
-        todo.setText(todoInfoDTO.getText());
+        todo.title = todoInfoDTO.getTitle();
+        todo.text = todoInfoDTO.getText();
 
         return todo;
     }
@@ -21,12 +21,12 @@ public class TodoInfoConverter {
     {
         var todoInfoDTO = new TodoInfoDTO();
 
-        todoInfoDTO.setId(todo.getId());
-        todoInfoDTO.setTitle(todo.getTitle());
-        todoInfoDTO.setText(todo.getText());
-        todoInfoDTO.setInsertDateTime(todo.getInsertDateTime());
-        todoInfoDTO.setLastUpdate(todo.getLastUpdate());
-        todoInfoDTO.setCompleted(todo.isCompleted());
+        todoInfoDTO.setId(todo.id);
+        todoInfoDTO.setTitle(todo.title);
+        todoInfoDTO.setText(todo.text);
+        todoInfoDTO.setInsertDateTime(todo.insertDateTime);
+        todoInfoDTO.setLastUpdate(todo.lastUpdate);
+        todoInfoDTO.setCompleted(todo.completed);
 
         return todoInfoDTO;
     }

@@ -10,8 +10,8 @@ public class TodoSaveConverter {
     {
         var todo = new Todo();
 
-        todo.setTitle(todoSaveDTO.getTitle());
-        todo.setText(todoSaveDTO.getText());
+        todo.title = todoSaveDTO.getTitle();
+        todo.text = todoSaveDTO.getText();
 
         return todo;
     }
@@ -20,8 +20,8 @@ public class TodoSaveConverter {
     {
         var todoSaveDTO = new TodoSaveDTO();
 
-        todoSaveDTO.setTitle(todo.getTitle());
-        todoSaveDTO.setText(todo.getText());
+        todoSaveDTO.setTitle(todo.title);
+        todoSaveDTO.setText(todo.text);
 
         return todoSaveDTO;
     }
