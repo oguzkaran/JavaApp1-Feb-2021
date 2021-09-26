@@ -1,10 +1,10 @@
 package org.csystem.application.rest.todo.service;
 
-import org.csystem.application.rest.todo.converter.TodoInfoConverter;
-import org.csystem.application.rest.todo.converter.TodoSaveConverter;
 import org.csystem.application.rest.todo.data.dal.TodoAppDAL;
 import org.csystem.application.rest.todo.dto.TodoInfoDTO;
 import org.csystem.application.rest.todo.dto.TodoSaveDTO;
+import org.csystem.application.rest.todo.mapper.ITodoInfoMapper;
+import org.csystem.application.rest.todo.mapper.ITodoSaveMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,20 +12,21 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
-import static org.csystem.util.data.DatabaseUtil.*;
+import static org.csystem.util.data.DatabaseUtil.doWorkForService;
 
 @Service
 public class TodoService {
     private final TodoAppDAL m_todoAppDAL;
-    private final TodoInfoConverter m_todoInfoConverter;
-    private final TodoSaveConverter m_todoSaveConverter;
+    private final ITodoInfoMapper m_todoInfoMapper;
+    private final ITodoSaveMapper m_todoSaveMapper;
 
     private TodoInfoDTO saveCallback(TodoSaveDTO todoSaveDTO)
     {
-        return m_todoInfoConverter.toTodoInfoDTO(m_todoAppDAL.saveTodo(m_todoSaveConverter.toTodo(todoSaveDTO)));
+        return m_todoInfoMapper.toTodoInfoDTO(m_todoAppDAL.saveTodo(m_todoSaveMapper.toTodo(todoSaveDTO)));
     }
 
-    private static <T, R> List<R> toList(Iterable<? extends T> iterable, boolean parallel, Function<? super T, ? extends R> function)
+    //Bu metot library'ye eklenecek
+    private static <T, R> List<R> convertToList(Iterable<? extends T> iterable, boolean parallel, Function<? super T, ? extends R> function)
     {
         return StreamSupport.stream(iterable.spliterator(), parallel)
                 .map(function)
@@ -34,50 +35,40 @@ public class TodoService {
 
     private List<TodoInfoDTO> findAllTodosCallback()
     {
-        return toList(m_todoAppDAL.findAllTodos(), true, m_todoInfoConverter::toTodoInfoDTO);
+        return convertToList(m_todoAppDAL.findAllTodos(), true, m_todoInfoMapper::toTodoInfoDTO);
     }
 
     private List<TodoInfoDTO> findTodosByCompletedCallback(boolean completed)
     {
-        return StreamSupport.stream(m_todoAppDAL.findTodosByCompleted(completed).spliterator(), true)
-                .map(m_todoInfoConverter::toTodoInfoDTO)
-                .collect(Collectors.toList());
+        return convertToList(m_todoAppDAL.findTodosByCompleted(completed), true, m_todoInfoMapper::toTodoInfoDTO);
     }
 
     private List<TodoInfoDTO> findTodosByTitleCallback(String title)
     {
-        return StreamSupport.stream(m_todoAppDAL.findTodosByTitle(title).spliterator(), false)
-                .map(m_todoInfoConverter::toTodoInfoDTO)
-                .collect(Collectors.toList());
+        return convertToList(m_todoAppDAL.findTodosByTitle(title), false, m_todoInfoMapper::toTodoInfoDTO);
     }
 
     private List<TodoInfoDTO> findTodosByTitleContainsCallback(String text)
     {
-        return StreamSupport.stream(m_todoAppDAL.findTodosByTitleContains(text).spliterator(), false)
-                .map(m_todoInfoConverter::toTodoInfoDTO)
-                .collect(Collectors.toList());
+        return convertToList(m_todoAppDAL.findTodosByTitleContains(text), false, m_todoInfoMapper::toTodoInfoDTO);
     }
 
 
     private Iterable<TodoInfoDTO> findByCompletedAndTitleCallback(boolean completed, String title)
     {
-        return StreamSupport.stream(m_todoAppDAL.findByCompletedAndTitle(completed, title).spliterator(), false)
-                .map(m_todoInfoConverter::toTodoInfoDTO)
-                .collect(Collectors.toList());
+        return convertToList(m_todoAppDAL.findByCompletedAndTitle(completed, title), false, m_todoInfoMapper::toTodoInfoDTO);
     }
 
     private Iterable<TodoInfoDTO> findByCompletedAndTitleContainsCallback(boolean completed, String title)
     {
-        return StreamSupport.stream(m_todoAppDAL.findByCompletedAndTitleContains(completed, title).spliterator(), false)
-                .map(m_todoInfoConverter::toTodoInfoDTO)
-                .collect(Collectors.toList());
+        return convertToList(m_todoAppDAL.findByCompletedAndTitleContains(completed, title), false, m_todoInfoMapper::toTodoInfoDTO);
     }
 
-    public TodoService(TodoAppDAL todoAppDAL, TodoInfoConverter todoInfoConverter, TodoSaveConverter todoSaveConverter)
+    public TodoService(TodoAppDAL todoAppDAL, ITodoInfoMapper todoInfoMapper, ITodoSaveMapper todoSaveMapper)
     {
         m_todoAppDAL = todoAppDAL;
-        m_todoInfoConverter = todoInfoConverter;
-        m_todoSaveConverter = todoSaveConverter;
+        m_todoInfoMapper = todoInfoMapper;
+        m_todoSaveMapper = todoSaveMapper;
     }
 
     public List<TodoInfoDTO> findAllTodos()

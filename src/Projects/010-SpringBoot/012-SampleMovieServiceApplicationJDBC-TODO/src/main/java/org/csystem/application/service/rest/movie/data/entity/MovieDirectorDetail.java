@@ -1,5 +1,5 @@
 /*
-    Repository MovieDirectorDetail şeklindeki tasarım özellikle gösterilmiştir. Bu bir yaklaşımdır. Değişebilir
+    MovieDirectorDetail şeklindeki tasarım özellikle gösterilmiştir. Bu bir yaklaşımdır. Değişebilir
 */
 package org.csystem.application.service.rest.movie.data.entity;
 
