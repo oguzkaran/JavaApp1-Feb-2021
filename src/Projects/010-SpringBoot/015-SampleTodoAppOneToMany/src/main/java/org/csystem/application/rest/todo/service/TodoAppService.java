@@ -1,8 +1,11 @@
 package org.csystem.application.rest.todo.service;
 
 import org.csystem.application.rest.todo.data.dal.TodoAppHelper;
+import org.csystem.application.rest.todo.dto.ItemInfoDTO;
+import org.csystem.application.rest.todo.dto.ItemSaveDTO;
 import org.csystem.application.rest.todo.dto.TodoInfoDTO;
 import org.csystem.application.rest.todo.dto.TodoSaveDTO;
+import org.csystem.application.rest.todo.mapper.IItemSaveMapper;
 import org.csystem.application.rest.todo.mapper.ITodoInfoMapper;
 import org.csystem.application.rest.todo.mapper.ITodoSaveMapper;
 import org.springframework.stereotype.Service;
@@ -19,6 +22,7 @@ public class TodoAppService {
     private final TodoAppHelper m_todoAppHelper;
     private final ITodoInfoMapper m_todoInfoMapper;
     private final ITodoSaveMapper m_todoSaveMapper;
+    private final IItemSaveMapper m_itemSaveMapper;
 
     //Bu metot library'ye eklenecek
     private static <T, R> List<R> convertToList(Iterable<? extends T> iterable, boolean parallel, Function<? super T, ? extends R> function)
@@ -31,6 +35,11 @@ public class TodoAppService {
     private TodoInfoDTO saveTodoCallback(TodoSaveDTO todoSaveDTO)
     {
         return m_todoInfoMapper.toTodoInfoDTO(m_todoAppHelper.saveTodo(m_todoSaveMapper.toTodo(todoSaveDTO)));
+    }
+
+    private ItemSaveDTO saveItemCallback(ItemSaveDTO itemSaveDTO)
+    {
+        return m_itemSaveMapper.toItemSaveDTO(m_todoAppHelper.saveItem(m_itemSaveMapper.toItem(itemSaveDTO)));
     }
 
     private List<TodoInfoDTO> findAllTodosCallback()
@@ -69,11 +78,13 @@ public class TodoAppService {
         return convertToList(m_todoAppHelper.findTodosByMonth(month), false, m_todoInfoMapper::toTodoInfoDTO);
     }
 
-    public TodoAppService(TodoAppHelper todoAppHelper, ITodoInfoMapper todoInfoMapper, ITodoSaveMapper todoSaveMapper)
+    public TodoAppService(TodoAppHelper todoAppHelper, ITodoInfoMapper todoInfoMapper, ITodoSaveMapper todoSaveMapper,
+                          IItemSaveMapper itemSaveMapper)
     {
         m_todoAppHelper = todoAppHelper;
         m_todoInfoMapper = todoInfoMapper;
         m_todoSaveMapper = todoSaveMapper;
+        m_itemSaveMapper = itemSaveMapper;
     }
 
     public List<TodoInfoDTO> findAllTodos()
@@ -113,5 +124,10 @@ public class TodoAppService {
     public TodoInfoDTO saveTodo(TodoSaveDTO todoSaveDTO)
     {
         return doWorkForService(() -> saveTodoCallback(todoSaveDTO), "TodoService.saveTodo");
+    }
+
+    public ItemSaveDTO saveItem(ItemSaveDTO itemSaveDTO)
+    {
+        return doWorkForService(() -> saveItemCallback(itemSaveDTO), "TodoService.saveItem");
     }
 }

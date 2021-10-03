@@ -7,9 +7,8 @@ import java.time.LocalDateTime;
 public class TodoInfoDTO {
     private long m_id;
     private String m_title;
-    private String m_text;
+    private String m_description;
     private LocalDateTime m_insertDateTime;
-    private LocalDateTime m_lastUpdate;
     private boolean m_completed;
 
     public long getId()
@@ -32,14 +31,14 @@ public class TodoInfoDTO {
         m_title = title;
     }
 
-    public String getText()
+    public String getDescription()
     {
-        return m_text;
+        return m_description;
     }
 
-    public void setText(String text)
+    public void setDescription(String description)
     {
-        m_text = text;
+        m_description = description;
     }
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy hh:mm:ss")
@@ -51,17 +50,6 @@ public class TodoInfoDTO {
     public void setInsertDateTime(LocalDateTime insertDateTime)
     {
         m_insertDateTime = insertDateTime;
-    }
-
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy hh:mm:ss")
-    public LocalDateTime getLastUpdate()
-    {
-        return m_lastUpdate;
-    }
-
-    public void setLastUpdate(LocalDateTime lastUpdate)
-    {
-        m_lastUpdate = lastUpdate;
     }
 
     public boolean isCompleted()

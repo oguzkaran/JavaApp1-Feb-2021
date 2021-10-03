@@ -1,18 +1,35 @@
 package org.csystem.application.rest.todo.data.dal;
 
+import org.csystem.application.rest.todo.data.entity.Item;
 import org.csystem.application.rest.todo.data.entity.Todo;
+import org.csystem.application.rest.todo.data.repository.IItemRepository;
 import org.csystem.application.rest.todo.data.repository.ITodoRepository;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
-import static org.csystem.util.data.DatabaseUtil.*;
+import static org.csystem.util.data.DatabaseUtil.doWorkForRepository;
 
 @Component
 public class TodoAppHelper {
     private final ITodoRepository m_todoRepository;
+    private final IItemRepository m_itemRepository;
 
-    public TodoAppHelper(ITodoRepository todoRepository)
+    private Item saveItemCallback(Item item)
+    {
+        var todoOpt = m_todoRepository.findById(item.todoId);
+
+        if (todoOpt.isEmpty())
+            throw new IllegalArgumentException("Invalid todo id");
+
+        item.todo = todoOpt.get();
+
+        return m_itemRepository.save(item);
+    }
+
+    public TodoAppHelper(ITodoRepository todoRepository, IItemRepository itemRepository)
     {
         m_todoRepository = todoRepository;
+        m_itemRepository = itemRepository;
     }
 
     public Iterable<Todo> findAllTodos()
@@ -54,5 +71,11 @@ public class TodoAppHelper {
     public Todo saveTodo(Todo todo)
     {
         return doWorkForRepository(() -> m_todoRepository.save(todo), "TodoAppDAL.saveTodo");
+    }
+
+    @Transactional
+    public Item saveItem(Item item)
+    {
+        return doWorkForRepository(() -> saveItemCallback(item), "TodoAppDAL.saveItem");
     }
 }

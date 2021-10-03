@@ -1,8 +1,19 @@
 package org.csystem.application.rest.todo.dto;
 
 public class TodoSaveDTO {
+    private long m_id;
     private String m_title;
-    private String m_text;
+    private String m_description;
+
+    public long getId()
+    {
+        return m_id;
+    }
+
+    public void setId(long id)
+    {
+        m_id = id;
+    }
 
     public String getTitle()
     {
@@ -14,13 +25,13 @@ public class TodoSaveDTO {
         m_title = title;
     }
 
-    public String getText()
+    public String getDescription()
     {
-        return m_text;
+        return m_description;
     }
 
-    public void setText(String text)
+    public void setDescription(String description)
     {
-        m_text = text;
+        m_description = description;
     }
 }
