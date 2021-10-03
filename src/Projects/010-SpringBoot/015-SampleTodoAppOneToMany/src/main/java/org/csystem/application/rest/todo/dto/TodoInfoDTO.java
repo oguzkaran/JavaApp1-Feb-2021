@@ -1,29 +1,15 @@
-package org.csystem.application.rest.todo.data.entity;
+package org.csystem.application.rest.todo.dto;
 
-import javax.persistence.*;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.time.LocalDateTime;
 
-@Entity
-@Table(name = "todos")
-public class Todo { //POJO (Plain Old Java Object)
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "todo_id")
+public class TodoInfoDTO {
     private long m_id;
-
-    @Column(name = "title", length = 128, nullable = false)
     private String m_title;
-
-    @Column(name = "text", length = 512)
     private String m_text;
-
-    @Column(name = "insert_date_time", nullable = false)
-    private LocalDateTime m_insertDateTime = LocalDateTime.now();
-
-    @Column(name = "last_update", nullable = false)
-    private LocalDateTime m_lastUpdate = m_insertDateTime;
-
-    @Column(name = "completed", nullable = false)
+    private LocalDateTime m_insertDateTime;
+    private LocalDateTime m_lastUpdate;
     private boolean m_completed;
 
     public long getId()
@@ -56,6 +42,7 @@ public class Todo { //POJO (Plain Old Java Object)
         m_text = text;
     }
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy hh:mm:ss")
     public LocalDateTime getInsertDateTime()
     {
         return m_insertDateTime;
@@ -66,6 +53,7 @@ public class Todo { //POJO (Plain Old Java Object)
         m_insertDateTime = insertDateTime;
     }
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy hh:mm:ss")
     public LocalDateTime getLastUpdate()
     {
         return m_lastUpdate;
