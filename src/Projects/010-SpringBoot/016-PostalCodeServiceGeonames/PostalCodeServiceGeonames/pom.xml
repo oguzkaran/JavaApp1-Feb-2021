@@ -10,9 +10,9 @@
 	</parent>
 
 	<groupId>org.csystem</groupId>
-	<artifactId>MovieRestServiceApplication</artifactId>
+	<artifactId>PostalCodeServiceGeonames</artifactId>
 	<version>1.0.0</version>
-	<name>MovieRestServiceApplication</name>
+	<name>PostalCodeServiceGeonames</name>
 
 	<properties>
 		<java.version>11</java.version>
@@ -24,6 +24,7 @@
 			<url>http://raw.github.com/oguzkaran/javaapp1-feb-2021-maven-repo/main</url>
 		</repository>
 	</repositories>
+
 
 	<dependencies>
 		<dependency>
@@ -38,13 +39,19 @@
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-jdbc</artifactId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
 
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
-			<version>42.2.24.jre7</version>
+			<version>42.2.23.jre7</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.mapstruct</groupId>
+			<artifactId>mapstruct</artifactId>
+			<version>1.4.2.Final</version>
 		</dependency>
 
 		<dependency>
@@ -82,6 +89,22 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.1</version>
+				<configuration>
+					<source>11</source>
+					<target>11</target>
+					<annotationProcessorPaths>
+						<path>
+							<groupId>org.mapstruct</groupId>
+							<artifactId>mapstruct-processor</artifactId>
+							<version>1.4.2.Final</version>
+						</path>
+					</annotationProcessorPaths>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>

@@ -10,9 +10,9 @@
 	</parent>
 
 	<groupId>org.csystem</groupId>
-	<artifactId>MovieRestServiceApplication</artifactId>
+	<artifactId>TodoItemInfoService</artifactId>
 	<version>1.0.0</version>
-	<name>MovieRestServiceApplication</name>
+	<name>TodoItemInfoService</name>
 
 	<properties>
 		<java.version>11</java.version>
@@ -32,42 +32,9 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-jdbc</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-			<version>42.2.24.jre7</version>
-		</dependency>
-
-		<dependency>
 			<groupId>org.csystem</groupId>
 			<artifactId>org-csystem-util-console</artifactId>
 			<version>4.0.0</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.csystem</groupId>
-			<artifactId>org-csystem-util-exception</artifactId>
-			<version>4.0.0</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.csystem</groupId>
-			<artifactId>org-csystem-util-data</artifactId>
-			<version>4.0.1</version>
-		</dependency>
-
-		<dependency>
-			<groupId>com.fasterxml.jackson.datatype</groupId>
-			<artifactId>jackson-datatype-jsr310</artifactId>
 		</dependency>
 
 		<dependency>
