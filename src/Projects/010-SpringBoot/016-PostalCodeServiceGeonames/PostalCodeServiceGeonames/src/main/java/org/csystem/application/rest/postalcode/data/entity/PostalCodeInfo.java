@@ -10,10 +10,6 @@ public class PostalCodeInfo {
     @Column(name = "postal_codes_info_id")
     public long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "postal_code", nullable = false)
-    public PostalCode postalCode;
-
     @Column(name = "admin_name1")
     public String adminName1;
 
@@ -27,4 +23,7 @@ public class PostalCodeInfo {
     
     public double lng;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "postal_code", nullable = false)
+    public PostalCode postalCode;
 }

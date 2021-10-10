@@ -12,11 +12,16 @@ public class PostalCode {
     public int postalCode;
 
     @Column(name = "creation_date_time")
-    public LocalDateTime creationDateTime;
+    public LocalDateTime creationDateTime = LocalDateTime.now();
 
     @OneToMany(mappedBy = "postalCode", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     public Set<PostalCodeInfo> postalCodeInfos;
 
+    public PostalCode()
+    {}
 
-
+    public PostalCode(int postalCode)
+    {
+        this.postalCode = postalCode;
+    }
 }
