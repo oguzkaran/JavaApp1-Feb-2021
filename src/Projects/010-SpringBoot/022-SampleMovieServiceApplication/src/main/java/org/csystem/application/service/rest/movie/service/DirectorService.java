@@ -1,8 +1,8 @@
 package org.csystem.application.service.rest.movie.service;
 
-import org.csystem.application.service.rest.movie.converter.DirectorConverter;
 import org.csystem.application.service.rest.movie.data.dal.MovieServiceApplicationDAL;
 import org.csystem.application.service.rest.movie.dto.DirectorDTO;
+import org.csystem.application.service.rest.movie.mapper.IDirectorMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,11 +14,11 @@ import static org.csystem.util.data.DatabaseUtil.doWorkForService;
 @Service
 public class DirectorService {
     private final MovieServiceApplicationDAL m_movieServiceApplicationDAL;
-    private final DirectorConverter m_directorConverter;
+    private final IDirectorMapper m_directorMapper;
 
     private DirectorDTO saveDirectorCallback(DirectorDTO directorDTO)
     {
-        m_movieServiceApplicationDAL.saveDirector(m_directorConverter.toDirector(directorDTO));
+        m_movieServiceApplicationDAL.saveDirector(m_directorMapper.toDirector(directorDTO));
 
         return directorDTO;
     }
@@ -26,14 +26,14 @@ public class DirectorService {
     private List<DirectorDTO> findAllDirectorsCallback()
     {
         return StreamSupport.stream(m_movieServiceApplicationDAL.findAllDirectors().spliterator(), false)
-                .map(m_directorConverter::toDirectorDTO)
+                .map(m_directorMapper::toDirectorDTO)
                 .collect(Collectors.toList());
     }
 
-    public DirectorService(MovieServiceApplicationDAL movieServiceApplicationDAL, DirectorConverter directorConverter)
+    public DirectorService(MovieServiceApplicationDAL movieServiceApplicationDAL, IDirectorMapper directorMapper)
     {
         m_movieServiceApplicationDAL = movieServiceApplicationDAL;
-        m_directorConverter = directorConverter;
+        m_directorMapper = directorMapper;
     }
 
     public DirectorDTO saveDirector(DirectorDTO directorDTO)

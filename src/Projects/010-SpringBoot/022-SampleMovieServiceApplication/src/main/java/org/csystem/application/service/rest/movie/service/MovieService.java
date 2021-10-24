@@ -1,8 +1,8 @@
 package org.csystem.application.service.rest.movie.service;
 
-import org.csystem.application.service.rest.movie.converter.MovieConverter;
 import org.csystem.application.service.rest.movie.data.dal.MovieServiceApplicationDAL;
 import org.csystem.application.service.rest.movie.dto.MovieDTO;
+import org.csystem.application.service.rest.movie.mapper.IMovieMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,41 +14,40 @@ import static org.csystem.util.data.DatabaseUtil.doWorkForService;
 @Service
 public class MovieService {
     private final MovieServiceApplicationDAL m_movieServiceApplicationDAL;
-    private final MovieConverter m_movieConverter;
+    private final IMovieMapper m_movieMapper;
 
     private List<MovieDTO> findAllMoviesCallback()
     {
         return StreamSupport.stream(m_movieServiceApplicationDAL.findAllMovies().spliterator(), false)
-                .map(m_movieConverter::toMovieDTO)
+                .map(m_movieMapper::toMovieDTO)
                 .collect(Collectors.toList());
     }
 
     private List<MovieDTO> findMoviesByMonthYearCallback(int month, int year)
     {
         return StreamSupport.stream(m_movieServiceApplicationDAL.findMoviesByMonthYear(month, year).spliterator(), false)
-                .map(m_movieConverter::toMovieDTO)
+                .map(m_movieMapper::toMovieDTO)
                 .collect(Collectors.toList());
     }
 
     private List<MovieDTO> findMoviesByYearCallback(int year)
     {
         return StreamSupport.stream(m_movieServiceApplicationDAL.findMoviesByYear(year).spliterator(), false)
-                .map(m_movieConverter::toMovieDTO)
+                .map(m_movieMapper::toMovieDTO)
                 .collect(Collectors.toList());
     }
 
     private MovieDTO saveMovieCallback(MovieDTO movieDTO)
     {
-        m_movieServiceApplicationDAL.saveMovie(m_movieConverter.toMovie(movieDTO));
+        m_movieServiceApplicationDAL.saveMovie(m_movieMapper.toMovie(movieDTO));
 
         return movieDTO;
     }
 
-
-    public MovieService(MovieServiceApplicationDAL movieServiceApplicationDAL, MovieConverter movieConverter)
+    public MovieService(MovieServiceApplicationDAL movieServiceApplicationDAL, IMovieMapper movieMapper)
     {
         m_movieServiceApplicationDAL = movieServiceApplicationDAL;
-        m_movieConverter = movieConverter;
+        m_movieMapper = movieMapper;
     }
 
     public long countMovies()

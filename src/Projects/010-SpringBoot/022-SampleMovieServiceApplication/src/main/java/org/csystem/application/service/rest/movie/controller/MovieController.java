@@ -31,19 +31,7 @@ public class MovieController {
         return subscribe(m_movieService::findAllMovies, ex -> new ArrayList<>());
     }
 
-    @GetMapping("/info")
-    public List<MovieDTO> findMovieByYear(@RequestParam("year") int year)
-    {
-        return subscribe(() -> m_movieService.findMoviesByYear(year), ex -> new ArrayList<>());
-    }
-
-    @GetMapping("/infos")
-    public List<MovieDTO> findMovieByYear(@RequestParam("year") String yearStr)
-    {
-        return subscribe(() -> m_movieService.findMoviesByYear(Integer.parseInt(yearStr)), ex -> new ArrayList<>());
-    }
-
-    @GetMapping("/infosre")
+    @GetMapping("/info/y")
     public ResponseEntity<List<MovieDTO>> findMovieByYearResponseEntity(@RequestParam("year") String yearStr)
     {
         ResponseEntity<List<MovieDTO>> responseEntity = ResponseEntity.badRequest().build();
@@ -57,6 +45,36 @@ public class MovieController {
 
         return responseEntity;
     }
+
+    @GetMapping("/info/my")
+    public ResponseEntity<List<MovieDTO>> findMoviesByMonthAndYear(@RequestParam("month") String monthStr,
+                                                                   @RequestParam("year") String yearStr)
+    {
+        ResponseEntity<List<MovieDTO>> responseEntity = ResponseEntity.badRequest().build();
+
+        try {
+            responseEntity = ResponseEntity.ok(m_movieService.findMoviesByMonthYear(Integer.parseInt(monthStr), Integer.parseInt(yearStr)));
+        }
+        catch (DataServiceException|NumberFormatException ex) {
+            //...
+        }
+
+        return responseEntity;
+    }
+
+    @GetMapping("/count")
+    public long count()
+    {
+        return subscribe(m_movieService::countMovies, ex -> -1L);
+    }
+
+    @PostMapping("/save")
+    public ResponseEntity<Object> saveMovie(@RequestBody MovieDTO movieDTO)
+    {
+        return subscribe(() -> ResponseEntity.ok(m_movieService.saveMovie(movieDTO)),
+                ex -> new ResponseEntity<>(new ErrorInfo(ex.getMessage(), null), HttpStatus.BAD_REQUEST));
+    }
+
 
     /*
     @GetMapping("/info/detail")
@@ -85,19 +103,6 @@ public class MovieController {
     }
 
      */
-
-    @GetMapping("/count")
-    public long count()
-    {
-        return subscribe(m_movieService::countMovies, ex -> -1L);
-    }
-
-    @PostMapping("/save")
-    public ResponseEntity<Object> saveMovie(@RequestBody MovieDTO movieDTO)
-    {
-        return subscribe(() -> ResponseEntity.ok(m_movieService.saveMovie(movieDTO)),
-                ex -> new ResponseEntity<>(new ErrorInfo(ex.getMessage(), null), HttpStatus.BAD_REQUEST));
-    }
 
     //...
 }

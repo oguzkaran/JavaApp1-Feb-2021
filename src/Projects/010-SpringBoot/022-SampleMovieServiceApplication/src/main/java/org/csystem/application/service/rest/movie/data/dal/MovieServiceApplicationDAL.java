@@ -40,14 +40,6 @@ public class MovieServiceApplicationDAL {
         return doWorkForRepository(() -> m_movieRepository.findMoviesByYear(year), "MovieServiceApplicationDAL.findByYear");
     }
 
-    /*
-    public Iterable<MovieDirectorDetail> findMoviesDetailsByYear(int year)
-    {
-        return doWorkForRepository(() -> m_movieRepository.findMoviesDetailsByYear(year),
-                "MovieServiceApplicationDAL.findMoviesDetailsByYear");
-    }
-     */
-
     public Movie saveMovie(Movie movie)
     {
         return doWorkForRepository(() -> m_movieRepository.save(movie), "MovieServiceApplicationDAL.saveMovie");
@@ -67,6 +59,4 @@ public class MovieServiceApplicationDAL {
     {
         return doWorkForRepository(m_directorRepository::findAll, "MovieServiceApplicationDAL.findAllDirectors");
     }
-
-    //...
 }
