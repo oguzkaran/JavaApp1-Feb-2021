@@ -1,0 +1,5 @@
+abcçdefgğhıijklmnoöprsştuüvyzABCÇDEFGĞJHIİJKLMNOÖPRSŞTUÜVYZ 10
+abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ    20
+0123456789  30
+:?;~- 40
+abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ:?;~- 20

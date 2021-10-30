@@ -3,6 +3,8 @@
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.util.number;
 
+import org.csystem.util.string.StringUtil;
+
 import java.math.BigInteger;
 import java.util.Random;
 
@@ -175,20 +177,6 @@ public final class NumberUtil {
         return numbers;
     }
 
-    public static String getLetters(String s)
-    {
-        int len = s.length();
-        String str = "";
-
-        for (int i = 0; i < len; ++i) {
-            char c = s.charAt(i);
-
-            if (Character.isLetter(c))
-                str += c;
-        }
-
-        return str;
-    }
 
     public static int getNextFibonacciNumber(int val)
     {
@@ -219,7 +207,6 @@ public final class NumberUtil {
 
         return val;
     }
-
 
     public static int [] getPrimes(int n)
     {
@@ -299,7 +286,7 @@ public final class NumberUtil {
 
     public static boolean isPalindrome(String s)
     {
-        String str = getLetters(s);
+        String str = StringUtil.getLetters(s);
 
         if (str.isEmpty())
             return false;
