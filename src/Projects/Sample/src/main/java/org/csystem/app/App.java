@@ -1,30 +1,33 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    Colloctors sınıfının joining metodu ile yazı birleştirmesi ayraç, prefix ve suffix kullanılarak yapılabilir
+    Apache Commons StopWatch sınıfı. Detayları manual'dan inceleyebilirsiniz:
+    https://commons.apache.org/proper/commons-lang/
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
 
-import org.csystem.data.factory.MyProductFactory;
-import org.csystem.data.product.ProductInfo;
+import org.apache.commons.lang3.time.StopWatch;
 import org.csystem.util.Console;
+import org.csystem.util.number.NumberUtil;
 
-import java.util.stream.Collectors;
+import java.math.BigInteger;
 
 class App {
     public static void main(String[] args)
     {
-        try {
-            var factory = MyProductFactory.loadFromTextFile("products-temp.csv");
-            var products = factory.PRODUCTS;
+        var stopWatch = new StopWatch();
 
-            var str = products.stream().map(ProductInfo::getName)
-                    .map(s -> "[[" + s + "]]")
-                    .collect(Collectors.joining(" :: ", "{", "}"));
+        stopWatch.start();
+        Console.writeLine(NumberUtil.isPrime(6584583408148485263L));
+        stopWatch.stop();
+        var elapsed = stopWatch.getNanoTime();
+        Console.writeLine("Elapsed Time:%f", elapsed / 1_000_000_000.);
 
-            Console.writeLine(str);
+        stopWatch.reset();
+        stopWatch.start();
+        Console.writeLine(NumberUtil.isPrime(BigInteger.valueOf(6584583408148485263L)));
+        stopWatch.stop();
 
-        }
-        catch (Throwable ex) {
-            ex.printStackTrace();
-        }
+        elapsed = stopWatch.getNanoTime();
+        Console.writeLine("Elapsed Time:%f", elapsed / 1_000_000_000.);
     }
 }
+
