@@ -11,7 +11,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-    <groupId>org.csystem.java</groupId>
+    <groupId>org.csystem</groupId>
     <artifactId>org-csystem-util-tuple</artifactId>
     <version>4.0.0</version>
 

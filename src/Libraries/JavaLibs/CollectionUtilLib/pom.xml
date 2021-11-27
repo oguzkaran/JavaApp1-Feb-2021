@@ -11,14 +11,40 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
+
+
     <groupId>org.csystem.java</groupId>
     <artifactId>org-csystem-util</artifactId>
     <version>1.0.0</version>
 
+
     <properties>
-        <java.version>8</java.version>
+        <java.version>11</java.version>
     </properties>
 
+
+    <repositories>
+        <repository>
+            <id>javaapp1-feb-2021</id>
+            <url>http://raw.github.com/oguzkaran/javaapp1-feb-2021-maven-repo/main</url>
+        </repository>
+    </repositories>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.2</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.csystem</groupId>
+            <artifactId>org-csystem-util-tuple</artifactId>
+            <version>4.0.0</version>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
     <build>
         <plugins>
             <plugin>
