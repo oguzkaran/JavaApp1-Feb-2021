@@ -1,5 +1,6 @@
 package org.csystem.application.rest.postalcode.configuration.user;
 
+import org.csystem.util.Console;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.userdetails.User;
@@ -10,9 +11,11 @@ import java.util.Collection;
 
 @Configuration
 public class UsersConfig {
+
     @Bean
     public Collection<UserDetails> getUsers()
     {
+
         var adminUser = User.withDefaultPasswordEncoder()
                 .username("bora")
                 .password("1234")
