@@ -28,12 +28,6 @@ public class PostalCodeServiceSecurityConfig extends WebSecurityConfigurerAdapte
     @Override
     protected void configure(HttpSecurity http) throws Exception
     {
-        http.httpBasic()
-                .and()
-                .authorizeRequests().anyRequest().authenticated()
-                .and()
-                .csrf().disable()
-                .formLogin().disable();
+        http.httpBasic().and().formLogin().disable();
     }
-
 }

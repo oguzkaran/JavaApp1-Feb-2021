@@ -4,17 +4,18 @@ import javax.persistence.*;
 
 
 @Entity
-@Table(name = "member_roles")
-public class MemberRole {
+@Table(name = "authorities")
+public class Authority {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "member_role_id")
+    @Column(name = "authority_id")
     public int id;
 
     @Column(length = 50)
-    public String role;
+    public String authority;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "member_id", nullable = false)
-    public Member member;
+    @JoinColumn(name = "username", nullable = false)
+    public User user;
 }
+

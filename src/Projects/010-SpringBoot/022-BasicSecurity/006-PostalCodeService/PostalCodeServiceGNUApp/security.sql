@@ -18,7 +18,7 @@ where username = ?;
 select username, authority from authorities
 where username = ?
 
--- Sample users
+-- Sample users without password encryption
 
 -- ROLE_SYS_ADMIN, ROLE_ADMIN, ROLE_USER, ROLE_VIEWER
 

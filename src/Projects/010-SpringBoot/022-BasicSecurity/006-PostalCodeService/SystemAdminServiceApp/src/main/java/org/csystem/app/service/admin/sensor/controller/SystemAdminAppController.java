@@ -1,7 +1,7 @@
 package org.csystem.app.service.admin.sensor.controller;
 
-import org.csystem.app.service.admin.sensor.dto.MemberRoleSaveDTO;
-import org.csystem.app.service.admin.sensor.dto.MemberSaveDTO;
+import org.csystem.app.service.admin.sensor.dto.AuthoritySaveDTO;
+import org.csystem.app.service.admin.sensor.dto.UserSaveDTO;
 import org.csystem.app.service.admin.sensor.service.SystemAdminAppService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.security.RolesAllowed;
 
 @RestController
-@RequestMapping("api/members")
+@RequestMapping("api/users")
 public class SystemAdminAppController {
     private final SystemAdminAppService m_systemAdminAppService;
 
@@ -20,17 +20,17 @@ public class SystemAdminAppController {
         m_systemAdminAppService = systemAdminAppService;
     }
 
-    @PostMapping("member/save")
+    @PostMapping("user/save")
     @RolesAllowed("SYS_ADMIN")
-    public MemberSaveDTO saveMember(@RequestBody MemberSaveDTO memberSaveDTO)
+    public UserSaveDTO saveUser(@RequestBody UserSaveDTO userSaveDTO)
     {
-        return m_systemAdminAppService.saveMember(memberSaveDTO);
+        return m_systemAdminAppService.saveUser(userSaveDTO);
     }
 
-    @PostMapping("member/role/save")
+    @PostMapping("user/authority/save")
     @RolesAllowed("SYS_ADMIN")
-    public MemberRoleSaveDTO saveMemberMemberRole(@RequestBody MemberRoleSaveDTO memberRoleSaveDTO)
+    public AuthoritySaveDTO saveAuthority(@RequestBody AuthoritySaveDTO authoritySaveDTO)
     {
-        return m_systemAdminAppService.saveMemberRole(memberRoleSaveDTO);
+        return m_systemAdminAppService.saveAuthority(authoritySaveDTO);
     }
 }

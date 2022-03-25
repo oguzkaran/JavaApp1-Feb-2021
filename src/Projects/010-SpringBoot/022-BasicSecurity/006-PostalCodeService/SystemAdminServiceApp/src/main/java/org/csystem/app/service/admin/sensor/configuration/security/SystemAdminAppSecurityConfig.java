@@ -14,12 +14,6 @@ import javax.sql.DataSource;
 public class SystemAdminAppSecurityConfig extends WebSecurityConfigurerAdapter {
     private final DataSource m_dataSource;
 
-    @Value("${app.security.member_query}")
-    private String m_memberQuery;
-
-    @Value("${app.security.role_query}")
-    private String m_roleQuery;
-
     public SystemAdminAppSecurityConfig(DataSource dataSource)
     {
         m_dataSource = dataSource;
@@ -28,10 +22,7 @@ public class SystemAdminAppSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception
     {
-        auth.jdbcAuthentication()
-                .dataSource(m_dataSource)
-                .usersByUsernameQuery(m_memberQuery)
-                .authoritiesByUsernameQuery(m_roleQuery);
+        auth.jdbcAuthentication().dataSource(m_dataSource);
     }
 
     @Override

@@ -1,13 +1,11 @@
 package org.csystem.app.service.admin.sensor.data.dal;
 
-import org.csystem.app.service.admin.sensor.data.entity.Member;
-import org.csystem.app.service.admin.sensor.data.entity.MemberRole;
-import org.csystem.app.service.admin.sensor.data.repository.IMemberRepository;
-import org.csystem.app.service.admin.sensor.data.repository.IMemberRoleRepository;
-import org.csystem.util.console.Console;
+import org.csystem.app.service.admin.sensor.data.entity.Authority;
+import org.csystem.app.service.admin.sensor.data.entity.User;
+import org.csystem.app.service.admin.sensor.data.repository.IAuthorityRepository;
+import org.csystem.app.service.admin.sensor.data.repository.IUserRepository;
 import org.springframework.stereotype.Component;
 
-import java.lang.management.MemoryPoolMXBean;
 import java.util.Optional;
 
 import static org.csystem.util.data.DatabaseUtil.doWorkForRepository;
@@ -15,40 +13,40 @@ import static org.csystem.util.data.DatabaseUtil.doWorkForRepositoryRunnable;
 
 @Component
 public class SystemAdminAppHelper {
-    private final IMemberRepository m_memberRepository;
-    private final IMemberRoleRepository m_memberRoleRepository;
+    private final IUserRepository m_memberRepository;
+    private final IAuthorityRepository m_memberRoleRepository;
 
-    private Member saveMemberCallback(Member member)
+    private User saveUserCallback(User user)
     {
-        m_memberRepository.insertMember(member.username, member.password, member.enabled);
+        m_memberRepository.insertUser(user.username, user.password, user.enabled);
 
-        return member;
+        return user;
     }
 
-    private void saveMemberRoleCallback(MemberRole memberRole)
+    private void saveAuthorityCallback(Authority authority)
     {
-        m_memberRoleRepository.insertMemberRoleByMemberId(memberRole.member.id, memberRole.role);
+        m_memberRoleRepository.insertAuthority(authority.user.username, authority.authority);
     }
 
-    public SystemAdminAppHelper(IMemberRepository memberRepository, IMemberRoleRepository memberRoleRepository)
+    public SystemAdminAppHelper(IUserRepository memberRepository, IAuthorityRepository memberRoleRepository)
     {
         m_memberRepository = memberRepository;
         m_memberRoleRepository = memberRoleRepository;
     }
 
-    public Optional<Member> findById(int id)
+    public Optional<User> findUserById(String username)
     {
-        return doWorkForRepository(() -> m_memberRepository.findById(id), "SystemAdminAppHelper.findById");
+        return doWorkForRepository(() -> m_memberRepository.findById(username), "SystemAdminAppHelper.findUserById");
     }
 
-    public Member saveMember(Member member)
+    public User saveUser(User user)
     {
-        return doWorkForRepository(() -> saveMemberCallback(member), "SystemAdminAppHelper.saveMember");
+        return doWorkForRepository(() -> saveUserCallback(user), "SystemAdminAppHelper.saveUser");
     }
 
-    public void saveMemberRole(MemberRole memberRole)
+    public void saveAuthority(Authority authority)
     {
-        doWorkForRepositoryRunnable(() -> saveMemberRoleCallback(memberRole), "SystemAdminAppHelper.saveMemberRole");
+        doWorkForRepositoryRunnable(() -> saveAuthorityCallback(authority), "SystemAdminAppHelper.saveAuthority");
     }
     //...
 }

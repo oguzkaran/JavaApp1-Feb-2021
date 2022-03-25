@@ -1,31 +1,31 @@
-create table if not exists members (
-    member_id serial primary key,
-    username varchar(50) unique not null,
+-- Default user tables
+create table users (
+    username varchar(50) primary key not null,
     password varchar(100) not null,
-    enabled boolean not null
+    enabled smallint not null
 );
 
-create table if not exists member_roles (
-    member_role_id serial primary key,
-    member_id int references members(member_id) not null,
-    role varchar(50) not null
+create table authorities (
+    authority_id serial primary key,
+    username varchar(50) references users(username),
+    authority varchar(50) not null
 );
 
 
-create or replace function insert_member(varchar(50), varchar(100), boolean)
+create or replace function insert_user(varchar(50), varchar(100), smallint)
 returns void
 as $$
 begin
-    insert into members (username, password, enabled) values ($1, $2, $3);
+    insert into users (username, password, enabled) values ($1, $2, $3);
 end
 $$ language plpgsql;
 
 
-create or replace procedure sp_insert_member_role_by_member_id(int, varchar(50))
+create or replace procedure sp_insert_authority(varchar(50), varchar(50))
 language plpgsql
 as $$
 begin
-    insert into member_roles (member_id, role) values ($1, $2);
+    insert into authorities (username, authority) values ($1, $2);
 end
 $$;
 

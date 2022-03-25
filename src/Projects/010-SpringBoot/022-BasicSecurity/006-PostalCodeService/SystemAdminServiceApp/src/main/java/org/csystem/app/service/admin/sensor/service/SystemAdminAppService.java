@@ -1,60 +1,58 @@
 package org.csystem.app.service.admin.sensor.service;
 
 import org.csystem.app.service.admin.sensor.data.dal.SystemAdminAppHelper;
-import org.csystem.app.service.admin.sensor.data.entity.MemberRole;
-import org.csystem.app.service.admin.sensor.dto.MemberRoleSaveDTO;
-import org.csystem.app.service.admin.sensor.dto.MemberSaveDTO;
-import org.csystem.app.service.admin.sensor.mapper.IMemberMapper;
-import org.csystem.util.console.Console;
+import org.csystem.app.service.admin.sensor.data.entity.Authority;
+import org.csystem.app.service.admin.sensor.dto.AuthoritySaveDTO;
+import org.csystem.app.service.admin.sensor.dto.UserSaveDTO;
+import org.csystem.app.service.admin.sensor.mapper.IUserMapper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import static org.csystem.util.data.DatabaseUtil.doWorkForService;
 
 @Service
 public class SystemAdminAppService {
     private final SystemAdminAppHelper m_systemAdminAppHelper;
-    private final IMemberMapper m_memberMapper;
+    private final IUserMapper m_userMapper;
     private final BCryptPasswordEncoder m_bCryptPasswordEncoder;
 
-    private MemberSaveDTO saveMemberCallback(MemberSaveDTO memberSaveDTO)
+    private UserSaveDTO saveUserCallback(UserSaveDTO userSaveDTO)
     {
-        memberSaveDTO.password = "{bcrypt}" + m_bCryptPasswordEncoder.encode(memberSaveDTO.password);
-        return m_memberMapper.toMemberSaveDTO(m_systemAdminAppHelper.saveMember(m_memberMapper.toMember(memberSaveDTO)));
+        userSaveDTO.password = "{bcrypt}" + m_bCryptPasswordEncoder.encode(userSaveDTO.password);
+        return m_userMapper.toMemberSaveDTO(m_systemAdminAppHelper.saveUser(m_userMapper.toMember(userSaveDTO)));
     }
 
-    private MemberRoleSaveDTO saveMemberRoleCallback(MemberRoleSaveDTO memberRoleSaveDTO)
+    private AuthoritySaveDTO saveAuthorityCallback(AuthoritySaveDTO authoritySaveDTO)
     {
-        var memberOpt = m_systemAdminAppHelper.findById(memberRoleSaveDTO.memberId);
+        var memberOpt = m_systemAdminAppHelper.findUserById(authoritySaveDTO.username);
 
         if (memberOpt.isEmpty())
-            throw new IllegalArgumentException("No member for id:" + memberRoleSaveDTO.memberId);
+            throw new IllegalArgumentException("No user:" + authoritySaveDTO.username);
 
-        var memberRole = new MemberRole();
+        var memberRole = new Authority();
 
-        memberRole.role = memberRoleSaveDTO.role;
-        memberRole.member = memberOpt.get();
+        memberRole.authority = authoritySaveDTO.authority;
+        memberRole.user = memberOpt.get();
 
-        m_systemAdminAppHelper.saveMemberRole(memberRole);
+        m_systemAdminAppHelper.saveAuthority(memberRole);
 
-        return memberRoleSaveDTO;
+        return authoritySaveDTO;
     }
 
-    public SystemAdminAppService(SystemAdminAppHelper systemAdminAppHelper, IMemberMapper memberMapper, BCryptPasswordEncoder bCryptPasswordEncoder)
+    public SystemAdminAppService(SystemAdminAppHelper systemAdminAppHelper, IUserMapper userMapper, BCryptPasswordEncoder bCryptPasswordEncoder)
     {
         m_systemAdminAppHelper = systemAdminAppHelper;
-        m_memberMapper = memberMapper;
+        m_userMapper = userMapper;
         m_bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
-    public MemberSaveDTO saveMember(MemberSaveDTO memberSaveDTO)
+    public UserSaveDTO saveUser(UserSaveDTO userSaveDTO)
     {
-        return doWorkForService(() -> saveMemberCallback(memberSaveDTO), "SystemAdminAppService.saveMember");
+        return doWorkForService(() -> saveUserCallback(userSaveDTO), "SystemAdminAppService.saveUser");
     }
 
-    public MemberRoleSaveDTO saveMemberRole(MemberRoleSaveDTO memberRoleSaveDTO)
+    public AuthoritySaveDTO saveAuthority(AuthoritySaveDTO authoritySaveDTO)
     {
-        return doWorkForService(() -> saveMemberRoleCallback(memberRoleSaveDTO), "SystemAdminAppService.saveMemberRole");
+        return doWorkForService(() -> saveAuthorityCallback(authoritySaveDTO), "SystemAdminAppService.saveMemberRole");
     }
 }
