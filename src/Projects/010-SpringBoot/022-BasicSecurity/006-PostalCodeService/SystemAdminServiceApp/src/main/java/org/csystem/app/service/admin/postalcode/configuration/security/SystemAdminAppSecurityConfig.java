@@ -1,6 +1,5 @@
-package org.csystem.app.service.admin.sensor.configuration.security;
+package org.csystem.app.service.admin.postalcode.configuration.security;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;

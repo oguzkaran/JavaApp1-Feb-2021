@@ -1,4 +1,4 @@
-package org.csystem.app.service.admin.sensor.data.entity;
+package org.csystem.app.service.admin.postalcode.data.entity;
 
 import javax.persistence.*;
 

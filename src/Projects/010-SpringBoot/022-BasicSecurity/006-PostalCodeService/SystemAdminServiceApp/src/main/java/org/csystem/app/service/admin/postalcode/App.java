@@ -1,4 +1,4 @@
-package org.csystem.app.service.admin.sensor;
+package org.csystem.app.service.admin.postalcode;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,4 +1,4 @@
-package org.csystem.app.service.admin.sensor.dto;
+package org.csystem.app.service.admin.postalcode.dto;
 
 public class UserSaveDTO {
     public String username;

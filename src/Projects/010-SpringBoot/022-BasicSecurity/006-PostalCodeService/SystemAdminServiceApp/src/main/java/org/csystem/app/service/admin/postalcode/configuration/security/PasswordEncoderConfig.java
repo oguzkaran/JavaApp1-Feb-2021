@@ -1,4 +1,4 @@
-package org.csystem.app.service.admin.sensor.configuration.security;
+package org.csystem.app.service.admin.postalcode.configuration.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Lazy;

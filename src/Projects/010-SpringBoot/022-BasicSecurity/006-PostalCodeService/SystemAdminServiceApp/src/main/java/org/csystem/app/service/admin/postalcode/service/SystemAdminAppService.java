@@ -1,10 +1,10 @@
-package org.csystem.app.service.admin.sensor.service;
+package org.csystem.app.service.admin.postalcode.service;
 
-import org.csystem.app.service.admin.sensor.data.dal.SystemAdminAppHelper;
-import org.csystem.app.service.admin.sensor.data.entity.Authority;
-import org.csystem.app.service.admin.sensor.dto.AuthoritySaveDTO;
-import org.csystem.app.service.admin.sensor.dto.UserSaveDTO;
-import org.csystem.app.service.admin.sensor.mapper.IUserMapper;
+import org.csystem.app.service.admin.postalcode.data.dal.SystemAdminAppHelper;
+import org.csystem.app.service.admin.postalcode.data.entity.Authority;
+import org.csystem.app.service.admin.postalcode.dto.AuthoritySaveDTO;
+import org.csystem.app.service.admin.postalcode.dto.UserSaveDTO;
+import org.csystem.app.service.admin.postalcode.mapper.IUserMapper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 

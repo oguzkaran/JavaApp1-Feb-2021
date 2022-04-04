@@ -1,9 +1,9 @@
-package org.csystem.app.service.admin.sensor.data.dal;
+package org.csystem.app.service.admin.postalcode.data.dal;
 
-import org.csystem.app.service.admin.sensor.data.entity.Authority;
-import org.csystem.app.service.admin.sensor.data.entity.User;
-import org.csystem.app.service.admin.sensor.data.repository.IAuthorityRepository;
-import org.csystem.app.service.admin.sensor.data.repository.IUserRepository;
+import org.csystem.app.service.admin.postalcode.data.entity.Authority;
+import org.csystem.app.service.admin.postalcode.data.entity.User;
+import org.csystem.app.service.admin.postalcode.data.repository.IAuthorityRepository;
+import org.csystem.app.service.admin.postalcode.data.repository.IUserRepository;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;

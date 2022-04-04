@@ -1,7 +1,7 @@
-package org.csystem.app.service.admin.sensor.mapper;
+package org.csystem.app.service.admin.postalcode.mapper;
 
-import org.csystem.app.service.admin.sensor.data.entity.User;
-import org.csystem.app.service.admin.sensor.dto.UserSaveDTO;
+import org.csystem.app.service.admin.postalcode.data.entity.User;
+import org.csystem.app.service.admin.postalcode.dto.UserSaveDTO;
 import org.mapstruct.Mapper;
 
 @Mapper(implementationName = "MemberMapperImpl", componentModel = "spring")
