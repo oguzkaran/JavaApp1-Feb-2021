@@ -3,6 +3,11 @@ curl -d '{"name": "Kubilay Şeker", "birthDate": "1996-09-17"}' -H "Content-Type
 curl -d '{"name": "Titanic", "sceneTime": "12/03/1997", "rating": 100, "cost": 345}' -H "Content-Type: application/json" -X POST http:/192.168.1.167:50500/api/movie/save
 
 curl -d '{"title": "Market", "text": "Soğan, Elma, mandalina"}' -H "Content-Type: application/json" -X POST http:/192.168.1.167:50501/api/todo/save
+
+curl -u  csd:csd1993 -d '{"username": "yunus", "password": "yunus1234", "enabled":1}' -H "Content-Type: application/json" -X POST http:/127.0.0.1:50500/api/users/user/save
+curl -u  csd:csd1993 -d '{"username": "yunus", "authority": "ROLE_ADMIN"}' -H "Content-Type: application/json" -X POST http:/127.0.0.1:50500/api/users/user/authority/save
+curl -u  csd:csd1993 -d '{"username": "gokcenur", "authority": "ROLE_VIEWER"}' -H "Content-Type: application/json" -X POST http:/127.0.0.1:50500/api/users/user/authority/save
+curl -u  csd:csd1993 -d '{"username": "gokcenur", "authority": "ROLE_USER"}' -H "Content-Type: application/json" -X POST http:/127.0.0.1:50500/api/users/user/authority/save
  
 
 curl -d '{"title": "Terapi Kulubu", "description": "Mobil uygulama test işlemleri"}' -H "Content-Type: application/json" -X POST http:/192.168.1.167:50501/api/todo/save
